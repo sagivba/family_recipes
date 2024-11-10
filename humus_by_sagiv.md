@@ -1,3 +1,14 @@
+---
+layout: post
+title: "החומוס של שגיב"
+type: "טבעוני"
+category: "מנה ראשונה"
+diabetic_friendly: "כן"
+origin: "מזרח תיכוני"
+spiciness: "מלוח"
+image: "/images/sagiv-hummus.jpg"
+---
+
 # החומוס של שגיב
 
 ## הכנות מקדימות:
