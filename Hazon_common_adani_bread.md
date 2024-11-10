@@ -1,3 +1,14 @@
+---
+layout: post
+title: "האזון - לחם עדני יום יומי"
+type: "פרווה"
+category: "לחם"
+diabetic_friendly: "לא"
+origin: "עדני"
+spiciness: "מתוק מלוח"
+image: "/images/hazon-bread.jpg"
+---
+
 # האזון - לחם עדני יום יומי
 
 ## רכיבים
