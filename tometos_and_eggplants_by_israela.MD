@@ -1,4 +1,15 @@
-## חצילים ברוטב עגבניות
+---
+layout: post
+title: "חצילים ברוטב עגבניות של ישראלה"
+type: "טבעוני"
+category: "תבשיל"
+diabetic_friendly: "כן"
+origin: "ישראלי"
+spiciness: "מלוח"
+image: "/images/eggplant-tomato-sauce.jpg"
+---
+
+# חצילים ברוטב עגבניות של ישראלה
 
 ### רכיבים:
 - 1 חציל
