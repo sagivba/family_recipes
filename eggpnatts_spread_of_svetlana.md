@@ -1,3 +1,18 @@
+
+הנה הכותרת ב-YAML עבור המתכון שלך:
+
+yaml
+Copy code
+---
+layout: post
+title: "סלט חצילים של סבטה"
+type: "טבעוני"
+category: "סלט"
+diabetic_friendly: "כן"
+origin: "מולדובה"
+spiciness: "מלוח"
+image: "/images/savta-eggplant-salad.jpg"
+---
 # סלט חצילים של סבטה
 
 ## רכיבים:
