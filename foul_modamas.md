@@ -1,3 +1,13 @@
+---
+layout: post
+title: "פול מודמס"
+type: "טבעוני"
+category: "מנה עיקרית"
+diabetic_friendly: "כן"
+origin: "מזרח תיכוני"
+spiciness: "פיקנטי"
+image: "/images/ful-mudammas.jpg"
+---
 # פול מודמס
 
 ## רכיבים
