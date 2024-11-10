@@ -1,3 +1,13 @@
+---
+layout: post
+title: "הפסטו של שגיב"
+type: "טבעוני"
+category: "רוטב"
+diabetic_friendly: "כן"
+origin: "איטלקי"
+spiciness: "חריף"
+image: "/images/sagiv-pesto.jpg"
+---
 # הפסטו של שגיב
 
 ### מרכיבים:
