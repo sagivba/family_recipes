@@ -1,3 +1,14 @@
+---
+layout: post
+title: "צ'ירשי (תבשיל דלעת ותפוחי אדמה)"
+type: "טבעוני"
+category: "תבשיל"
+diabetic_friendly: "כן"
+origin: "צפון אפריקאי"
+spiciness: "חריף"
+image: "/images/chirshi.jpg"
+---
+
 ## צ'ירשי (תבשיל דלעת ותפוחי אדמה)
 
 ### סוג מתכון: טבעוני
