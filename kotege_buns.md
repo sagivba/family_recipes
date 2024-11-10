@@ -1,3 +1,13 @@
+---
+layout: post
+title: "לחמניות קוטג' וקוואקר"
+type: "חלבי"
+category: "מאפה"
+diabetic_friendly: "לא"
+origin: "ישראלי"
+spiciness: "מתוק מלוח"
+image: "/images/cottage-oatmeal-buns.jpg"
+---
 # לחמניות קוטג' וקוואקר
 
 ## רכיבים:
