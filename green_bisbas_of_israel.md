@@ -1,3 +1,13 @@
+---
+layout: post
+title: "הסחוג הירוק של ישראל"
+type: "טבעוני"
+category: "רוטב"
+diabetic_friendly: "כן"
+origin: "תימני"
+spiciness: "חריף מאד"
+image: "/images/green-schug.jpg"
+---
 # הסחוג הירוק של ישראל
 
 ## רכיבים:
