@@ -1,3 +1,12 @@
+---
+layout: post
+title: "הקבאב של סבא שלום"
+type: "בשרי"
+category: "גריל"
+diabetic_friendly: "לא"
+origin: "תימני"
+spiciness: "פיקנטי"
+image: "/images/grandpa-shalom-kebab.jpg"
 # הקבאב של סבא שלום
 
 ## מרכיבים
