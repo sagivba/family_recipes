@@ -1,4 +1,14 @@
-# מרק עדשים
+---
+layout: post
+title: "מרק עדשים של שגיב"
+type: "טבעוני"
+category: "מרק"
+diabetic_friendly: "כן"
+origin: "מזרח תיכוני"
+spiciness: "מלוח"
+image: "/images/sagiv-lentil-soup.jpg"
+---
+# מרק העדשים הכתומות של שגיב
 
 ## מרכיבים
 - שמן זית
