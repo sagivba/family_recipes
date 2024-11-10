@@ -1,8 +1,3 @@
-
-הנה הכותרת ב-YAML עבור המתכון שלך:
-
-yaml
-Copy code
 ---
 layout: post
 title: "סלט חצילים של סבטה"
