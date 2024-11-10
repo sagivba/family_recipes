@@ -1,3 +1,13 @@
+---
+layout: post
+title: "שעועית אדומה חלבית - לובים"
+type: "חלבי"
+category: "תוספת"
+diabetic_friendly: "כן"
+origin: "תימני"
+spiciness: "מלוח"
+image: "/images/creamy-red-beans-loubia.jpg"
+---
 # שעועית אדומה חלבית - לובים
 
 ## רכיבים:
