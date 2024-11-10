@@ -1,3 +1,13 @@
+---
+layout: post
+title: "מחשחש"
+type: "פרווה"
+category: "תבשיל"
+diabetic_friendly: "לא"
+origin: "תימני"
+spiciness: "מתוק מלוח"
+image: "/images/makhashash.jpg"
+---
 # מחשחש
 
 ## מצרכים
