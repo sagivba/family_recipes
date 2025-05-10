@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "מרק עדשים של שגיב"
+title: "עדשים ירוקות עם ירקות"
 type: "טבעוני"
-category: "מרק"
+category: "תוספת - פחמימה"
 diabetic_friendly: "כן"
 origin: "מזרח תיכוני"
 spiciness: "מלוח"
-image: "/images/sagiv-lentil-soup.jpg"
+image: ""
 ---
 # עדשים ירוקות עם ירקות
 
