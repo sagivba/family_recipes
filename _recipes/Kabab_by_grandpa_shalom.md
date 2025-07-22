@@ -7,6 +7,7 @@ diabetic_friendly: "לא"
 origin: "תימני"
 spiciness: "פיקנטי"
 image: "/images/grandpa-shalom-kebab.jpg"
+---
 # הקבאב של סבא שלום
 
 ## מרכיבים
