@@ -56,14 +56,36 @@ classes: wide
 
 
 <script>
-  document.getElementById('recipe-filter').addEventListener('change', function () {
-    const value = this.value;
-    document.querySelectorAll('.recipe-card').forEach(card => {
-      if (value === 'all' || card.dataset.category === value) {
-        card.style.display = '';
-      } else {
-        card.style.display = 'none';
-      }
+document.addEventListener('DOMContentLoaded', function () {
+  const categoryFilter = document.getElementById('recipe-filter');
+  const imageFilter = document.getElementById('only-with-images');
+  const cards = document.querySelectorAll('.recipe-card');
+
+  function applyFilters() {
+    const category = categoryFilter ? categoryFilter.value : 'all';
+    const onlyImages = imageFilter && imageFilter.checked;
+
+    cards.forEach(card => {
+      const matchCategory =
+        category === 'all' || card.dataset.category === category;
+
+      const hasImage =
+        !card.querySelector('.recipe-card-image-wrapper.empty');
+
+      const matchImage =
+        !onlyImages || hasImage;
+
+      card.style.display =
+        (matchCategory && matchImage) ? '' : 'none';
     });
-  });
+  }
+
+  if (categoryFilter) {
+    categoryFilter.addEventListener('change', applyFilters);
+  }
+
+  if (imageFilter) {
+    imageFilter.addEventListener('change', applyFilters);
+  }
+});
 </script>
