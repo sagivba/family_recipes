@@ -1,32 +1,33 @@
 ---
 layout: single
-title: מתכונים משפחתיים
-permalink: /
 classes: wide
+header:
+  show: false
 ---
 
-**DEBUG:** מספר מתכונים: {{ site.recipes | size }}
+<article class="recipe">
 
-ברוכים הבאים לאתר המתכונים המשפחתי.  
-מתכונים ביתיים, ברורים ונוחים לבישול.
+  <header class="recipe-header">
+    <h1 class="recipe-title">{{ page.title }}</h1>
 
-## כל המתכונים
+    {% if page.description %}
+      <p class="recipe-description">{{ page.description }}</p>
+    {% endif %}
 
-<div class="recipes-grid">
+    <ul class="recipe-meta">
+      {% if page.category %}<li>קטגוריה: {{ page.category }}</li>{% endif %}
+      {% if page.type %}<li>סוג: {{ page.type }}</li>{% endif %}
+      {% if page.origin %}<li>מקור: {{ page.origin }}</li>{% endif %}
+      {% if page.diabetic_friendly %}<li>מתאים לסוכרתיים: {{ page.diabetic_friendly }}</li>{% endif %}
+    </ul>
 
-{% assign sorted = site.recipes | sort: "title" %}
-{% for recipe in sorted %}
-  <div class="recipe-card">
-    <a href="{{ recipe.url | relative_url }}">
-      <h3>{{ recipe.data.title }}</h3>
+    {% if page.image %}
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="recipe-image">
+    {% endif %}
+  </header>
 
-      {% if recipe.data.description %}
-        <p class="recipe-card-desc">
-          {{ recipe.data.description }}
-        </p>
-      {% endif %}
-    </a>
-  </div>
-{% endfor %}
+  <section class="recipe-content">
+    {{ content }}
+  </section>
 
-</div>
+</article>
