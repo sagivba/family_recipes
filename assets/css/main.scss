@@ -213,3 +213,27 @@ body {
 .layout--single .page__inner-wrap {
   max-width: none;
 }
+/* =========================
+   Full-width home page
+   ========================= */
+
+/* Remove side paddings imposed by Minimal Mistakes */
+.layout--single.home
+.initial-content,
+.layout--single.home
+.page__inner-wrap,
+.layout--single.home
+.page__content {
+  max-width: none;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+/* On wide screens – let it breathe */
+@media (min-width: 1200px) {
+  .layout--single.home
+  .page__content {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
