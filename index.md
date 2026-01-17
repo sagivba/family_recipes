@@ -9,6 +9,7 @@ classes: wide
 מתכונים ביתיים, ברורים ונוחים לבישול.
 
 ---
+
 <label for="recipe-filter">סינון לפי קטגוריה:</label>
 <select id="recipe-filter">
   <option value="all">הכול</option>
