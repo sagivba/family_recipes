@@ -244,8 +244,13 @@ body {
 
 .home-container {
   max-width: 1400px;
-  margin: 0 auto;
-  padding-left: 32px;
-  padding-right: 32px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0;
+  padding-right: 0;
+}
+.layout--home .recipes-grid {
+  margin-left: 32px;
+  margin-right: 32px;
 }
 
