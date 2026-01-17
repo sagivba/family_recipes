@@ -1,12 +1,31 @@
-<!doctype html>
-<html lang="he" dir="rtl">
-<head>
-  <meta charset="utf-8">
-  <title>{{ page.title | default: site.title }}</title>
-</head>
-<body>
+---
+layout: single
+classes: wide
+---
 
-{{ content }}
+<article class="recipe">
 
-</body>
-</html>
+  <header class="recipe-header">
+    <h1 class="recipe-title">{{ page.title }}</h1>
+
+    {% if page.description %}
+      <p class="recipe-description">{{ page.description }}</p>
+    {% endif %}
+
+    <ul class="recipe-meta">
+      {% if page.category %}<li>קטגוריה: {{ page.category }}</li>{% endif %}
+      {% if page.type %}<li>סוג: {{ page.type }}</li>{% endif %}
+      {% if page.origin %}<li>מקור: {{ page.origin }}</li>{% endif %}
+      {% if page.diabetic_friendly %}<li>מתאים לסוכרתיים: {{ page.diabetic_friendly }}</li>{% endif %}
+    </ul>
+
+    {% if page.image %}
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="recipe-image">
+    {% endif %}
+  </header>
+
+  <section class="recipe-content">
+    {{ content }}
+  </section>
+
+</article>
