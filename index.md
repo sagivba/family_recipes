@@ -9,14 +9,23 @@ classes: wide
 מתכונים ביתיים, ברורים ונוחים לבישול.
 
 ---
+<label for="recipe-filter">סינון לפי קטגוריה:</label>
+<select id="recipe-filter">
+  <option value="all">הכול</option>
+  {% assign categories = site.recipes | map: "category" | uniq | sort %}
+  {% for cat in categories %}
+    <option value="{{ cat }}">{{ cat }}</option>
+  {% endfor %}
+</select>
 
 ## כל המתכונים
+
 
 <div class="recipes-grid">
 
 {% assign sorted = site.recipes | sort: "title" %}
 {% for recipe in sorted %}
-  <div class="recipe-card">
+  <div class="recipe-card" data-category="{{ recipe.category }}">
     <a href="{{ recipe.url | relative_url }}" class="recipe-card-link">
 
       {% if recipe.image and recipe.image != "" %}
@@ -46,3 +55,15 @@ classes: wide
 </div>
 
 
+<script>
+  document.getElementById('recipe-filter').addEventListener('change', function () {
+    const value = this.value;
+    document.querySelectorAll('.recipe-card').forEach(card => {
+      if (value === 'all' || card.dataset.category === value) {
+        card.style.display = '';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+</script>
