@@ -2,16 +2,21 @@ import os
 import re
 import yaml
 import click
-from typing import List, Dict, Tuple
+import difflib
+from typing import Dict, List, Tuple
 
+# =====================
+# Configuration
+# =====================
 
-REQUIRED_FRONT_FIELDS = {
-    "layout": "recipe",
-    "title": None,
-    "category": None,
-}
+REQUIRED_FRONT_FIELDS = [
+    "layout",
+    "title",
+    "category",
+    "description",
+]
 
-OPTIONAL_FRONT_FIELDS = [
+KNOWN_FIELDS = REQUIRED_FRONT_FIELDS + [
     "type",
     "origin",
     "spiciness",
@@ -19,10 +24,12 @@ OPTIONAL_FRONT_FIELDS = [
     "image",
     "source",
     "notes",
+    "author",
+    "yield",
 ]
 
+
 REQUIRED_SECTIONS = [
-    "DESCRIPTION",
     "## מצרכים",
     "## אופן ההכנה",
     "## ערכים תזונתיים (הערכה ל-100 גרם)",
@@ -30,199 +37,230 @@ REQUIRED_SECTIONS = [
     "## הערות",
 ]
 
+COLON_NO_SPACE_RE = re.compile(r"^([A-Za-z0-9_]+):(\S)")
+INNER_COLON_UNQUOTED_RE = re.compile(r"^[A-Za-z0-9_]+:\s*[^\"']*:[^\"']*$")
 
-# ---------- File IO ----------
-def read_file(path: str) -> str:
+
+# =====================
+# Utilities
+# =====================
+
+def read_file(path: str) -> List[str]:
     with open(path, encoding="utf-8") as f:
-        return f.read()
+        return f.readlines()
 
 
-# ---------- Front matter ----------
-def extract_front_matter(text: str) -> Tuple[Dict, str, List[str]]:
-    match = re.match(r"^---\s*\n(.*?)\n---\s*\n(.*)$", text, re.S)
-    if not match:
-        return {}, text, ["Missing YAML front matter"]
-
-    front_raw, body = match.groups()
-    try:
-        front = yaml.safe_load(front_raw) or {}
-    except yaml.YAMLError as e:
-        return {}, body, [f"Invalid YAML: {e}"]
-
-    return front, body, []
+def is_quoted(value: str) -> bool:
+    value = value.strip()
+    return (
+        (value.startswith('"') and value.endswith('"')) or
+        (value.startswith("'") and value.endswith("'"))
+    )
 
 
-def validate_front_matter(front: Dict) -> List[str]:
+# =====================
+# Front Matter
+# =====================
+
+def extract_front_matter(lines: List[str]) -> Tuple[List[str], int, int, List[Dict]]:
+    if not lines or lines[0].strip() != "---":
+        return [], -1, -1, [{
+            "line": 1,
+            "type": "MissingFrontMatter",
+            "message": "Missing YAML front matter opening '---'"
+        }]
+
+    fm_lines = []
+    errors = []
+    end_idx = -1
+
+    for i in range(1, len(lines)):
+        if lines[i].strip() == "---":
+            end_idx = i
+            break
+        fm_lines.append(lines[i])
+
+    if end_idx == -1:
+        errors.append({
+            "line": 1,
+            "type": "MissingFrontMatterEnd",
+            "message": "Missing YAML front matter closing '---'"
+        })
+
+    return fm_lines, 1, end_idx, errors
+
+
+def lint_front_matter_raw(fm_lines: List[str]) -> List[Dict]:
     errors = []
 
-    for field, expected in REQUIRED_FRONT_FIELDS.items():
-        if field not in front:
-            errors.append(f"Missing required field: {field}")
-        elif expected and front[field] != expected:
-            errors.append(f"Field '{field}' must be '{expected}'")
+    for idx, line in enumerate(fm_lines, start=2):
+        stripped = line.strip()
+        if not stripped or stripped.startswith("#"):
+            continue
 
-    for field in OPTIONAL_FRONT_FIELDS:
-        if field not in front:
-            errors.append(f"Missing optional field (must exist): {field}")
+        if COLON_NO_SPACE_RE.match(stripped):
+            key = stripped.split(":")[0]
+            errors.append({
+                "line": idx,
+                "type": "MissingSpaceAfterColon",
+                "message": f"Missing space after ':' in key '{key}'",
+                "autofix": "Insert space after ':'"
+            })
+
+        if INNER_COLON_UNQUOTED_RE.match(stripped):
+            key, value = stripped.split(":", 1)
+            if not is_quoted(value):
+                errors.append({
+                    "line": idx,
+                    "type": "UnquotedTextWithColon",
+                    "message": f"Value for '{key}' contains ':' and must be quoted",
+                    "autofix": "Wrap value in quotes"
+                })
 
     return errors
 
 
-# ---------- Sections ----------
-def extract_sections(body: str) -> Tuple[List[str], bool]:
-    lines = body.strip().splitlines()
-
-    has_h1 = any(line.startswith("# ") for line in lines)
-    headers = [line.strip() for line in lines if line.startswith("#")]
-
-    description_exists = False
-    for line in lines:
-        if line.startswith("#"):
-            break
-        if line.strip():
-            description_exists = True
-            break
-
-    sections = []
-    if description_exists:
-        sections.append("DESCRIPTION")
-
-    sections.extend(headers)
-    return sections, has_h1
+def parse_front_matter_yaml(fm_lines: List[str]) -> Tuple[Dict, List[Dict]]:
+    raw = "".join(fm_lines)
+    try:
+        return yaml.safe_load(raw) or {}, []
+    except yaml.YAMLError as e:
+        mark = getattr(e, "problem_mark", None)
+        return {}, [{
+            "line": (mark.line + 1) if mark else 1,
+            "type": "InvalidYAML",
+            "message": str(e)
+        }]
 
 
-def validate_sections(found: List[str]) -> List[str]:
+def lint_front_matter_keys(front: Dict) -> List[Dict]:
+    errors = []
+
+    for key in REQUIRED_FRONT_FIELDS:
+        if key not in front:
+            errors.append({
+                "line": 1,
+                "type": "MissingRequiredField",
+                "message": f"Missing required field '{key}'"
+            })
+
+    for key in front:
+        if key not in KNOWN_FIELDS:
+            suggestions = difflib.get_close_matches(key, KNOWN_FIELDS, n=1)
+            msg = f"Unknown field '{key}'"
+            if suggestions:
+                msg += f", did you mean '{suggestions[0]}'?"
+            errors.append({
+                "line": 1,
+                "type": "UnknownField",
+                "message": msg
+            })
+
+    return errors
+
+
+# =====================
+# Sections
+# =====================
+
+def extract_sections(body_lines: List[str]) -> List[str]:
+    return [line.strip() for line in body_lines if line.strip().startswith("#")]
+
+
+def validate_sections(found: List[str]) -> List[Dict]:
     if found != REQUIRED_SECTIONS:
-        return [
-            "Sections missing or out of order",
-            f"Expected: {REQUIRED_SECTIONS}",
-            f"Found:    {found}",
-        ]
+        return [{
+            "line": 0,
+            "type": "InvalidSectionOrder",
+            "message": "Sections missing or out of order",
+            "expected": REQUIRED_SECTIONS,
+            "found": found
+        }]
     return []
 
 
-# ---------- Linting ----------
+# =====================
+# Lint File
+# =====================
+
 def lint_recipe(path: str) -> Dict:
-    result = {
-        "file": path,
-        "valid": True,
-        "errors": [],
-    }
-
-    text = read_file(path)
-
-    front, body, fm_errors = extract_front_matter(text)
-    result["errors"].extend(fm_errors)
-
-    if fm_errors:
-        result["valid"] = False
-        return result
-
-    result["errors"].extend(validate_front_matter(front))
-
-    sections, has_h1 = extract_sections(body)
-    result["errors"].extend(validate_sections(sections))
-
-    if has_h1:
-        result["errors"].append("Extra H1 (#) header found in body")
-
-    if result["errors"]:
-        result["valid"] = False
-
-    return result
-
-
-def lint_directory(recipes_dir: str) -> Dict[str, List]:
+    lines = read_file(path)
     report = {
-        "valid_files": [],
-        "invalid_files": [],
+        "file": path,
+        "errors": []
     }
 
-    for file in os.listdir(recipes_dir):
-        if not file.endswith(".md"):
-            continue
+    fm_lines, start, end, fm_errors = extract_front_matter(lines)
+    report["errors"].extend(fm_errors)
 
-        full_path = os.path.join(recipes_dir, file)
-        result = lint_recipe(full_path)
+    if end == -1:
+        return report
 
-        if result["valid"]:
-            report["valid_files"].append(file)
-        else:
-            report["invalid_files"].append(result)
+    report["errors"].extend(lint_front_matter_raw(fm_lines))
+
+    front, yaml_errors = parse_front_matter_yaml(fm_lines)
+    report["errors"].extend(yaml_errors)
+
+    if front:
+        report["errors"].extend(lint_front_matter_keys(front))
+
+    body_lines = lines[end + 1:]
+    found_sections = extract_sections(body_lines)
+    report["errors"].extend(validate_sections(found_sections))
 
     return report
 
 
-# ---------- Report ----------
-def write_report(report: Dict, output_path: str):
-    with open(output_path, "w", encoding="utf-8", newline="\n") as f:
-        f.write("\n=== VALID FILES ===\n")
-        for file in report["valid_files"]:
-            f.write(f"  - {file}\n")
-        print(f"valid: {len(report['valid_files'])}")
+# =====================
+# Directory
+# =====================
 
-        f.write("\n=== INVALID FILES ===\n")
-        for item in report["invalid_files"]:
+def lint_directory(recipes_dir: str) -> List[Dict]:
+    results = []
+    for file in os.listdir(recipes_dir):
+        if file.endswith(".md"):
+            results.append(
+                lint_recipe(os.path.join(recipes_dir, file))
+            )
+    return results
+
+
+# =====================
+# Report
+# =====================
+
+def write_report(results: List[Dict], output_path: str):
+    with open(output_path, "w", encoding="utf-8") as f:
+        valids,invalids=0,0
+        for item in results:
+            if not item["errors"]:
+                valids+=1
+                continue
+
+            invalids+=1
             f.write(f"\nFile: {item['file']}\n")
             for err in item["errors"]:
-                f.write(f"  * {err}\n")
-        print(f"valid: {len(report['invalid_files'])}")
+                line = err.get("line", "?")
+                f.write(f"  Line {line} | {err['type']} | {err['message']}\n")
+                if "expected" in err:
+                    f.write(f"    Expected: {err['expected']}\n")
+                    f.write(f"    Found:    {err['found']}\n")
+                if "autofix" in err:
+                    f.write(f"    Suggestion: {err['autofix']}\n")
+        print(f"valids:   {valids}")
+        print(f"invalids: {invalids}")
 
 
-# ---------- CLI ----------
-@click.command(
-    help="""
-Recipe Markdown Linter
+# =====================
+# CLI
+# =====================
 
-Validates Markdown recipe files against a strict format contract
-intended for use with a Jekyll-based recipe website.
-
-WHAT IS CHECKED
----------------
-For each `.md` recipe file:
-
-1. YAML Front Matter
-   - Must exist and be enclosed by '---'
-   - Required fields:
-       * layout (must be exactly "recipe")
-       * title (non-empty)
-       * category (non-empty)
-   - Optional fields (must exist):
-       * type, origin, spiciness, diabetic_friendly,
-         image, source, notes
-
-2. Recipe Body Structure
-   - Sections must exist in this exact order:
-       1. Short description (free text before any heading)
-       2. ## מצרכים
-       3. ## אופן ההכנה
-       4. ## ערכים תזונתיים (הערכה ל-100 גרם)
-       5. ### ויטמינים ומינרלים בולטים
-       6. ## הערות
-
-3. Markdown Rules
-   - No H1 (#) headers allowed in the body
-
-OUTPUT
-------
-Produces a human-readable report listing:
-- Valid recipe files
-- Invalid files with detailed errors
-
-The script is read-only and never modifies recipe files.
-"""
-)
-@click.argument(
-    "recipes_directory",
-    type=click.Path(exists=True, file_okay=False)
-)
-@click.argument(
-    "output_file",
-    type=click.Path(dir_okay=False)
-)
-def main(recipes_directory: str, output_file: str):
-    report = lint_directory(recipes_directory)
-    write_report(report, output_file)
+@click.command()
+@click.argument("recipes_directory", type=click.Path(exists=True, file_okay=False))
+@click.argument("output_file", type=click.Path())
+def main(recipes_directory, output_file):
+    results = lint_directory(recipes_directory)
+    write_report(results, output_file)
 
 
 if __name__ == "__main__":
