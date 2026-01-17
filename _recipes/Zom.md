@@ -6,11 +6,12 @@ type: "חלבי"
 origin: "תימני"
 spiciness: "מתוק מלוח"
 diabetic_friendly: "כן"
-image: "/images/zoom-matit.jpg"
+image: "/images/recipes/zoom-matit.jpg"
 source: "מנה קהילתית מסורתית"
 notes: "מוגש בדרך כלל לאחר תפילה, לצד לחוח או האזון."
 description: "מנה תימנית מסורתית, עדינה וחמוצה-מלוחה, המבוססת על שמנת ויוגורט. נהוג להגיש אותה בבית הכנסת או לאחר התפילה."
 ---
+
 
 
 ## מצרכים
