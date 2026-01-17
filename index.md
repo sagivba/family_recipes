@@ -1,11 +1,8 @@
 ---
-layout: default
+layout: home
 title: מתכונים משפחתיים
+permalink: /
 ---
 
-## רשימת מתכונים
-
-{% assign sorted = site.recipes | sort: "title" %}
-{% for recipe in sorted %}
-- [{{ recipe.title }}]({{ recipe.url | relative_url }})
-{% endfor %}
+ברוכים הבאים לאתר המתכונים המשפחתי.  
+מתכונים ביתיים, ברורים ונוחים לבישול.
