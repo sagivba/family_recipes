@@ -7,5 +7,5 @@ title: מתכונים משפחתיים
 
 {% assign sorted = site.recipes | sort: "title" %}
 {% for recipe in sorted %}
-- [{{ recipe.title }}]({{ recipe.url }})
+- [{{ recipe.title }}]({{ recipe.url | relative_url }})
 {% endfor %}
