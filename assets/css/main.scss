@@ -1,56 +1,8 @@
 ---
-# Only the main Sass file needs front matter
+# Only the main Sass file signal for Jekyll
 ---
 
 @import "minimal-mistakes";
-
-/* =========================
-   Responsive refinements
-   ========================= */
-
-/* Mobile */
-@media (max-width: 600px) {
-  .recipes-grid {
-    grid-template-columns: 1fr;
-    gap: 0.9rem;
-  }
-
-  .recipe-card-image-wrapper {
-    aspect-ratio: 16 / 9;
-  }
-
-  .recipe-card-body {
-    padding: 0.7rem 0.8rem;
-  }
-
-  .recipe-card-title {
-    font-size: 1rem;
-  }
-
-  .recipe-filter {
-    margin: 1rem 0;
-  }
-
-  .recipe-filter select {
-    width: 100%;
-    font-size: 1rem;
-    padding: 0.6rem;
-  }
-}
-
-/* Wide screens */
-@media (min-width: 1200px) {
-  .page__content {
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .recipes-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.4rem;
-  }
-}
-
 
 /* =========================
    Global base tweaks
@@ -65,22 +17,49 @@ body {
   line-height: 1.7;
 }
 
-@media (max-width: 768px) {
-  body {
-    font-size: 19px;
+/* =========================
+   Home – Recipes Grid
+   Mobile-first, fixed columns
+   ========================= */
+
+/* Mobile default */
+.recipes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 1.2rem;
+}
+
+/* Tablet */
+@media (min-width: 600px) {
+  .recipes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Laptop */
+@media (min-width: 900px) {
+  .recipes-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Wide screens */
+@media (min-width: 1200px) {
+  .page__content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .recipes-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.4rem;
   }
 }
 
 /* =========================
-   Recipes Grid (Home)
+   Recipe Card
    ========================= */
-
-.recipes-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 1.2rem;
-  margin-top: 1.5rem;
-}
 
 .recipe-card {
   background: #fff;
@@ -103,7 +82,6 @@ body {
 }
 
 /* Image area */
-
 .recipe-card-image-wrapper {
   width: 100%;
   aspect-ratio: 4 / 3;
@@ -111,7 +89,7 @@ body {
   overflow: hidden;
 }
 
-/* ריבוע ריק כשאין תמונה */
+/* Empty placeholder (no image) */
 .recipe-card-image-wrapper.empty {
   background: #f0f0f0;
 }
@@ -123,7 +101,6 @@ body {
 }
 
 /* Card body */
-
 .recipe-card-body {
   padding: 0.9rem 1rem 1.1rem;
 }
@@ -140,19 +117,30 @@ body {
   color: #555;
 }
 
-/* Mobile tweaks */
-@media (max-width: 600px) {
-  .recipes-grid {
-    grid-template-columns: 1fr;
-    gap: 0.9rem;
-  }
+/* =========================
+   Filters
+   ========================= */
+
+.recipe-filter {
+  margin: 1rem 0;
 }
 
-@media (max-width: 480px) {
-  .recipe-card-desc {
-    display: none; /* פחות עומס במובייל */
-  }
+.recipe-filter label {
+  display: block;
+  margin-bottom: 0.4rem;
 }
+
+.recipe-filter select {
+  width: 100%;
+  font-size: 1rem;
+  padding: 0.6rem;
+}
+
+.recipe-filter-images {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+}
+
 /* =========================
    Recipe Page UX
    ========================= */
@@ -194,14 +182,20 @@ body {
   font-weight: bold;
 }
 
-/* Mobile */
-@media (max-width: 480px) {
-  .recipe {
-    padding: 0 0.5rem;
-  }
-}
+/* =========================
+   Mobile refinements
+   ========================= */
 
-.recipe-filter-images {
-  margin-top: 0.6rem;
-  font-size: 0.9rem;
+@media (max-width: 600px) {
+  .recipe-card-image-wrapper {
+    aspect-ratio: 16 / 9;
+  }
+
+  .recipe-card-body {
+    padding: 0.7rem 0.8rem;
+  }
+
+  .recipe-card-title {
+    font-size: 1rem;
+  }
 }
