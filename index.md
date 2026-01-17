@@ -18,9 +18,12 @@ classes: wide
 {% for recipe in sorted %}
   <div class="recipe-card">
     <a href="{{ recipe.url | relative_url }}">
-      <h3>{{ recipe.title }}</h3>
-      {% if recipe.description %}
-        <p class="recipe-card-desc">{{ recipe.description }}</p>
+      <h3>{{ recipe.data.title }}</h3>
+
+      {% if recipe.data.description %}
+        <p class="recipe-card-desc">
+          {{ recipe.data.description }}
+        </p>
       {% endif %}
     </a>
   </div>
