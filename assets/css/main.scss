@@ -1,0 +1,23 @@
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.recipe-card {
+  border: 1px solid #e0e0e0;
+  padding: 1rem;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.recipe-card h3 {
+  margin-top: 0;
+  font-size: 1.1rem;
+}
+
+.recipe-card-desc {
+  font-size: 0.95rem;
+  color: #555;
+}
