@@ -1,0 +1,6 @@
+title: מתכונים משפחתיים
+markdown: kramdown
+
+collections:
+  recipes:
+    output: true
