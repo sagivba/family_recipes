@@ -5,6 +5,54 @@
 @import "minimal-mistakes";
 
 /* =========================
+   Responsive refinements
+   ========================= */
+
+/* Mobile */
+@media (max-width: 600px) {
+  .recipes-grid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+
+  .recipe-card-image-wrapper {
+    aspect-ratio: 16 / 9;
+  }
+
+  .recipe-card-body {
+    padding: 0.7rem 0.8rem;
+  }
+
+  .recipe-card-title {
+    font-size: 1rem;
+  }
+
+  .recipe-filter {
+    margin: 1rem 0;
+  }
+
+  .recipe-filter select {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.6rem;
+  }
+}
+
+/* Wide screens */
+@media (min-width: 1200px) {
+  .page__content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .recipes-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.4rem;
+  }
+}
+
+
+/* =========================
    Global base tweaks
    ========================= */
 
@@ -93,6 +141,12 @@ body {
 }
 
 /* Mobile tweaks */
+@media (max-width: 600px) {
+  .recipes-grid {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+}
 
 @media (max-width: 480px) {
   .recipe-card-desc {
