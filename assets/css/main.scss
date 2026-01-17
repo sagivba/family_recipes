@@ -99,3 +99,51 @@ body {
     display: none; /* פחות עומס במובייל */
   }
 }
+/* =========================
+   Recipe Page UX
+   ========================= */
+
+.recipe {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.recipe-content h2 {
+  margin-top: 2.2rem;
+  margin-bottom: 0.8rem;
+  font-size: 1.25rem;
+}
+
+.recipe-content ul,
+.recipe-content ol {
+  padding-right: 1.2rem;
+}
+
+.recipe-content li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+/* Ingredients */
+.recipe-content ul {
+  background: #fafafa;
+  border-radius: 8px;
+  padding: 1rem 1.2rem;
+}
+
+/* Steps */
+.recipe-content ol {
+  padding-right: 1.6rem;
+}
+
+.recipe-content ol li::marker {
+  font-weight: bold;
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .recipe {
+    padding: 0 0.5rem;
+  }
+}
+``
