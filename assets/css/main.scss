@@ -1,23 +1,101 @@
+---
+# Only the main Sass file needs front matter
+---
+
+@import "minimal-mistakes";
+
+/* =========================
+   Global base tweaks
+   ========================= */
+
+html {
+  direction: rtl;
+}
+
+body {
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+@media (max-width: 768px) {
+  body {
+    font-size: 19px;
+  }
+}
+
+/* =========================
+   Recipes Grid (Home)
+   ========================= */
+
 .recipes-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 1.2rem;
   margin-top: 1.5rem;
 }
 
 .recipe-card {
-  border: 1px solid #e0e0e0;
-  padding: 1rem;
-  border-radius: 8px;
   background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
 
-.recipe-card h3 {
-  margin-top: 0;
-  font-size: 1.1rem;
+.recipe-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.recipe-card-link {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+  height: 100%;
+}
+
+/* Image area */
+
+.recipe-card-image-wrapper {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background: #f4f4f4;
+  overflow: hidden;
+}
+
+/* ריבוע ריק כשאין תמונה */
+.recipe-card-image-wrapper.empty {
+  background: #f0f0f0;
+}
+
+.recipe-card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Card body */
+
+.recipe-card-body {
+  padding: 0.9rem 1rem 1.1rem;
+}
+
+.recipe-card-title {
+  margin: 0 0 0.4rem 0;
+  font-size: 1.05rem;
+  line-height: 1.35;
 }
 
 .recipe-card-desc {
-  font-size: 0.95rem;
+  margin: 0;
+  font-size: 0.9rem;
   color: #555;
+}
+
+/* Mobile tweaks */
+
+@media (max-width: 480px) {
+  .recipe-card-desc {
+    display: none; /* פחות עומס במובייל */
+  }
 }

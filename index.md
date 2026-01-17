@@ -17,16 +17,34 @@ classes: wide
 {% assign sorted = site.recipes | sort: "title" %}
 {% for recipe in sorted %}
   <div class="recipe-card">
-    <a href="{{ recipe.url | relative_url }}">
-      <h3>{{ recipe.title }}</h3>
+    <a href="{{ recipe.url | relative_url }}" class="recipe-card-link">
 
-      {% if recipe.data.description %}
-        <p class="recipe-card-desc">
-          {{ recipe.description }}
-        </p>
+      {% if recipe.image and recipe.image != "" %}
+        <div class="recipe-card-image-wrapper">
+          <img
+            src="{{ recipe.image | relative_url }}"
+            alt="{{ recipe.title }}"
+            loading="lazy"
+            class="recipe-card-image">
+        </div>
+      {% else %}
+        <div class="recipe-card-image-wrapper empty"></div>
       {% endif %}
+
+      {% endif %}
+
+      <div class="recipe-card-body">
+        <h3 class="recipe-card-title">{{ recipe.title }}</h3>
+
+        {% if recipe.description %}
+          <p class="recipe-card-desc">{{ recipe.description }}</p>
+        {% endif %}
+      </div>
+
     </a>
   </div>
 {% endfor %}
 
 </div>
+
+
