@@ -1,6 +1,39 @@
 title: מתכונים משפחתיים
+description: אתר מתכונים משפחתי, קריא ונוח לשימוש
+url: "https://sagivba.github.io"
+baseurl: "/family_recipes"
+
+theme: minimal-mistakes-jekyll
+
+locale: he-IL
+lang: he
+direction: rtl
+
 markdown: kramdown
+
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
 
 collections:
   recipes:
     output: true
+    permalink: /recipes/:name/
+  docs:
+    output: true
+    permalink: /docs/:name/
+
+defaults:
+  - scope:
+      path: ""
+      type: recipes
+    values:
+      layout: recipe
+  - scope:
+      path: "docs"
+    values:
+      layout: doc
+  - scope:
+      path: "ingredients"
+    values:
+      layout: ingredient
