@@ -208,3 +208,8 @@ body {
 .archive {
   max-width: none;
 }
+
+/* Allow full-width grid on home page */
+.layout--single .page__inner-wrap {
+  max-width: none;
+}
