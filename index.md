@@ -10,18 +10,7 @@ classes: wide
 
 ---
 
-{% raw %}
-<label for="recipe-filter">סינון לפי קטגוריה:</label>
-<select id="recipe-filter">
-{% endraw %}
-  <option value="all">הכול</option>
-  {% assign categories = site.recipes | map: "category" | uniq | sort %}
-  {% for cat in categories %}
-    <option value="{{ cat }}">{{ cat }}</option>
-  {% endfor %}
-{% raw %}
-</select>
-{% endraw %}
+{% include recipe-filter.html %}
 
 
 ## כל המתכונים
