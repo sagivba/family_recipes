@@ -9,7 +9,7 @@ diabetic_friendly: "כן"
 image: "/images/eggplant-tomato-sauce.jpg"
 source: "מתכון משפחתי"
 notes: ""
-description:"תבשיל חצילים ביתי ופשוט ברוטב עגבניות, מתאים כתוספת חמה או כמנה קלה לצד לחם."
+description: "תבשיל חצילים ביתי ופשוט ברוטב עגבניות, מתאים כתוספת חמה או כמנה קלה לצד לחם."
 ---
 
 
