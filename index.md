@@ -31,8 +31,6 @@ classes: wide
         <div class="recipe-card-image-wrapper empty"></div>
       {% endif %}
 
-      {% endif %}
-
       <div class="recipe-card-body">
         <h3 class="recipe-card-title">{{ recipe.title }}</h3>
 
