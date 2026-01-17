@@ -199,3 +199,12 @@ body {
     font-size: 1rem;
   }
 }
+
+/* =========================
+   Override Minimal Mistakes width
+   ========================= */
+
+.page__content,
+.archive {
+  max-width: none;
+}
