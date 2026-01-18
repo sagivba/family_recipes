@@ -318,3 +318,23 @@ body {
 .recipe-content ol {
   padding-inline-start: 20px;
 }
+
+/* יישור לימין – דף מתכון */
+.recipe-page {
+  direction: rtl;
+  text-align: right;
+}
+
+.recipe-page .recipe-meta {
+  justify-content: flex-start; /* ב-RTL זה ימין */
+}
+
+.recipe-page .recipe-content ul,
+.recipe-page .recipe-content ol {
+  padding-right: 20px;
+  padding-left: 0;
+}
+
+.recipe-page .recipe-content li {
+  text-align: right;
+}
