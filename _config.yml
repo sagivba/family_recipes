@@ -11,6 +11,8 @@ direction: rtl
 
 markdown: kramdown
 
+locale: he
+
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
