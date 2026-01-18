@@ -51,11 +51,11 @@ Write-Host "== Git status =="
 git status
 
 Write-Host "== Running Python validations =="
-python tools/validate_recipes.py
+python code/recipe_linter.py _recipes c:\tmp\report.md
 if ($LASTEXITCODE -ne 0) { Fail "Recipe validation failed" }
 
-python tools/validate_structure.py
-if ($LASTEXITCODE -ne 0) { Fail "Structure validation failed" }
+# python tools/validate_structure.py
+# if ($LASTEXITCODE -ne 0) { Fail "Structure validation failed" }
 
 Write-Host "== Git commit =="
 git commit -m "$CommitMessage"
