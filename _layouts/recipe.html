@@ -1,31 +1,33 @@
 ---
 layout: single
-classes: wide
+classes: recipe-page
 title: false
 header:
   show: false
 ---
 
-
-
-<article class="recipe">
+<article class="recipe-container">
 
   <header class="recipe-header">
-    <!-- <h1 class="recipe-title">{{ page.title }}</h1> -->
+    <h1 class="recipe-title">{{ page.title }}</h1>
 
     {% if page.description %}
       <p class="recipe-description">{{ page.description }}</p>
     {% endif %}
 
-    <ul class="recipe-meta">
-      {% if page.category %}<li>קטגוריה: {{ page.category }}</li>{% endif %}
-      {% if page.type %}<li>סוג: {{ page.type }}</li>{% endif %}
-      {% if page.origin %}<li>מקור: {{ page.origin }}</li>{% endif %}
-      {% if page.diabetic_friendly %}<li>מתאים לסוכרתיים: {{ page.diabetic_friendly }}</li>{% endif %}
-    </ul>
+    <div class="recipe-meta">
+      {% if page.category %}<span class="recipe-badge">{{ page.category }}</span>{% endif %}
+      {% if page.type %}<span class="recipe-badge">{{ page.type }}</span>{% endif %}
+      {% if page.origin %}<span class="recipe-badge">{{ page.origin }}</span>{% endif %}
+      {% if page.diabetic_friendly %}<span class="recipe-badge">מתאים לסוכרתיים</span>{% endif %}
+    </div>
 
     {% if page.image %}
-      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="recipe-image">
+      <img
+        src="{{ page.image | relative_url }}"
+        alt="{{ page.title }}"
+        class="recipe-image"
+        loading="lazy">
     {% endif %}
   </header>
 
