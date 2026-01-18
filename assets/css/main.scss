@@ -338,3 +338,44 @@ body {
 .recipe-page .recipe-content li {
   text-align: right;
 }
+
+
+/* ===== RTL FIX – Recipe Page ===== */
+
+/* יישור כללי */
+.recipe-page,
+.recipe-page .page__content,
+.recipe-page .recipe-container,
+.recipe-page .recipe-content {
+  direction: rtl;
+  text-align: right;
+}
+
+/* כותרות + ביטול דחיפה של anchor */
+.recipe-page h2,
+.recipe-page h3 {
+  text-align: right;
+}
+
+.recipe-page .header-link {
+  float: left;          /* מעביר את אייקון העוגן לשמאל */
+  margin-left: 0;
+  margin-right: 8px;
+}
+
+/* רשימות */
+.recipe-page ul,
+.recipe-page ol {
+  padding-right: 24px;
+  padding-left: 0;
+  margin-right: 0;
+}
+
+.recipe-page li {
+  text-align: right;
+}
+
+/* ביטול ירושה בעייתית מה-theme */
+.recipe-page .page__content * {
+  text-align: inherit;
+}
