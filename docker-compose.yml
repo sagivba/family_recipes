@@ -1,0 +1,43 @@
+services:
+  jekyll:
+    build: .
+    container_name: jekyll-ghp
+    working_dir: /site
+    volumes:
+      - .:/site
+      - bundle_cache:/bundle
+    environment:
+      - JEKYLL_ENV=development
+    command: >
+      bash -lc "
+      bundle install &&
+      bundle exec jekyll build --config _config.yml
+      "
+
+  jekyll-watch:
+    build: .
+    container_name: jekyll-watch
+    working_dir: /site
+    volumes:
+      - .:/site
+      - bundle_cache:/bundle
+    environment:
+      - JEKYLL_ENV=development
+    command: >
+      bash -lc "
+      bundle install &&
+      bundle exec jekyll build --config _config.yml --watch
+      "
+
+  web:
+    image: nginx:alpine
+    container_name: jekyll-web
+    depends_on:
+      - jekyll
+    volumes:
+      - ./_site:/usr/share/nginx/html:ro
+    ports:
+      - "8080:80"
+
+volumes:
+  bundle_cache:
