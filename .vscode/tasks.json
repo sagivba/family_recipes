@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Dev: Start (docker compose up)",
+      "type": "shell",
+      "command": "docker compose up --build",
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "Dev: Stop (docker compose down)",
+      "type": "shell",
+      "command": "docker compose down",
+      "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Dev: Logs (docker compose logs)",
+      "type": "shell",
+      "command": "docker compose logs -f",
+      "problemMatcher": []
+    }
+  ]
+}
+
