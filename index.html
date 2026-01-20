@@ -4,28 +4,30 @@ title: מתכונים משפחתיים
 permalink: /
 ---
 
-
 <h1>המתכונים של משפחת ברהום</h1>
 
 ברוכים הבאים לאתר המתכונים המשפחתי.  
-</br>
 מתכונים ביתיים, ברורים ונוחים לבישול.
 
-</hr>
+<hr>
 
+<!-- BEGIN: recipe-filter include -->
 {% include recipe-filter.html %}
+<!-- END: recipe-filter include -->
 
+<hr>
 
-</br>
-</hr>
 <h2>כל המתכונים</h2>
-
-
+<!-- BEGIN: recipe-grid  -->
 <div class="recipes-grid">
 
 {% assign sorted = site.recipes | sort: "title" %}
 {% for recipe in sorted %}
-  <div class="recipe-card" data-category="{{ recipe.category }}">
+  <div class="recipe-card"
+       data-category="{{ recipe.category }}"
+       data-type="{{ recipe.type }}"
+       data-origin="{{ recipe.origin }}">
+
     <a href="{{ recipe.url | relative_url }}" class="recipe-card-link">
 
       {% if recipe.image and recipe.image != "" %}
@@ -53,39 +55,4 @@ permalink: /
 {% endfor %}
 
 </div>
-
-
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const categoryFilter = document.getElementById('recipe-filter');
-  const imageFilter = document.getElementById('only-with-images');
-  const cards = document.querySelectorAll('.recipe-card');
-
-  function applyFilters() {
-    const category = categoryFilter ? categoryFilter.value : 'all';
-    const onlyImages = imageFilter && imageFilter.checked;
-
-    cards.forEach(card => {
-      const matchCategory =
-        category === 'all' || card.dataset.category === category;
-
-      const hasImage =
-        !card.querySelector('.recipe-card-image-wrapper.empty');
-
-      const matchImage =
-        !onlyImages || hasImage;
-
-      card.style.display =
-        (matchCategory && matchImage) ? '' : 'none';
-    });
-  }
-
-  if (categoryFilter) {
-    categoryFilter.addEventListener('change', applyFilters);
-  }
-
-  if (imageFilter) {
-    imageFilter.addEventListener('change', applyFilters);
-  }
-});
-</script>
+<!-- END: recipe-grid  -->

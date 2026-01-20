@@ -1,10 +1,92 @@
-<label for="recipe-filter">סינון לפי קטגוריה:</label>
-<select id="recipe-filter">
-  <option value="all">הכול</option>
-  {% assign categories = site.recipes | map: "category" | uniq | sort %}
-  {% for cat in categories %}
-    <option value="{{ cat }}">{{ cat }}</option>
-  {% endfor %}
-</select>
+{% assign categories = site.recipes | map: "category" | compact | uniq | sort %}
+{% assign types = site.recipes | map: "type" | compact | uniq | sort %}
+{% assign origins = site.recipes | map: "origin" | compact | uniq | sort %}
 
+<div class="recipe-filters">
+  {% if categories.size > 0 %}
+  <label for="recipe-filter-category">
+    סינון לפי קטגוריה:
+    <select id="recipe-filter-category">
+      <option value="all">הכול</option>
+      {% for cat in categories %}
+        <option value="{{ cat }}">{{ cat }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  {% endif %}
 
+  {% if types.size > 0 %}
+  <label for="recipe-filter-type">
+    סינון לפי סוג:
+    <select id="recipe-filter-type">
+      <option value="all">הכול</option>
+      {% for t in types %}
+        <option value="{{ t }}">{{ t }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  {% endif %}
+
+  {% if origins.size > 0 %}
+  <label for="recipe-filter-origin">
+    סינון לפי מקור:
+    <select id="recipe-filter-origin">
+      <option value="all">הכול</option>
+      {% for o in origins %}
+        <option value="{{ o }}">{{ o }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  {% endif %}
+
+  <label>
+    <input type="checkbox" id="only-with-images">
+    רק מתכונים עם תמונה
+  </label>
+
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const categoryFilter = document.getElementById('recipe-filter-category');
+  const typeFilter = document.getElementById('recipe-filter-type');
+  const originFilter = document.getElementById('recipe-filter-origin');
+  const imageFilter = document.getElementById('only-with-images');
+  const cards = document.querySelectorAll('.recipe-card');
+
+  function applyFilters() {
+    const category = categoryFilter ? categoryFilter.value : 'all';
+    const type = typeFilter ? typeFilter.value : 'all';
+    const origin = originFilter ? originFilter.value : 'all';
+    const onlyImages = imageFilter && imageFilter.checked;
+
+    cards.forEach(card => {
+      const matchCategory =
+        category === 'all' || card.dataset.category === category;
+
+      const matchType =
+        type === 'all' || card.dataset.type === type;
+
+      const matchOrigin =
+        origin === 'all' || card.dataset.origin === origin;
+
+      const hasImage =
+        !card.querySelector('.recipe-card-image-wrapper.empty');
+
+      const matchImage =
+        !onlyImages || hasImage;
+
+      card.style.display =
+        (matchCategory && matchType && matchOrigin && matchImage)
+          ? ''
+          : 'none';
+    });
+  }
+
+  [categoryFilter, typeFilter, originFilter, imageFilter].forEach(el => {
+    if (el) {
+      el.addEventListener('change', applyFilters);
+    }
+  });
+});
+</script>

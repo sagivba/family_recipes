@@ -1,5 +1,5 @@
 ---
-layout: single
+layout: default
 classes: recipe-page
 title: false
 header:
@@ -12,11 +12,22 @@ pagination:
 <article class="recipe-container">
 
   <header class="recipe-header">
+    {% if page.last_updated %}
+    <p class="recipe-updated">
+    עודכן לאחרונה: {{ page.last_updated | date: "%d.%m.%Y" }}
+    </p>
+    {% endif %}
+
+    <p>
+      <a href="{{ '/' | relative_url }}">← חזרה לרשימת המתכונים</a>
+    </p>
+
     <h1 class="recipe-title">{{ page.title }}</h1>
 
     {% if page.description %}
       <p class="recipe-description">{{ page.description }}</p>
     {% endif %}
+    </br>
 
     <div class="recipe-meta">
       {% if page.category %}<span class="recipe-badge">{{ page.category }}</span>{% endif %}
@@ -37,5 +48,19 @@ pagination:
   <section class="recipe-content">
     {{ content }}
   </section>
+<hr>
 
+<nav class="recipe-nav">
+    {% if page.next %}
+    <a style="float:left" href="{{ page.next.url | relative_url }}">
+      המתכון הקודם  →
+    </a>
+  {% endif %}
+
+  {% if page.previous %}
+    <a href="{{ page.previous.url | relative_url }}">← המתכון הבא</a>
+  {% endif %}
+</nav>
 </article>
+
+
