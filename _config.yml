@@ -5,7 +5,9 @@ baseurl: "/family_recipes"
 
 
 
-remote_theme: "mmistakes/minimal-mistakes"
+#remote_theme: "mmistakes/minimal-mistakes"
+theme: minimal-mistakes-jekyll
+
 
 locale: he
 lang: he
