@@ -11,6 +11,9 @@ locale: he
 lang: he
 direction: rtl
 
+google_analytics: G-VM0RV3BHEM
+
+
 markdown: kramdown
 
 
