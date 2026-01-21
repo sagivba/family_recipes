@@ -3,15 +3,16 @@ description: אתר מתכונים משפחתי, קריא ונוח לשימוש
 url: "https://sagivba.github.io"
 #baseurl: "/family_recipes"
 
+
+
 remote_theme: "mmistakes/minimal-mistakes"
 
-locale: he-IL
+locale: he
 lang: he
 direction: rtl
 
 markdown: kramdown
 
-locale: he
 
 plugins:
   - jekyll-feed
