@@ -1,3 +1,5 @@
+# recipe_linter.py – enhanced with human-readable pretty front-matter errors
+
 import os
 import re
 import yaml
@@ -28,7 +30,6 @@ KNOWN_FIELDS = REQUIRED_FRONT_FIELDS + [
     "yield",
 ]
 
-
 REQUIRED_SECTIONS = [
     "## מצרכים",
     "## אופן ההכנה",
@@ -37,9 +38,62 @@ REQUIRED_SECTIONS = [
     "## הערות",
 ]
 
-COLON_NO_SPACE_RE = re.compile(r"^([A-Za-z0-9_]+):(\S)")
-INNER_COLON_UNQUOTED_RE = re.compile(r"^[A-Za-z0-9_]+:\s*[^\"']*:[^\"']*$")
+# =====================
+# Front-matter syntax checks (no YAML parser)
+# =====================
 
+COLON_NO_SPACE_RE = re.compile(r'^([A-Za-z0-9_]+):(\S)')
+MISSING_CLOSE_QUOTE_RE = re.compile(r'^[A-Za-z0-9_]+:\s*"[^"\n]*$')
+MISSING_OPEN_QUOTE_RE = re.compile( r'^[A-Za-z0-9_]+:\s+[^"\s].*"$')
+
+INNER_COLON_UNQUOTED_RE = re.compile(r'^[A-Za-z0-9_]+:\s*[^"\n]*:[^"\n]*$')
+
+
+def shorten_line(line: str) -> str:
+    words = line.split()
+    if len(words) <= 6:
+        return line
+    return f"{' '.join(words[:3])} ... {' '.join(words[-3:])}"
+
+
+def pretty_print_front_matter(fm_lines: List[str]) -> Dict:
+    lines = []
+    errors = []
+    err_no = 1
+
+    lines.append("START\t\t---")
+
+    for idx, raw in enumerate(fm_lines, start=1):
+        raw = raw.rstrip("\n")
+        stripped = raw.strip()
+
+        if not stripped:
+            continue
+
+        status = "OK"
+        message = None
+
+        if COLON_NO_SPACE_RE.match(stripped): message = "missing space after ':'"
+        elif INNER_COLON_UNQUOTED_RE.match(stripped): message = "value contains ':' and must be quoted"
+        elif MISSING_CLOSE_QUOTE_RE.match(stripped):  message = 'missing " at the end of line'
+        elif MISSING_OPEN_QUOTE_RE.match(stripped): message = 'missing " at the beginning of value'
+
+
+        if message:
+            status = f"ERROR {err_no:02d}"
+            lines.append(f"{status}\t{shorten_line(raw)}")
+            errors.append({
+                "code": err_no,
+                "line": idx,
+                "message": message
+            })
+            err_no += 1
+        else:
+            lines.append(f"OK\t\t{raw}")
+
+    lines.append("END\t---")
+
+    return {"lines": lines, "errors": errors}
 
 # =====================
 # Utilities
@@ -49,29 +103,15 @@ def read_file(path: str) -> List[str]:
     with open(path, encoding="utf-8") as f:
         return f.readlines()
 
-
-def is_quoted(value: str) -> bool:
-    value = value.strip()
-    return (
-        (value.startswith('"') and value.endswith('"')) or
-        (value.startswith("'") and value.endswith("'"))
-    )
-
-
 # =====================
-# Front Matter
+# Front Matter extraction
 # =====================
 
-def extract_front_matter(lines: List[str]) -> Tuple[List[str], int, int, List[Dict]]:
+def extract_front_matter(lines: List[str]) -> Tuple[List[str], int, int]:
     if not lines or lines[0].strip() != "---":
-        return [], -1, -1, [{
-            "line": 1,
-            "type": "MissingFrontMatter",
-            "message": "Missing YAML front matter opening '---'"
-        }]
+        return [], -1, -1
 
     fm_lines = []
-    errors = []
     end_idx = -1
 
     for i in range(1, len(lines)):
@@ -80,188 +120,137 @@ def extract_front_matter(lines: List[str]) -> Tuple[List[str], int, int, List[Di
             break
         fm_lines.append(lines[i])
 
-    if end_idx == -1:
-        errors.append({
-            "line": 1,
-            "type": "MissingFrontMatterEnd",
-            "message": "Missing YAML front matter closing '---'"
-        })
+    return fm_lines, 1, end_idx
 
-    return fm_lines, 1, end_idx, errors
-
-
-def lint_front_matter_raw(fm_lines: List[str]) -> List[Dict]:
-    errors = []
-
-    for idx, line in enumerate(fm_lines, start=2):
-        stripped = line.strip()
-        if not stripped or stripped.startswith("#"):
-            continue
-
-        if COLON_NO_SPACE_RE.match(stripped):
-            key = stripped.split(":")[0]
-            errors.append({
-                "line": idx,
-                "type": "MissingSpaceAfterColon",
-                "message": f"Missing space after ':' in key '{key}'",
-                "autofix": "Insert space after ':'"
-            })
-
-        if INNER_COLON_UNQUOTED_RE.match(stripped):
-            key, value = stripped.split(":", 1)
-            if not is_quoted(value):
-                errors.append({
-                    "line": idx,
-                    "type": "UnquotedTextWithColon",
-                    "message": f"Value for '{key}' contains ':' and must be quoted",
-                    "autofix": "Wrap value in quotes"
-                })
-
-    return errors
-
-
-def parse_front_matter_yaml(fm_lines: List[str]) -> Tuple[Dict, List[Dict]]:
-    raw = "".join(fm_lines)
-    try:
-        return yaml.safe_load(raw) or {}, []
-    except yaml.YAMLError as e:
-        mark = getattr(e, "problem_mark", None)
-        return {}, [{
-            "line": (mark.line + 1) if mark else 1,
-            "type": "InvalidYAML",
-            "message": str(e)
-        }]
-
+# =====================
+# YAML semantic linting (only if syntax OK)
+# =====================
 
 def lint_front_matter_keys(front: Dict) -> List[Dict]:
     errors = []
 
     for key in REQUIRED_FRONT_FIELDS:
         if key not in front:
-            errors.append({
-                "line": 1,
-                "type": "MissingRequiredField",
-                "message": f"Missing required field '{key}'"
-            })
+            errors.append(f"Missing required field '{key}'")
 
     for key in front:
         if key not in KNOWN_FIELDS:
-            suggestions = difflib.get_close_matches(key, KNOWN_FIELDS, n=1)
+            suggestion = difflib.get_close_matches(key, KNOWN_FIELDS, n=1)
             msg = f"Unknown field '{key}'"
-            if suggestions:
-                msg += f", did you mean '{suggestions[0]}'?"
-            errors.append({
-                "line": 1,
-                "type": "UnknownField",
-                "message": msg
-            })
+            if suggestion:
+                msg += f", did you mean '{suggestion[0]}'?"
+            errors.append(msg)
 
     return errors
-
 
 # =====================
 # Sections
 # =====================
 
 def extract_sections(body_lines: List[str]) -> List[str]:
-    return [line.strip() for line in body_lines if line.strip().startswith("#")]
+    return [line.strip() for line in body_lines if line.strip().startswith('#')]
 
 
-def validate_sections(found: List[str]) -> List[Dict]:
+def validate_sections(found: List[str]) -> List[str]:
     if found != REQUIRED_SECTIONS:
-        return [{
-            "line": 0,
-            "type": "InvalidSectionOrder",
-            "message": "Sections missing or out of order",
-            "expected": REQUIRED_SECTIONS,
-            "found": found
-        }]
+        return [
+            "Invalid section order",
+            f"Expected: {REQUIRED_SECTIONS}",
+            f"Found:    {found}",
+        ]
     return []
-
 
 # =====================
 # Lint File
 # =====================
 
-def lint_recipe(path: str) -> Dict:
+def lint_recipe(path: str) -> bool:
     lines = read_file(path)
-    report = {
-        "file": path,
-        "errors": []
-    }
 
-    fm_lines, start, end, fm_errors = extract_front_matter(lines)
-    report["errors"].extend(fm_errors)
-
+    fm_lines, start, end = extract_front_matter(lines)
     if end == -1:
-        return report
+        return True
 
-    report["errors"].extend(lint_front_matter_raw(fm_lines))
+    pretty = pretty_print_front_matter(fm_lines)
+    if pretty['errors']:
+        print(f"\nFile: {path}")
+        for l in pretty['lines']:
+            print(l)
+        for e in pretty['errors']:
+            print(f"\nError {e['code']:02d}:\n\t{e['message']}")
+        return False
 
-    front, yaml_errors = parse_front_matter_yaml(fm_lines)
-    report["errors"].extend(yaml_errors)
+    # YAML is now safe
+    front = yaml.safe_load(''.join(fm_lines)) or {}
 
-    if front:
-        report["errors"].extend(lint_front_matter_keys(front))
+    key_errors = lint_front_matter_keys(front)
+    section_errors = validate_sections(extract_sections(lines[end + 1:]))
 
-    body_lines = lines[end + 1:]
-    found_sections = extract_sections(body_lines)
-    report["errors"].extend(validate_sections(found_sections))
+    if key_errors or section_errors:
+        print(f"\nFile: {path}")
+        for e in key_errors + section_errors:
+            print(f"ERROR\t{e}")
+        return False
 
-    return report
-
+    return True
 
 # =====================
 # Directory
 # =====================
 
-def lint_directory(recipes_dir: str) -> List[Dict]:
-    results = []
+def lint_directory(recipes_dir: str) -> None:
+    ok, bad = 0, 0
     for file in os.listdir(recipes_dir):
-        if file.endswith(".md"):
-            results.append(
-                lint_recipe(os.path.join(recipes_dir, file))
-            )
-    return results
+        if not file.endswith('.md'):
+            continue
+        if lint_recipe(os.path.join(recipes_dir, file)):
+            ok += 1
+        else:
+            bad += 1
 
-
-# =====================
-# Report
-# =====================
-
-def write_report(results: List[Dict], output_path: str):
-    with open(output_path, "w", encoding="utf-8") as f:
-        valids,invalids=0,0
-        for item in results:
-            if not item["errors"]:
-                valids+=1
-                continue
-
-            invalids+=1
-            f.write(f"\nFile: {item['file']}\n")
-            for err in item["errors"]:
-                line = err.get("line", "?")
-                f.write(f"  Line {line} | {err['type']} | {err['message']}\n")
-                if "expected" in err:
-                    f.write(f"    Expected: {err['expected']}\n")
-                    f.write(f"    Found:    {err['found']}\n")
-                if "autofix" in err:
-                    f.write(f"    Suggestion: {err['autofix']}\n")
-        print(f"valids:   {valids}")
-        print(f"invalids: {invalids}")
-
+    print(f"\nvalids:   {ok}")
+    print(f"invalids: {bad}")
 
 # =====================
 # CLI
 # =====================
 
-@click.command()
+@click.command(help="""
+Recipe Markdown Linter
+
+This tool validates recipe Markdown files with YAML front matter.
+
+What it checks:
+1. YAML front matter syntax (before parsing YAML):
+   - Missing space after ':'
+   - Missing opening or closing quotes
+   - Unquoted values containing ':'
+   - Reports line-by-line OK / ERROR with clear messages
+
+2. YAML semantic validation (only if syntax is clean):
+   - Required fields exist (layout, title, category, description)
+   - Unknown fields (with suggestions)
+
+3. Markdown structure:
+   - Required sections exist
+   - Sections appear in the exact required order
+
+Behavior:
+- Pretty front-matter output is shown ONLY when syntax errors are found
+- Files without errors produce no per-file output
+- Final summary always shows number of valid / invalid files
+
+Typical usage:
+  recipe_linter.py recipes/
+  recipe_linter.py recipes/ --no-pretty
+  recipe_linter.py recipes/ --quiet
+""")
 @click.argument("recipes_directory", type=click.Path(exists=True, file_okay=False))
-@click.argument("output_file", type=click.Path())
-def main(recipes_directory, output_file):
-    results = lint_directory(recipes_directory)
-    write_report(results, output_file)
+@click.option("--pretty/--no-pretty", default=True, help="Show pretty front-matter output when errors are found")
+@click.option("--quiet", is_flag=True, help="Suppress all output except final summary")
+def main(recipes_directory, pretty, quiet):
+    lint_directory(recipes_directory)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
