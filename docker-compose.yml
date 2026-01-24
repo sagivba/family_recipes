@@ -1,4 +1,8 @@
 services:
+
+  # Builds the Jekyll site once for local development.
+  # Applies development overrides (empty baseurl).
+  # Generates the static output in the _site directory.
   jekyll:
     build: .
     container_name: jekyll-ghp
@@ -11,9 +15,12 @@ services:
     command: >
       bash -lc "
       bundle install &&
-      bundle exec jekyll build --config _config.yml
+      bundle exec jekyll build --config _config.yml,_config.dev.yml
       "
 
+  # Continuously watches files and rebuilds the site on changes.
+  # Keeps the _site directory updated during active development.
+  # Uses the same development configuration for consistent URLs.
   jekyll-watch:
     build: .
     container_name: jekyll-watch
@@ -26,9 +33,12 @@ services:
     command: >
       bash -lc "
       bundle install &&
-      bundle exec jekyll build --config _config.yml --watch
+      bundle exec jekyll build --config _config.yml,_config.dev.yml --watch
       "
 
+  # Serves the generated static site via nginx.
+  # Has no awareness of Jekyll or configuration files.
+  # Exposes the contents of the _site directory over HTTP.
   web:
     image: nginx:alpine
     container_name: jekyll-web

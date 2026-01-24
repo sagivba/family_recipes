@@ -6,10 +6,7 @@
       "type": "shell",
       "command": "docker compose up --build",
       "problemMatcher": [],
-      "group": {
-        "kind": "build",
-        "isDefault": true
-      }
+      "group": "build"
     },
     {
       "label": "Dev: Stop (docker compose down)",
@@ -22,8 +19,13 @@
       "label": "Dev: Logs (docker compose logs)",
       "type": "shell",
       "command": "docker compose logs -f",
-      "problemMatcher": []
+      "problemMatcher": [],
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
     }
   ]
 }
+
 
