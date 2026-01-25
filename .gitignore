@@ -8,4 +8,13 @@ vendor/
 
 # OS / editors
 .DS_Store
+# IDE
+.idea/
 
+# Python
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+code/_Tests/Logs/
