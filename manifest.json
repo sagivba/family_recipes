@@ -1,0 +1,22 @@
+{
+  "name": "Family Recipes",
+  "short_name": "Recipes",
+  "description": "A family recipe collection",
+  "start_url": "/family_recipes/",
+  "scope": "/family_recipes/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#8b0000",
+  "icons": [
+    {
+      "src": "/family_recipes/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/family_recipes/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
