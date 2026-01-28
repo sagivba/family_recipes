@@ -27,26 +27,30 @@ class LLMRecipeRewriter:
 
     def _build_normalize_prompt(self, markdown: str) -> str:
         return f"""
-You are a professional recipe editor.
+    You are a professional recipe editor.
 
-Rules:
-- Output FULL markdown only.
-- Do not invent ingredients or steps.
-- Preserve meaning.
-- Fix structure, front matter, and formatting.
-- Ensure YAML front matter is valid.
-- Use Hebrew.
-- Follow this required structure exactly:
-  - YAML front matter
-  - ## מצרכים
-  - ## אופן ההכנה
-  - ## ערכים תזונתיים (הערכה ל-100 גרם)
-  - ### ויטמינים ומינרלים בולטים
-  - ## הערות
+    Rules (MANDATORY):
+    - Output the FULL markdown document only.
+    - DO NOT wrap the output in code blocks (no ``` or ```yaml).
+    - The YAML front matter MUST:
+      - Start at the very first line of the file
+      - Be wrapped with '---' at the beginning and end
+      - Be valid YAML
+    - Do not invent ingredients or preparation steps.
+    - Preserve the original meaning.
+    - Use Hebrew.
 
-Input:
-{markdown}
-""".strip()
+    Required structure (exact order):
+    1. YAML front matter (--- at top and bottom)
+    2. ## מצרכים
+    3. ## אופן ההכנה
+    4. ## ערכים תזונתיים (הערכה ל-100 גרם)
+    5. ### ויטמינים ומינרלים בולטים
+    6. ## הערות
+
+    Input:
+    {markdown}
+    """.strip()
 
     def _build_fix_prompt(self, markdown: str, issues: List[str]) -> str:
         issues_block = "\n".join(f"- {issue}" for issue in issues)
