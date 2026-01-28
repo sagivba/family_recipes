@@ -94,3 +94,4 @@ def setup_logging(
     # הוסף console handler רק אם לא רצים בטסטים
     if not os.environ.get("UNITTEST"):
         root_logger.addHandler(console_handler)
+
