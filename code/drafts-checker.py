@@ -15,9 +15,9 @@ from Modules.fixer import fix_recipe, FixResult
 from Modules.logger import setup_logging
 from Modules.report import write_file_report, write_index_report
 from Modules.diff_html import generate_diff_html
-
 from Modules.stage_pipeline import StagePipeline
 from Modules.llm_recipe_rewriter import LLMRecipeRewriter
+
 HELP_MSG=  """
     Drafts Checker – Stage-Based Preparation Tool for Publishing Recipes
     
@@ -205,12 +205,28 @@ def _process_one_draft(
             raise RuntimeError("Internal error: use_ai=True but rewriter is None")
 
         # Attempt 1: normalize
+        # Attempt 1: normalize
         attempts = 1
         logger.info("AI normalize attempt=%d for %s", attempts, draft_path.name)
         ai_text = rewriter.rewrite(current_text, issues=None, attempt=attempts)
         current_text = ai_text
         current_path = pipeline.to_ai_normalized(input_path, current_text, attempt=attempts)
 
+        # === NEW: Stage 03 – enrich front matter ===
+        logger.info("AI front-matter enrichment for %s", draft_path.name)
+        enriched_text = enrich_frontmatter_with_ai(
+            rewriter=rewriter,
+            markdown=current_text,
+            logger=logger,
+        )
+        current_text = enriched_text
+        current_path = pipeline.to_enriched_frontmatter(
+            current_path,
+            current_text,
+            attempt=attempts,
+        )
+
+        # Lint only AFTER enrichment
         last_issues = lint_by_path(current_path)
 
         # Retry loop: fix based on issues
@@ -277,6 +293,15 @@ def _process_one_draft(
         fix_result=fix_result,
     )
 
+def enrich_frontmatter_with_ai(
+    rewriter: LLMRecipeRewriter,
+    markdown: str,
+    logger
+) -> str:
+    logger.info("AI front-matter enrichment started")
+    enriched = rewriter.enrich_frontmatter(markdown)
+    logger.info("AI front-matter enrichment finished")
+    return enriched
 
 @click.command(help=HELP_MSG)
 @click.option(

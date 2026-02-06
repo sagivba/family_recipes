@@ -1,4 +1,3 @@
-# Modules/stage_pipeline.py
 from __future__ import annotations
 
 from pathlib import Path
@@ -19,10 +18,11 @@ class StagePipeline:
     STAGES = {
         "input": "01_input",
         "ai_normalized": "02_ai_normalized",
-        "linted": "03_linted",
-        "ai_fixed": "04_ai_fixed",
-        "ready": "05_ready",
-        "rejected": "06_rejected",
+        "enriched_frontmatter": "03_ai_enriched_frontmatter",
+        "linted": "04_linted",
+        "ai_fixed": "05_ai_fixed",
+        "ready": "06_ready",
+        "rejected": "07_rejected",
     }
 
     def __init__(
@@ -67,13 +67,34 @@ class StagePipeline:
         return self._copy(src, self.stage_dirs["input"])
 
     def to_ai_normalized(self, src: Path, text: str, attempt: int) -> Path:
-        return self._write(src.name, text, self.stage_dirs["ai_normalized"], "ai", attempt)
+        return self._write(
+            src.name,
+            text,
+            self.stage_dirs["ai_normalized"],
+            suffix="ai",
+            attempt=attempt,
+        )
+
+    def to_enriched_frontmatter(self, src: Path, text: str, attempt: int) -> Path:
+        return self._write(
+            src.name,
+            text,
+            self.stage_dirs["enriched_frontmatter"],
+            suffix="fm",
+            attempt=attempt,
+        )
 
     def to_linted(self, src: Path) -> Path:
         return self._copy(src, self.stage_dirs["linted"])
 
     def to_ai_fixed(self, src: Path, text: str, attempt: int) -> Path:
-        return self._write(src.name, text, self.stage_dirs["ai_fixed"], "fix", attempt)
+        return self._write(
+            src.name,
+            text,
+            self.stage_dirs["ai_fixed"],
+            suffix="fix",
+            attempt=attempt,
+        )
 
     def to_ready(self, src: Path) -> Path:
         return self._copy(src, self.stage_dirs["ready"])
@@ -138,6 +159,10 @@ class StagePipeline:
             json.dumps(data, ensure_ascii=False, indent=2),
             encoding="utf-8",
         )
+
+    # -------------------------
+    # helpers
+    # -------------------------
 
     @staticmethod
     def _make_name(src_name: str, suffix: str, attempt: Optional[int]) -> str:

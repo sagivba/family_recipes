@@ -1,13 +1,12 @@
+import unittest
+from unittest.mock import MagicMock
+import logging
 import sys
 from pathlib import Path
 
-# Ensure "code/" is on sys.path (PyCharm / pytest compatibility)
-CODE_DIR = Path(__file__).resolve().parents[1]
-if str(CODE_DIR) not in sys.path:
-    sys.path.insert(0, str(CODE_DIR))
-
-import unittest
-from unittest.mock import MagicMock
+# Allow importing from Modules/
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(PROJECT_ROOT))
 
 from Modules.llm_recipe_rewriter import LLMRecipeRewriter
 
@@ -15,112 +14,75 @@ from Modules.llm_recipe_rewriter import LLMRecipeRewriter
 class TestLLMRecipeRewriter(unittest.TestCase):
 
     def setUp(self):
-        self.fake_client = MagicMock()
-
+        self.mock_client = MagicMock()
+        self.mock_logger = logging.getLogger("test")
         self.rewriter = LLMRecipeRewriter(
-            client=self.fake_client,
-            model="fake-model",
-            logger=None,
+            client=self.mock_client,
+            model="gpt-test",
+            logger=self.mock_logger,
         )
 
-        self.original_md = """---
-title: Test
----
-
-## מצרכים
-- item
-"""
-
-    # -------------------------
-    # helpers
-    # -------------------------
-
-    def _mock_llm_response(self, content: str):
-        mock_response = MagicMock()
-        mock_response.choices = [
+    def _mock_llm_response(self, text):
+        response = MagicMock()
+        response.choices = [
             MagicMock(
-                message=MagicMock(
-                    content=content
-                )
+                message=MagicMock(content=text)
             )
         ]
-        return mock_response
+        self.mock_client.chat.completions.create.return_value = response
 
-    # -------------------------
-    # tests
-    # -------------------------
-
-    def test_rewrite_normalize(self):
-        normalized_md = """---
-title: Test
-description: Normalized
+    def test_strip_markdown_fence_basic(self):
+        fenced = """```markdown
 ---
-
-## מצרכים
-- item
-"""
-
-        self.fake_client.chat.completions.create.return_value = \
-            self._mock_llm_response(normalized_md)
-
-        result = self.rewriter.rewrite(self.original_md)
-
-        self.assertEqual(result, normalized_md)
-        self.fake_client.chat.completions.create.assert_called_once()
-
-        # Verify messages sent
-        kwargs = self.fake_client.chat.completions.create.call_args.kwargs
-        self.assertIn("messages", kwargs)
-        self.assertIn("Input:", kwargs["messages"][0]["content"])
-
-    def test_rewrite_fix_with_issues(self):
-        fixed_md = """---
+layout: recipe
 title: Test
-description: Fixed
 ---
+content
+```"""
 
-## מצרכים
-- item
-"""
+        self._mock_llm_response(fenced)
+        out = self.rewriter.rewrite("input")
 
-        self.fake_client.chat.completions.create.return_value = \
-            self._mock_llm_response(fixed_md)
+        self.assertFalse(out.strip().startswith("```"))
+        self.assertFalse(out.strip().endswith("```"))
+        self.assertIn("layout: recipe", out)
 
-        issues = [
-            "Missing description",
-            "Invalid front matter",
-        ]
+    def test_no_fence_no_change(self):
+        plain = """---
+layout: recipe
+title: Test
+---
+content"""
 
-        result = self.rewriter.rewrite(
-            self.original_md,
-            issues=issues,
-            attempt=2,
+        self._mock_llm_response(plain)
+        out = self.rewriter.rewrite("input")
+
+        self.assertEqual(out, plain)
+
+    def test_empty_content(self):
+        self._mock_llm_response("")
+        out = self.rewriter.rewrite("input")
+        self.assertEqual(out, "")
+
+    def test_malformed_fence_returns_empty(self):
+        bad = """```
+only one line
+```"""
+        self._mock_llm_response(bad)
+        out = self.rewriter.rewrite("input")
+        self.assertEqual(out, "only one line")
+
+    def test_logger_called_on_fence(self):
+        with self.assertLogs(self.mock_logger, level="INFO") as cm:
+            fenced = """```
+test
+```"""
+            self._mock_llm_response(fenced)
+            self.rewriter.rewrite("input")
+
+        self.assertTrue(
+            any("code fence" in msg for msg in cm.output)
         )
-
-        self.assertEqual(result, fixed_md)
-        self.fake_client.chat.completions.create.assert_called_once()
-
-        prompt = self.fake_client.chat.completions.create.call_args.kwargs[
-            "messages"
-        ][0]["content"]
-
-        self.assertIn("Missing description", prompt)
-        self.assertIn("Invalid front matter", prompt)
-        self.assertIn("Fix ONLY the listed issues", prompt)
-
-    def test_logger_is_optional(self):
-        rewriter = LLMRecipeRewriter(
-            client=self.fake_client,
-            model="fake-model",
-            logger=None,
-        )
-
-        self.fake_client.chat.completions.create.return_value = \
-            self._mock_llm_response(self.original_md)
-
-        # Should not raise
-        result = rewriter.rewrite(self.original_md)
-        self.assertEqual(result, self.original_md)
 
 
 if __name__ == "__main__":

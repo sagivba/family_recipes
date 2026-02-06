@@ -22,7 +22,7 @@ class Config:
     - Apply default values where applicable
     - Expose configuration values as attributes
     """
-
+    RECIPE_MODEL = "gpt-4o-mini"
     DEFAULTS = {
         "logging": {
             "enabled": True,
