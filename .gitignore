@@ -8,4 +8,26 @@ vendor/
 
 # OS / editors
 .DS_Store
+# IDE
+.idea/
 
+# Python
+__pycache__/
+*.pyc
+
+# Logs
+*.log
+code/_Tests/Logs/
+
+# drafts-checker generated artifacts
+_drafts/reports/
+_drafts/logs/
+
+code/_testcases/fix/
+code/_testcases/reports/
+code/_testcases/logs/
+
+# editor leftovers
+* - Copy.py
+
+code/_testcases/0*_*/
