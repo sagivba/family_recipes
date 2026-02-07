@@ -14,16 +14,18 @@ class StagePipeline:
     Manages filesystem stages for a single drafts-checker run.
     Responsible ONLY for file movement, naming, and logging.
     """
-
     STAGES = {
         "input": "01_input",
         "ai_normalized": "02_ai_normalized",
         "enriched_frontmatter": "03_ai_enriched_frontmatter",
-        "linted": "04_linted",
-        "ai_fixed": "05_ai_fixed",
-        "ready": "06_ready",
-        "rejected": "07_rejected",
+        "enriched_nutrition": "04_ai_enriched_nutrition",
+        "merged": "05_ai_merged",
+        "linted": "06_linted",
+        "ai_fixed": "07_ai_fixed",
+        "ready": "08_ready",
+        "rejected": "09_rejected",
     }
+
 
     def __init__(
         self,
@@ -81,6 +83,27 @@ class StagePipeline:
             text,
             self.stage_dirs["enriched_frontmatter"],
             suffix="fm",
+            attempt=attempt,
+        )
+
+    def to_enriched_nutrition(self, src: Path, text: str, attempt: int) -> Path:
+        """
+        Persist recipe after AI nutritional enrichment.
+        This stage contains presentation-level nutritional text only.
+        """
+        return self._write(
+            src.name,
+            text,
+            self.stage_dirs["enriched_nutrition"],
+            suffix="nut",
+            attempt=attempt,
+        )
+    def to_merged(self, src: Path, text: str, attempt: int) -> Path:
+        return self._write(
+            src.name,
+            text,
+            self.stage_dirs["merged"],
+            suffix="merged",
             attempt=attempt,
         )
 

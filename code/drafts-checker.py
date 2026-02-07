@@ -8,6 +8,7 @@ import os
 import sys
 import logging
 import click
+import re
 
 from Modules.scanner import scan_recipes
 from Modules.linter import lint_recipe
@@ -17,6 +18,9 @@ from Modules.report import write_file_report, write_index_report
 from Modules.diff_html import generate_diff_html
 from Modules.stage_pipeline import StagePipeline
 from Modules.llm_recipe_rewriter import LLMRecipeRewriter
+from dotenv import load_dotenv
+load_dotenv()
+
 
 HELP_MSG=  """
     Drafts Checker – Stage-Based Preparation Tool for Publishing Recipes
@@ -175,14 +179,17 @@ def _process_one_draft(
     - Copy original to 01_input
     - If use_ai:
         - attempt 1: AI normalize -> 02_ai_normalized
+        - enrich frontmatter -> 03_ai_enriched_frontmatter
+        - enrich nutrition (partial) -> 04_ai_enriched_nutrition
+        - merge nutrition into full doc -> 05_ai_merged
         - lint
-        - if issues: attempt 2..N: AI fix -> 04_ai_fixed, lint again
-      Else:
+        - if issues: attempt 2..N: AI fix -> 07_ai_fixed, lint again
+    - Else:
         - lint original
-        - if issues: run deterministic fixer once -> 04_ai_fixed (suffix "fixer"), lint again
+        - if issues: run deterministic fixer once
 
-    - If lint passes: copy final into 05_ready
-      Else: copy last into 06_rejected + metadata sidecar
+    - If lint passes: copy final into 08_ready
+      Else: copy last into 09_rejected + metadata
     """
 
     # Snapshot input
@@ -195,7 +202,6 @@ def _process_one_draft(
     attempts = 0
     last_issues: List[str] = []
 
-    # Helper to lint by path
     def lint_by_path(p: Path) -> List[str]:
         lr = lint_recipe(p)
         return _collect_issue_strings(lr)
@@ -204,32 +210,56 @@ def _process_one_draft(
         if not rewriter:
             raise RuntimeError("Internal error: use_ai=True but rewriter is None")
 
-        # Attempt 1: normalize
-        # Attempt 1: normalize
+        # === Attempt 1: normalize ===
         attempts = 1
         logger.info("AI normalize attempt=%d for %s", attempts, draft_path.name)
-        ai_text = rewriter.rewrite(current_text, issues=None, attempt=attempts)
-        current_text = ai_text
-        current_path = pipeline.to_ai_normalized(input_path, current_text, attempt=attempts)
 
-        # === NEW: Stage 03 – enrich front matter ===
+        current_text = rewriter.rewrite(current_text, issues=None, attempt=attempts)
+        current_path = pipeline.to_ai_normalized(
+            input_path, current_text, attempt=attempts
+        )
+
+        # === Stage 03: enrich front matter (FULL) ===
         logger.info("AI front-matter enrichment for %s", draft_path.name)
-        enriched_text = enrich_frontmatter_with_ai(
+
+        current_text = enrich_frontmatter_with_ai(
             rewriter=rewriter,
             markdown=current_text,
             logger=logger,
         )
-        current_text = enriched_text
         current_path = pipeline.to_enriched_frontmatter(
-            current_path,
-            current_text,
-            attempt=attempts,
+            current_path, current_text, attempt=attempts
         )
 
-        # Lint only AFTER enrichment
+        # === Stage 04: enrich nutrition (PARTIAL) ===
+        logger.info("AI nutrition enrichment for %s", draft_path.name)
+
+        nutrition_block = enrich_nutrition_with_ai(
+            rewriter=rewriter,
+            markdown=current_text,
+            logger=logger,
+        )
+
+        nutrition_path = pipeline.to_enriched_nutrition(
+            current_path, nutrition_block, attempt=attempts
+        )
+
+        # === Stage 05: merge nutrition into FULL document ===
+        logger.info("Merging nutrition into recipe for %s", draft_path.name)
+
+        current_text = merge_nutrition_sections(
+            original=current_text,
+            nutrition_block=nutrition_block,
+        )
+
+        current_path = pipeline.to_merged(
+            current_path, current_text, attempt=attempts
+        )
+
+        # === Lint AFTER merge only ===
         last_issues = lint_by_path(current_path)
 
-        # Retry loop: fix based on issues
+        # === Retry loop: AI fix on FULL document only ===
         while last_issues and attempts < max_attempts:
             attempts += 1
             logger.warning(
@@ -238,13 +268,19 @@ def _process_one_draft(
                 attempts,
                 draft_path.name,
             )
-            ai_text = rewriter.rewrite(current_text, issues=last_issues, attempt=attempts)
-            current_text = ai_text
-            current_path = pipeline.to_ai_fixed(current_path, current_text, attempt=attempts)
+
+            current_text = rewriter.rewrite(
+                current_text, issues=last_issues, attempt=attempts
+            )
+
+            current_path = pipeline.to_ai_fixed(
+                current_path, current_text, attempt=attempts
+            )
+
             last_issues = lint_by_path(current_path)
 
     else:
-        # Deterministic path: lint original; if issues, apply your existing fixer once
+        # === Deterministic path ===
         attempts = 1
         last_issues = lint_by_path(draft_path)
 
@@ -255,17 +291,16 @@ def _process_one_draft(
                 draft_path.name,
             )
             fr = fix_recipe(draft_path)
-            # Write fixer output to stage (even if unchanged, we record the attempt)
-            # Use ai_fixed stage as a generic "fixed output" bucket here.
             current_text = fr.fixed
-            current_path = pipeline._write(draft_path.name, current_text, pipeline.stage_dirs["ai_fixed"], "fixer", 1)  # type: ignore
+            current_path = pipeline.to_ai_fixed(
+                input_path, current_text, attempt=attempts
+            )
             last_issues = lint_by_path(current_path)
         else:
-            # No issues: keep original content/path
             current_text = original_text
             current_path = input_path
 
-    # Final classification
+    # === Final classification ===
     if not last_issues:
         status = "ready"
         final_path = pipeline.to_ready(current_path)
@@ -273,9 +308,10 @@ def _process_one_draft(
     else:
         status = "rejected"
         final_path = pipeline.to_rejected(current_path, last_issues)
-        logger.error("REJECTED: %s (issues=%d)", draft_path.name, len(last_issues))
+        logger.error(
+            "REJECTED: %s (issues=%d)", draft_path.name, len(last_issues)
+        )
 
-    # Build FixResult for reporting/diffs (original -> final)
     fix_result = FixResult(
         path=draft_path,
         original=original_text,
@@ -283,7 +319,6 @@ def _process_one_draft(
         actions=[],
     )
 
-    # Exit code logic is handled by caller; here we only return data.
     return ProcessOutcome(
         original_path=draft_path,
         final_path=final_path,
@@ -302,6 +337,56 @@ def enrich_frontmatter_with_ai(
     enriched = rewriter.enrich_frontmatter(markdown)
     logger.info("AI front-matter enrichment finished")
     return enriched
+
+def enrich_nutrition_with_ai(
+    rewriter,
+    markdown: str,
+    logger=None,
+) -> str:
+    """
+    Enrich nutritional sections using a dedicated AI prompt.
+    This function ONLY fills the nutritional sections
+    ("ערכים תזונתיים" and "ויטמינים ומינרלים בולטים")
+    and does not modify YAML front matter, ingredients,
+    or preparation steps.
+    """
+    if logger:
+        logger.debug("Calling AI nutrition enrichment")
+
+    return rewriter.enrich_nutrition(markdown)
+
+
+
+
+
+def merge_nutrition_sections(*, original: str, nutrition_block: str) -> str:
+    """
+    Merge the nutrition markdown block into the full recipe document.
+    Replaces the content under '## ערכים תזונתיים (הערכה ל-100 גרם)'
+    until the next '##' section or end of file.
+    """
+
+    if not nutrition_block.strip():
+        return original
+
+    original = original.replace("\r\n", "\n")
+    nutrition_block = nutrition_block.strip()
+
+    pattern = re.compile(
+        r"(##\s+ערכים\s+תזונתיים[^\n]*\n)(.*?)(?=\n##\s+|\Z)",
+        re.DOTALL,
+    )
+
+    replacement = r"\1\n" + nutrition_block + "\n"
+
+    new_text, count = pattern.subn(replacement, original, count=1)
+
+    # If nutrition section not found, do not modify document
+    if count == 0:
+        return original
+
+    return new_text
+
 
 @click.command(help=HELP_MSG)
 @click.option(
@@ -417,6 +502,11 @@ def main(
     logger.info("Model: %s", model)
     logger.info("Max attempts: %d", max_attempts)
     logger.info("Dry run: %s", dry_run)
+    if use_ai and not os.getenv("OPENAI_API_KEY"):
+        message = "enviroment variable OPENAI_API_KEY is not set, but --use-ai was specified. Please define it in the environment or in a .env file."
+        logger.error(message)
+        raise click.ClickException(message)         
+
 
     # Build AI client (only if requested)
     rewriter: Optional[LLMRecipeRewriter] = None

@@ -1,49 +1,7 @@
 from typing import List, Optional
 from Modules.config import Config
-
-
-
-class LLMRecipeRewriter:
-    """
-    Rewrite recipe markdown using an LLM.
-    Ensures clean markdown output suitable for publication.
-    """
-
-
-    def __init__(self, client, model, logger=None):
-        self.client = client
-        self.model = model
-        self.logger = logger
-
-    @staticmethod
-    def strip_markdown_code_fence(text: str, logger=None) -> str:
-        """
-        Remove wrapping markdown code fences (``` or ```markdown) if present.
-        """
-        stripped = text.strip()
-        lines = stripped.splitlines()
-        if len(lines) >= 2:
-            first = lines[0].strip()
-            last = lines[-1].strip()
-            if first.startswith("```") and last == "```":
-                if logger:
-                    logger.info("LLM output wrapped in markdown code fence – stripping it")
-                return "\n".join(lines[1:-1]).strip()
-        return stripped
-
-    def _build_normalize_prompt(self, markdown: str) -> str:
-        """
-        Build the normalization prompt sent to the LLM.
-
-        The goal is to:
-        - Ensure a complete and valid YAML front matter with ALL required fields
-        - Normalize structure and headers order
-        - Preserve meaning and existing content
-        - Avoid code fences or any extra wrapping
-        """
-
-        return f"""
-        You are a professional recipe editor.
+normalise_prompt="""
+ You are a professional recipe editor.
 
         MANDATORY RULES:
         - Output the FULL markdown document only.
@@ -119,9 +77,52 @@ class LLMRecipeRewriter:
 
         STRICTLY FORBIDDEN:
         - Adding new sections
-        - Adding commentary or explanations
+        - Adding commentary or explanations - except for "ערכים תזונתיים (הערכה ל-100 גרם)" and "ויטמינים ומינרלים בולטים" if they are missing, in which case you may add them with empty content.
         - Adding markdown fences
         - Returning partial documents
+"""
+
+class LLMRecipeRewriter:
+    """
+    Rewrite recipe markdown using an LLM.
+    Ensures clean markdown output suitable for publication.
+    """
+
+
+    def __init__(self, client, model, logger=None):
+        self.client = client
+        self.model = model
+        self.logger = logger
+
+    @staticmethod
+    def strip_markdown_code_fence(text: str, logger=None) -> str:
+        """
+        Remove wrapping markdown code fences (``` or ```markdown) if present.
+        """
+        stripped = text.strip()
+        lines = stripped.splitlines()
+        if len(lines) >= 2:
+            first = lines[0].strip()
+            last = lines[-1].strip()
+            if first.startswith("```") and last == "```":
+                if logger:
+                    logger.info("LLM output wrapped in markdown code fence – stripping it")
+                return "\n".join(lines[1:-1]).strip()
+        return stripped
+
+    def _build_normalize_prompt(self, markdown: str) -> str:
+        """
+        Build the normalization prompt sent to the LLM.
+
+        The goal is to:
+        - Ensure a complete and valid YAML front matter with ALL required fields
+        - Normalize structure and headers order
+        - Preserve meaning and existing content
+        - Avoid code fences or any extra wrapping
+        """
+
+        return f"""
+        {normalise_prompt}
 
         Input recipe markdown:
         {markdown}
@@ -216,6 +217,54 @@ Input:
         {markdown}
         """.strip()
 
+    def _build_nutrition_enrichment_prompt(self, markdown: str) -> str:
+        return f"""
+You are a culinary nutrition estimator.
+
+TASK:
+Return ONLY the Markdown content that should be inserted
+UNDER the following existing sections in the document:
+
+## ערכים תזונתיים (הערכה ל-100 גרם)
+### ויטמינים ומינרלים בולטים
+
+IMPORTANT:
+- Do NOT return the full document.
+- Do NOT return YAML.
+- Do NOT return ingredients or preparation steps.
+- Return ONLY the content for these sections.
+
+NUMERIC NUTRITION RULES (CRITICAL):
+- ALWAYS return numeric values for:
+  calories, carbohydrates, sugars, protein, fat, fiber.
+- If ingredient weights are missing:
+  assume standard household ingredient weights.
+- If fat content is unknown:
+  assume standard full-fat versions.
+- Leaving the nutrition values section empty is FORBIDDEN.
+
+
+FORMAT:
+- Use bullet lists.
+- Use units (קק"ל, גרם, מ"ג, מיקרוגרם).
+- Use rounded values (no excessive precision).
+
+VITAMINS & MINERALS:
+- Return numeric values where commonly known.
+- Otherwise, list without numbers.
+
+FORBIDDEN:
+- Medical advice
+- Recommendations
+- Disclaimers or explanations
+- Any text outside the two sections
+
+Input recipe markdown:
+{markdown}
+""".strip()
+
+
+
     def rewrite(
         self,
         markdown: str,
@@ -291,3 +340,16 @@ Input:
         prompt = self._build_frontmatter_enrichment_prompt(markdown)
         return self._call_llm(prompt)
 
+    def enrich_nutrition(self, markdown: str) -> str:
+        """
+        Generate ONLY the nutritional markdown block (lists allowed).
+        This method MUST NOT return a full document.
+        """
+        prompt = self._build_nutrition_enrichment_prompt(markdown)
+        nutrition_block = self._call_llm(prompt)
+
+        # safety: never allow full documents here
+        if nutrition_block.lstrip().startswith("---"):
+            raise RuntimeError("Nutrition enrichment returned full document")
+
+        return nutrition_block.strip()

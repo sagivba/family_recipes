@@ -14,12 +14,14 @@ vendor/
 # Python
 __pycache__/
 *.pyc
+.env
 
 # Logs
 *.log
 code/_Tests/Logs/
 
 # drafts-checker generated artifacts
+_drafts/0[2-5]*
 _drafts/reports/
 _drafts/logs/
 
