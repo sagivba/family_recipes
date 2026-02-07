@@ -1,6 +1,6 @@
 ---
 layout: recipe
-title: בלינצ'ס שך סבטלנה
+title: בלינצ'ס  של סבטלנה
 category: קינוחים
 type: מתוק
 origin: ""
