@@ -21,7 +21,7 @@ __pycache__/
 code/_Tests/Logs/
 
 # drafts-checker generated artifacts
-_drafts/0[2-5]*
+_drafts/0[2-8]*
 _drafts/reports/
 _drafts/logs/
 
@@ -32,4 +32,8 @@ code/_testcases/logs/
 # editor leftovers
 * - Copy.py
 
+# drafts staging 
+_drafts/*/
+
+# code testcases
 code/_testcases/0*_*/
