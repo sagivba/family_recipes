@@ -20,12 +20,45 @@
       "type": "shell",
       "command": "docker compose logs -f",
       "problemMatcher": [],
+      "group": "build"
+    },
+    {
+      "label": "Drafts checker",
+      "type": "shell",
+      "command": "python3",
+      "args": [
+        "code/drafts-checker.py",
+        "--drafts-dir",
+        "_drafts",
+        "--verbose",
+        "--log-level",
+        "DEBUG"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Debug: PWD",
+      "type": "shell",
+      "command": "pwd",
+      "problemMatcher": [],
       "group": {
         "kind": "build",
         "isDefault": true
       }
+    },
+    {
+      "label": "Drafts checker TEST python",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "--version"
+      ],
+      "problemMatcher": [],
+      "group": "build"
     }
   ]
 }
-
-
