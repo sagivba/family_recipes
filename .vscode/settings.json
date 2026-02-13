@@ -1,0 +1,16 @@
+{
+  "python.defaultInterpreterPath": "/home/sagivba-adm/miniconda3/envs/family_recipes/bin/python",
+  "python.testing.unittestEnabled": true,
+  "python.testing.pytestEnabled": false,
+  "python.testing.unittestArgs": [
+    "-v",
+    "-s",
+    "./code/_Tests",
+    "-p",
+    "test_*.py"
+  ],
+  "python.envFile": "${workspaceFolder}/.env",
+  "python.terminal.activateEnvironment": true
+}
+
+

@@ -25,7 +25,7 @@
     {
       "label": "Drafts checker",
       "type": "shell",
-      "command": "python3",
+      "command": "${command:python.interpreterPath}",
       "args": [
         "code/drafts-checker.py",
         "--drafts-dir",
@@ -34,6 +34,28 @@
         "--log-level",
         "DEBUG"
       ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "Drafts checker (code cwd, ../_drafts, use-ai)",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "drafts-checker.py",
+        "--drafts-dir",
+        "../_drafts",
+        "--use-ai",
+        "--log-level",
+        "DEBUG",
+        "--verbose"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/code"
+      },
       "presentation": {
         "reveal": "always",
         "panel": "shared"
@@ -59,6 +81,38 @@
       ],
       "problemMatcher": [],
       "group": "build"
+    },
+    {
+      "label": "UnitTests: unittest (discover)",
+      "type": "shell",
+      "command": "${command:python.interpreterPath}",
+      "args": [
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "code/_Tests",
+        "-p",
+        "test_*.py",
+        "-v"
+      ],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "problemMatcher": [],
+      "group": "test"
+    },
+    {
+      "label": "CI: quick (UnitTests + Drafts checker)",
+      "dependsOn": [
+        "UnitTests: unittest (discover)",
+        "Drafts checker"
+      ],
+      "dependsOrder": "sequence",
+      "problemMatcher": [],
+      "group": "test"
     }
   ]
 }
+
