@@ -1,0 +1,41 @@
+# CI workflow (GitHub Actions)
+# What this does:
+# - Runs automatically on every Pull Request to main, and on pushes to non-main branches.
+# - Executes the Python unit tests (standard library unittest) for the drafts-checker tooling.
+# Why it exists:
+# - Provides fast feedback ("Checks" in the PR) so we only merge changes that pass tests.
+# Notes:
+# - This workflow does NOT deploy the website. Deployment to GitHub Pages is handled separately
+#   by .github/workflows/jekyll-gh-pages.yml, which runs only after merging to main.
+
+name: CI
+
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches-ignore: ["main"]
+
+jobs:
+  python-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install openai python-dotenv
+
+      - name: Run unit tests
+        env:
+          PYTHONPATH: code
+        run: |
+          python -m unittest discover -s code/_Tests -p "test_*.py" -v
+
