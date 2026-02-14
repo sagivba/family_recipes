@@ -11,13 +11,13 @@ import click
 import re
 
 from Modules.scanner import scan_recipes
-from Modules.linter import lint_recipe
 from Modules.fixer import fix_recipe, FixResult
 from Modules.logger import setup_logging
 from Modules.report import write_file_report, write_index_report
 from Modules.diff_html import generate_diff_html
 from Modules.stage_pipeline import StagePipeline
 from Modules.llm_recipe_rewriter import LLMRecipeRewriter
+from Modules.final_lint import finallint, LintIssue as FinalLintIssue, LintReport
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -87,7 +87,7 @@ class ProcessOutcome:
     final_path: Path
     status: str  # "ready" | "rejected"
     attempts: int
-    issues: List[str]
+    issues: List[FinalLintIssue]
     fix_result: FixResult
 
 
@@ -130,10 +130,28 @@ def _build_openai_client() -> object:
     return OpenAI(api_key=api_key)
 
 
-def _collect_issue_strings(lint_result) -> List[str]:
-    # lint_result.issues is already a list; keep it as strings defensively
-    issues = lint_result.issues or []
-    return [str(x) for x in issues]
+def _collect_issue_strings(issues: List[FinalLintIssue]) -> List[str]:
+    formatted: List[str] = []
+    for issue in issues:
+        location = (
+            f"{issue.line if issue.line is not None else '-'}:"
+            f"{issue.column if issue.column is not None else '-'}"
+        )
+        formatted.append(
+            f"{issue.kind} [{issue.code or '-'}] at {location} - {issue.message}"
+        )
+    return formatted
+
+
+def run_final_lint(
+    *,
+    current_path: Path,
+    pipeline: StagePipeline,
+) -> tuple[Path, LintReport]:
+    text = current_path.read_text(encoding="utf-8", errors="replace")
+    report = finallint().lint_text(text, virtual_path=str(current_path))
+    linted_path = pipeline.to_linted(current_path)
+    return linted_path, report
 
 
 def _write_reports(
@@ -200,11 +218,7 @@ def _process_one_draft(
     current_path = input_path
 
     attempts = 0
-    last_issues: List[str] = []
-
-    def lint_by_path(p: Path) -> List[str]:
-        lr = lint_recipe(p)
-        return _collect_issue_strings(lr)
+    last_issues: List[FinalLintIssue] = []
 
     if use_ai:
         if not rewriter:
@@ -257,7 +271,11 @@ def _process_one_draft(
         )
 
         # === Lint AFTER merge only ===
-        last_issues = lint_by_path(current_path)
+        current_path, lint_report = run_final_lint(
+            current_path=current_path,
+            pipeline=pipeline,
+        )
+        last_issues = lint_report.issues
 
         # === Retry loop: AI fix on FULL document only ===
         while last_issues and attempts < max_attempts:
@@ -270,19 +288,29 @@ def _process_one_draft(
             )
 
             current_text = rewriter.rewrite(
-                current_text, issues=last_issues, attempt=attempts
+                current_text,
+                issues=_collect_issue_strings(last_issues),
+                attempt=attempts,
             )
 
             current_path = pipeline.to_ai_fixed(
                 current_path, current_text, attempt=attempts
             )
 
-            last_issues = lint_by_path(current_path)
+            current_path, lint_report = run_final_lint(
+                current_path=current_path,
+                pipeline=pipeline,
+            )
+            last_issues = lint_report.issues
 
     else:
         # === Deterministic path ===
         attempts = 1
-        last_issues = lint_by_path(draft_path)
+        current_path, lint_report = run_final_lint(
+            current_path=input_path,
+            pipeline=pipeline,
+        )
+        last_issues = lint_report.issues
 
         if last_issues:
             logger.warning(
@@ -295,10 +323,13 @@ def _process_one_draft(
             current_path = pipeline.to_ai_fixed(
                 input_path, current_text, attempt=attempts
             )
-            last_issues = lint_by_path(current_path)
+            current_path, lint_report = run_final_lint(
+                current_path=current_path,
+                pipeline=pipeline,
+            )
+            last_issues = lint_report.issues
         else:
             current_text = original_text
-            current_path = input_path
 
     # === Final classification ===
     if not last_issues:
@@ -307,7 +338,7 @@ def _process_one_draft(
         logger.info("READY: %s", draft_path.name)
     else:
         status = "rejected"
-        final_path = pipeline.to_rejected(current_path, last_issues)
+        final_path = pipeline.to_rejected(current_path, _collect_issue_strings(last_issues))
         logger.error(
             "REJECTED: %s (issues=%d)", draft_path.name, len(last_issues)
         )

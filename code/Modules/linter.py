@@ -10,7 +10,10 @@ This module validates recipe files for:
 import re
 from pathlib import Path
 from typing import List, Optional
-import yaml
+try:
+    import yaml
+except ModuleNotFoundError:  # pragma: no cover - environment fallback
+    yaml = None
 
 
 # ----------------------------
@@ -108,13 +111,27 @@ def _lint_front_matter_semantics(
     fm_lines: List[str],
     result: LintResult,
 ) -> None:
-    try:
-        data = yaml.safe_load("".join(fm_lines)) or {}
-    except Exception as exc:
-        result.issues.append(
-            LintIssue(f"Invalid YAML front matter: {exc}")
-        )
-        return
+    if yaml is None:
+        data = {}
+        for idx, raw in enumerate(fm_lines, start=1):
+            stripped = raw.strip()
+            if not stripped:
+                continue
+            if ":" not in stripped:
+                result.issues.append(
+                    LintIssue(f"Invalid YAML front matter: invalid line {idx}")
+                )
+                return
+            key, value = stripped.split(":", maxsplit=1)
+            data[key.strip()] = value.strip().strip('"')
+    else:
+        try:
+            data = yaml.safe_load("".join(fm_lines)) or {}
+        except Exception as exc:
+            result.issues.append(
+                LintIssue(f"Invalid YAML front matter: {exc}")
+            )
+            return
 
     for field in REQUIRED_FRONT_FIELDS:
         if field not in data:
