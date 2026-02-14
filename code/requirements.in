@@ -1,3 +1,4 @@
 openai
 click
-PyYAML
+pyyaml
+python-dotenv
