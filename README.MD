@@ -1,7 +1,23 @@
-# Family Recipes – Local Development
+# Family Recipes - Local Development
 
-This repository contains a Jekyll-based site, developed and tested locally using **Docker**, **nginx**, and **WSL** on Windows 11.
-The local setup is designed to closely resemble the GitHub Pages production environment while remaining stable on Windows.
+This repository contains a Jekyll-based site, developed and tested locally using **Docker**, **nginx**, and **WSL** on Windows 11. The local setup is designed to closely resemble the GitHub Pages production environment while remaining stable on Windows.
+
+## Repository structure
+
+This repository contains two parts:
+- **Website**: a static site built with Jekyll and served locally via **Docker/nginx** (no `jekyll serve`).
+- **Recipe tooling (drafts-checker)**: Python scripts + unit tests used to validate/process recipe drafts.
+
+## Python development & tests
+
+See: `docs/dev-python.md`
+
+Quick commands:
+
+```bash
+pip install openai python-dotenv
+python -m unittest discover -s code/_Tests -p "test_*.py" -v
+```
 
 ---
 
@@ -43,6 +59,7 @@ docker compose up --build
 ```
 
 This will:
+
 - Build the site with Jekyll
 - Start a watch process for automatic rebuilds
 - Serve the site via nginx
@@ -53,8 +70,7 @@ This will:
 http://localhost:8080
 ```
 
-Changes to content or layouts will trigger an automatic rebuild.
-Refresh the browser to see updates.
+Changes to content or layouts will trigger an automatic rebuild. Refresh the browser to see updates.
 
 ---
 
@@ -71,6 +87,7 @@ docker compose down
 The repository includes VS Code tasks for convenience.
 
 Available tasks:
+
 - **Dev: Start (docker compose up)**
 - **Dev: Stop (docker compose down)**
 - **Dev: Logs (docker compose logs)**
@@ -78,24 +95,17 @@ Available tasks:
 Run via:
 
 ```
-Ctrl+Shift+P → Tasks: Run Task
+Ctrl+Shift+P -> Tasks: Run Task
 ```
 
 ---
 
 ## Repository Structure Notes
 
-- `_site/`
-  Generated build output (ignored by Git)
-
-- `_recipes/`, `ingredients/`
-  Site content
-
-- `_layouts/`
-  Custom layouts (`doc`, `ingredients`)
-
-- `Dockerfile`, `docker-compose.yml`
-  Local development infrastructure
+- `_site/` Generated build output (ignored by Git)
+- `_recipes/`, `ingredients/` Site content
+- `_layouts/` Custom layouts (`doc`, `ingredients`)
+- `Dockerfile`, `docker-compose.yml` Local development infrastructure
 
 ---
 
@@ -109,8 +119,7 @@ Ctrl+Shift+P → Tasks: Run Task
 
 ## Production
 
-Production is handled by **GitHub Pages**.
-Local `_site/` output is **not** pushed to GitHub.
+Production is handled by **GitHub Pages**. Local `_site/` output is **not** pushed to GitHub.
 
 ---
 
