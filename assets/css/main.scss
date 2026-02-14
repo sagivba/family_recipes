@@ -249,6 +249,13 @@ body {
   padding-left: 0;
   padding-right: 0;
 }
+
+@media (max-width: 600px) {
+  .layout--home .home-container {
+    padding-right: 8px; /* Add slight right spacing on mobile so content doesn't touch the edge */
+  }
+}
+
 .layout--home .recipes-grid {
   margin-left: 32px;
   margin-right: 32px;
