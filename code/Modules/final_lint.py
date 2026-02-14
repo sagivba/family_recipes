@@ -91,7 +91,19 @@ class finallint:
 
         fm_lines, _, end = _extract_front_matter(lines)
         if end == -1:
-            return LintReport(ok=True, issues=[], pretty_lines=[])
+            return LintReport(
+                ok=False,
+                issues=[
+                    LintIssue(
+                        kind="front_matter_syntax",
+                        code="E_FM_MISSING",
+                        message="Missing YAML front matter",
+                        line=1,
+                        column=1,
+                    )
+                ],
+                pretty_lines=[],
+            )
 
         pretty_result = _pretty_front_matter(fm_lines)
         syntax_issues = pretty_result["issues"]
