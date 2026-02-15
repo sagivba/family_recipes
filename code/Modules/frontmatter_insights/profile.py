@@ -5,6 +5,16 @@ from collections import Counter, defaultdict
 from Modules.frontmatter_insights.normalize import CATEGORICAL_FIELDS
 
 
+REPORT_CATEGORICAL_FIELDS = [
+    "category",
+    "diabetic_friendly",
+    "origin",
+    "source",
+    "spiciness",
+    "type",
+]
+
+
 TYPE_NAMES = {
     str: "str",
     int: "int",
@@ -34,6 +44,7 @@ def build_file_rows(parsed_records):
             "has_frontmatter": rec["has_frontmatter"],
             "parse_ok": rec["parse_ok"],
             "frontmatter": rec.get("frontmatter") or {},
+            "raw_frontmatter": rec.get("raw_frontmatter") or rec.get("frontmatter") or {},
         }
         rows.append(row)
 
@@ -101,6 +112,50 @@ def profile_frontmatter(file_rows, skipped_large_files=None):
     for field in CATEGORICAL_FIELDS:
         categorical_distributions[field] = dict(value_counts[field].most_common())
 
+    categorical_value_tables = {}
+    for field in REPORT_CATEGORICAL_FIELDS:
+        normalized_counts = Counter()
+        raw_examples = defaultdict(list)
+        missing_count = 0
+
+        for row in valid_rows:
+            normalized_value = row["frontmatter"].get(field)
+            raw_value = row["raw_frontmatter"].get(field)
+
+            if normalized_value in (None, "", [], {}):
+                missing_count += 1
+                continue
+
+            normalized_text = str(normalized_value)
+            normalized_counts[normalized_text] += 1
+
+            if raw_value in (None, "", [], {}):
+                continue
+
+            raw_text = str(raw_value)
+            if raw_text not in raw_examples[normalized_text] and len(raw_examples[normalized_text]) < 3:
+                raw_examples[normalized_text].append(raw_text)
+
+        non_missing_total = sum(normalized_counts.values())
+        rows = []
+        for value, count in normalized_counts.most_common():
+            pct = (count / non_missing_total * 100) if non_missing_total else 0
+            rows.append(
+                {
+                    "value": value,
+                    "count": count,
+                    "percent": round(pct, 2),
+                    "examples": raw_examples.get(value, []),
+                }
+            )
+
+        denominator = max(len(valid_rows), 1)
+        categorical_value_tables[field] = {
+            "rows": rows,
+            "missing_count": missing_count,
+            "missing_pct": round((missing_count / denominator) * 100, 2),
+        }
+
     totals = {
         "total_files": total_files,
         "with_frontmatter": with_frontmatter,
@@ -114,4 +169,5 @@ def profile_frontmatter(file_rows, skipped_large_files=None):
         "key_profiles": key_profiles,
         "key_value_stats": key_value_stats,
         "categorical_distributions": categorical_distributions,
+        "categorical_value_tables": categorical_value_tables,
     }

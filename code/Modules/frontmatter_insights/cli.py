@@ -1,5 +1,6 @@
 """CLI for frontmatter insights analytics tool."""
 
+from copy import deepcopy
 from pathlib import Path
 
 import click
@@ -30,6 +31,7 @@ def run(root: str = ".", recipes_dir: str = "_recipes", out: str = "out", max_mb
 
     for rec in parsed:
         if rec["parse_ok"] and rec["frontmatter"] is not None:
+            rec["raw_frontmatter"] = deepcopy(rec["frontmatter"])
             rec["frontmatter"] = normalize_record(rec["frontmatter"])
 
     file_rows, parse_errors = build_file_rows(parsed)
