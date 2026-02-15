@@ -6,12 +6,15 @@ from tempfile import TemporaryDirectory
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from Modules.frontmatter_insights.charts import generate_charts
+from Modules.frontmatter_insights.charts import generate_charts, plt
 from Modules.frontmatter_insights.render_html import render_report_html
 
 
 class TestRenderHTML(unittest.TestCase):
     def test_report_and_png_created(self):
+        if plt is None:
+            self.skipTest("matplotlib not installed")
+
         with TemporaryDirectory() as tmp:
             out = Path(tmp)
             profile_data = {
@@ -42,11 +45,18 @@ class TestRenderHTML(unittest.TestCase):
                     "category": {"top_values": [{"value": "Soup", "count": 2}]},
                     "tags": {"top_values": [{"value": "quick", "count": 2}]},
                 },
+                "categorical_value_tables": {
+                    "category": {
+                        "rows": [{"value": "Soup", "count": 2, "percent": 100, "examples": ["Soup"]}],
+                        "missing_count": 0,
+                        "missing_pct": 0,
+                    }
+                },
             }
             html_path = render_report_html(out, report_data, charts)
 
             self.assertTrue(html_path.exists())
-            pngs = list((out / "assets").glob("*.png"))
+            pngs = list((out / "charts").glob("*.png"))
             self.assertGreaterEqual(len(pngs), 1)
 
 
