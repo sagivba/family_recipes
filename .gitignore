@@ -37,3 +37,5 @@ _drafts/*/
 
 # code testcases
 code/_testcases/0*_*/
+_reports/
+code/frontmatter-insights.py
