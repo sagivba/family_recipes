@@ -2,3 +2,4 @@ openai
 click
 pyyaml
 python-dotenv
+matplotlib
