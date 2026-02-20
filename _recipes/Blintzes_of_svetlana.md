@@ -6,7 +6,7 @@ type: מתוק
 origin: ""
 spiciness: ""
 diabetic_friendly: "לא"
-image: "/images/Blintzes_of_svetlana.jpg"
+image: "/images/recipes/Blintzes_of_svetlana.jpg"
 source: ""
 notes: ""
 description: "בלינצ'ס דק, רך, ומושלם למילוי – גבינה, שוקולד או כל מה שבא לכם."

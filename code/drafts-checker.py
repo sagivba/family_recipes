@@ -387,9 +387,6 @@ def enrich_nutrition_with_ai(
     return rewriter.enrich_nutrition(markdown)
 
 
-
-
-
 def merge_nutrition_sections(*, original: str, nutrition_block: str) -> str:
     """
     Merge the nutrition markdown block into the full recipe document.
