@@ -43,7 +43,7 @@
     {
       "label": "Drafts checker (code cwd, ../_drafts, use-ai)",
       "type": "shell",
-      "command": "${command:python.interpreterPath}",
+      "command": "python",
       "args": [
         "drafts-checker.py",
         "--drafts-dir",
