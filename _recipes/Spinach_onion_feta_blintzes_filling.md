@@ -6,7 +6,7 @@ type: מנה עיקרית
 origin: ""
 spiciness: מלוח
 diabetic_friendly: לא
-image: ""
+image: "/images/recipes/Blintzes_of_svetlana.jpg"
 source: ""
 notes: "חשוב שהתערובת תהיה קרה לפני ערבוב עם הגבינות. המליחות תלויה בפטה – לטעום לפני שמוסיפים מלח נוסף. המילוי מתאים גם לפשטידות או בורקסים."
 description: ""
