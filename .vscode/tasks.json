@@ -43,7 +43,7 @@
     {
       "label": "Drafts checker (code cwd, ../_drafts, use-ai)",
       "type": "shell",
-      "command": "python",
+      "command": "/home/sagivba-adm/miniconda3/envs/family_recipes/bin/python",
       "args": [
         "drafts-checker.py",
         "--drafts-dir",
