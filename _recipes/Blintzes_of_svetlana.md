@@ -5,7 +5,7 @@ category: קינוחים
 type: מתוק
 origin: ""
 spiciness: ""
-diabetic_friendly: "לא"
+diabetic_friendly: "כן"
 image: "/images/recipes/Blintzes_of_svetlana.jpg"
 source: ""
 notes: ""
