@@ -25,7 +25,11 @@ class RecipeMetadataExtractor:
     def discover_recipe_files(self) -> list[Path]:
         if not self.recipes_dir.exists():
             return []
-        files = [path for path in self.recipes_dir.glob("*.md") if path.is_file()]
+        files = [
+            path
+            for path in self.recipes_dir.iterdir()
+            if path.is_file() and path.suffix.lower() == ".md"
+        ]
         return sorted(files, key=lambda p: p.relative_to(self.repo_root).as_posix())
 
     @staticmethod

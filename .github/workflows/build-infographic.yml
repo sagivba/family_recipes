@@ -3,7 +3,8 @@ name: Build recipe infographic data
 on:
   push:
     paths:
-      - "_recipes/**"
+      - "_recipes/*.md"
+      - "_recipes/*.MD"
       - "code/build_recipes_info.py"
       - "code/_Tests/**"
       - ".github/workflows/build-infographic.yml"
@@ -29,6 +30,9 @@ jobs:
 
       - name: Install dependencies
         run: pip install pyyaml
+
+      - name: Run extractor unit tests
+        run: cd code && python -m unittest _Tests/test_build_recipes_info.py
 
       - name: Regenerate recipe metadata
         run: python code/build_recipes_info.py
