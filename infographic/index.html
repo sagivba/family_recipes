@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>אינפוגרפיקה למתכונים</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="page-header">
+      <h1>דשבורד מטא־דאטה למתכונים</h1>
+      <p>
+        תצוגה סטטית של נתוני המתכונים: סינון, חיפוש והתפלגויות מרכזיות מתוך
+        קובץ JSON.
+      </p>
+    </header>
+
+    <main>
+      <section class="status" aria-live="polite">
+        <p id="status-message" class="status-message">טוען נתונים…</p>
+      </section>
+
+      <section class="kpi-grid" aria-label="מדדי סיכום">
+        <article class="kpi-card">
+          <h2>סה״כ מתכונים</h2>
+          <p id="kpi-total" class="kpi-value">—</p>
+        </article>
+        <article class="kpi-card">
+          <h2>קטגוריות שונות</h2>
+          <p id="kpi-categories" class="kpi-value">—</p>
+        </article>
+        <article class="kpi-card">
+          <h2>סוגי מתכון שונים</h2>
+          <p id="kpi-types" class="kpi-value">—</p>
+        </article>
+        <article class="kpi-card">
+          <h2>ידידותי לסוכרת</h2>
+          <p id="kpi-diabetic" class="kpi-value">—</p>
+        </article>
+      </section>
+
+      <section class="filters" aria-label="סינון וחיפוש">
+        <h2>סינון וחיפוש</h2>
+        <div class="filters-grid">
+          <label>
+            כותרת מתכון
+            <input id="search-input" type="search" placeholder="חיפוש לפי כותרת…" />
+          </label>
+
+          <label>
+            קטגוריה
+            <select id="filter-category"></select>
+          </label>
+
+          <label>
+            סוג מתכון
+            <select id="filter-type"></select>
+          </label>
+
+          <label>
+            מקור גאוגרפי
+            <select id="filter-origin"></select>
+          </label>
+
+          <label>
+            רמת חריפות
+            <select id="filter-spiciness"></select>
+          </label>
+
+          <label>
+            ידידותי לסוכרת
+            <select id="filter-diabetic"></select>
+          </label>
+
+          <label>
+            מקור המתכון
+            <select id="filter-source"></select>
+          </label>
+        </div>
+      </section>
+
+      <section class="charts" aria-label="תרשימי התפלגות">
+        <article class="chart-card">
+          <h2>התפלגות לפי קטגוריה</h2>
+          <div id="chart-category" class="bar-chart"></div>
+        </article>
+        <article class="chart-card">
+          <h2>התפלגות לפי סוג</h2>
+          <div id="chart-type" class="bar-chart"></div>
+        </article>
+      </section>
+
+      <section class="table-section" aria-label="רשימת מתכונים מסוננת">
+        <h2>רשימת מתכונים</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>שם המתכון</th>
+                <th>קטגוריה</th>
+                <th>סוג</th>
+                <th>מקור</th>
+                <th>מקור המתכון</th>
+              </tr>
+            </thead>
+            <tbody id="recipes-tbody"></tbody>
+          </table>
+        </div>
+        <p id="empty-state" class="empty-state" hidden>
+          לא נמצאו מתכונים שתואמים לסינון ולחיפוש הנוכחיים.
+        </p>
+      </section>
+    </main>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>
