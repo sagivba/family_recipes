@@ -69,6 +69,7 @@ class BuildRecipesInfoTests(unittest.TestCase):
 
     def test_scans_only_recipes_md_directly_under_recipes(self) -> None:
         self._write_recipe("a.md", "---\ntitle: A\n---\n")
+        self._write_recipe("b.MD", "---\ntitle: B\n---\n")
         (self.repo_root / "_recipes" / "notes.txt").write_text("---\ntitle: bad\n---\n", encoding="utf-8")
         nested = self.repo_root / "_recipes" / "nested"
         nested.mkdir()
@@ -76,8 +77,8 @@ class BuildRecipesInfoTests(unittest.TestCase):
 
         records = build_recipes_info(self.repo_root)
 
-        self.assertEqual(1, len(records))
-        self.assertEqual("a.md", records[0]["filename"])
+        self.assertEqual(2, len(records))
+        self.assertEqual(["a.md", "b.MD"], [r["filename"] for r in records])
 
     def test_filename_and_relative_path(self) -> None:
         self._write_recipe("a.md", "---\ntitle: A\n---\n")
