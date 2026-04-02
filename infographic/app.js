@@ -18,6 +18,7 @@ const fields = {
 
 const els = {
   status: document.getElementById("status-message"),
+  lastUpdated: document.getElementById("last-updated"),
   search: document.getElementById("search-input"),
   filters: {
     category: document.getElementById("filter-category"),
@@ -50,6 +51,7 @@ async function init() {
     if (!response.ok) {
       throw new Error(`HTTP ${response.status}`);
     }
+    updateLastUpdated(response.headers.get("last-modified"));
 
     const raw = await response.json();
     state.recipes = Array.isArray(raw) ? raw : [];
@@ -66,9 +68,33 @@ async function init() {
     setStatus("הנתונים נטענו בהצלחה.", "success");
   } catch (error) {
     setStatus("אירעה שגיאה בטעינת הנתונים. ודאו שהקובץ recipes_info.json זמין.", "error");
+    updateLastUpdated(null);
     renderEmptyAll();
     console.error(error);
   }
+}
+
+function updateLastUpdated(lastModifiedHeader) {
+  if (!els.lastUpdated) return;
+
+  const fallback = "עדכון נתונים: תאריך עדכון לא זמין";
+  if (!lastModifiedHeader) {
+    els.lastUpdated.textContent = fallback;
+    return;
+  }
+
+  const date = new Date(lastModifiedHeader);
+  if (Number.isNaN(date.getTime())) {
+    els.lastUpdated.textContent = fallback;
+    return;
+  }
+
+  const formatted = new Intl.DateTimeFormat("he-IL", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  }).format(date);
+
+  els.lastUpdated.textContent = `עדכון נתונים: ${formatted}`;
 }
 
 function wireEvents() {
