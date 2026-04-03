@@ -2,9 +2,9 @@
 layout: recipe
 title: "עוגת שוקולד עם שעועית"
 category: "קינוחים"
-type: "עוגה"
+type: "טבעוני"
 origin: ""
-spiciness: "ללא"
+spiciness: "מתוק"
 diabetic_friendly: "כן"
 image: "/images/recipes/Chocolate_Bean_Cake.jpeg"
 source: ""
