@@ -1,13 +1,13 @@
 ---
 layout: recipe
 title: "בורקס דפי אורז במילוי בשר ופטריות (ואפשר גם עם עוף)"
-category: "מאפים"
-type: "מנה עיקרית"
+category: "מאפה"
+type: "בשרי"
 origin: "אסיאתי"
 spiciness: "מלוח"
 diabetic_friendly: ""
 image: "/images/recipes/Burekas_Rice_Paper_Beef_Mushroom_by_sigal.jpeg"
-source: "סיגל בן ברוך"
+source: "סיגל בן-ברוך"
 notes: "בורקס_דפי_אורז.md"
 description: "בורקסים מדפי אורז במילוי בשר ופטריות, אפויים זהובים."
 ---
