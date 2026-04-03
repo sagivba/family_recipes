@@ -2,8 +2,8 @@
 layout: recipe
 title: "עוף יהודי"
 category: "עיקרית"
-type: "תבשיל"
-origin: ""
+type: "בשרי"
+origin: "מזרח אירופה"
 spiciness: "מלוח"
 diabetic_friendly: "כן"
 image: "/images/recipes/chef-lasarson-jew-chicken.jpg"
