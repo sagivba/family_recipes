@@ -2,7 +2,7 @@
 layout: recipe
 title: "סלט מלפפפונים מהיר"
 category: "סלט"
-type: "מהיר"
+type: "חלבי"
 origin: ""
 spiciness: "מלוח"
 diabetic_friendly: "כן"
