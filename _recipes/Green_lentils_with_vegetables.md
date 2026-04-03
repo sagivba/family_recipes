@@ -1,7 +1,7 @@
 ---
 layout: recipe
 title: "עדשים ירוקות עם ירקות"
-category: "תוספת - פחמימה"
+category: "צד"
 type: "טבעוני"
 origin: "מזרח תיכוני"
 spiciness: "מלוח"
