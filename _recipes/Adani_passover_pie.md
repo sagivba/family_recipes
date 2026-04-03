@@ -1,7 +1,7 @@
 ---
 layout: recipe
 title: "מחשחש"
-category: "תבשיל"
+category: "מאפה"
 type: "פרווה"
 origin: "תימני"
 spiciness: "מלוח"
