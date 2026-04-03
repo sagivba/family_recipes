@@ -1,10 +1,10 @@
 ---
 layout: recipe
 title: בלינצ'ס  של סבטלנה
-category: קינוחים
-type: מתוק
+category: צד
+type: חלבי
 origin: ""
-spiciness: ""
+spiciness: "מלוח/מתוק"
 diabetic_friendly: "כן"
 image: "/images/recipes/Blintzes_of_svetlana.jpg"
 source: ""
