@@ -18,7 +18,7 @@
   },
   {
     "author": "",
-    "category": "קינוחים",
+    "category": "צד",
     "description": "בלינצ'ס דק, רך, ומושלם למילוי – גבינה, שוקולד או כל מה שבא לכם.",
     "diabetic_friendly": "כן",
     "filename": "Blintzes_of_svetlana.md",
@@ -28,9 +28,9 @@
     "origin": "",
     "relative_path": "_recipes/Blintzes_of_svetlana.md",
     "source": "",
-    "spiciness": "",
+    "spiciness": "מלוח/מתוק",
     "title": "בלינצ'ס  של סבטלנה",
-    "type": "מתוק",
+    "type": "חלבי",
     "yield": ""
   },
   {
