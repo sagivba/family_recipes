@@ -1,8 +1,8 @@
 ---
 layout: recipe
 title: "חודרא-מודרא ירקות מבושלים"
-category: "תבשיל ירקות"
-type: "תבשיל"
+category: "תבשיל"
+type: "טבעוני"
 origin: "מולדובי/עדני"
 spiciness: "פיקנטי"
 diabetic_friendly: "כן"
