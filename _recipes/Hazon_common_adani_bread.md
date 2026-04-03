@@ -1,8 +1,8 @@
 ---
 layout: recipe
 title: "האזון - לחם עדני יום יומי"
-category: "לחם"
-type: "פרווה"
+category: "מאפה"
+type: "טבעוני"
 origin: "עדני"
 spiciness: "מתוק מלוח"
 diabetic_friendly: ""
