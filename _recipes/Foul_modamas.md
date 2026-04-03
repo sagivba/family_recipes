@@ -1,7 +1,7 @@
 ---
 layout: recipe
 title: "פול מודמס"
-category: "מנה עיקרית"
+category: "תבשיל"
 type: "טבעוני"
 origin: "מזרח תיכוני"
 spiciness: "פיקנטי"
