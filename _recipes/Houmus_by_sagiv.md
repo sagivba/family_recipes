@@ -1,7 +1,7 @@
 ---
 layout: recipe
 title: "החומוס של שגיב"
-category: "מנה ראשונה"
+category: "ממרח"
 type: "טבעוני"
 origin: "מזרח תיכוני"
 spiciness: "מלוח"
