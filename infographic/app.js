@@ -322,6 +322,8 @@ function buildRecipeUrl(recipe) {
   const relativePath = String(recipe?.relative_path ?? "").trim();
   const match = relativePath.match(/^_recipes\/(.+)\.md$/i);
   if (!match) return "#";
+  const slug = match[1].toLowerCase().replace(/_/g, "-");
+  return `/family_recipes/recipes/${slug}/`;
   return `/family_recipes/recipes/${match[1]}/`;
 }
 
