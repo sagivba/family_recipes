@@ -1,6 +1,6 @@
 [
   {
-    "author": "",
+    "author": "יוני יוסף",
     "category": "מאפה",
     "description": "מאכל תימני מסורתי המבוסס על תפוחי אדמה, ביצים ותבלינים, הנאפה בתנור למרקם יציב ועשיר.",
     "diabetic_friendly": "לא",
@@ -10,14 +10,14 @@
     "notes": "",
     "origin": "תימני",
     "relative_path": "_recipes/Adani_passover_pie.md",
-    "source": "מתכון משפחתי",
+    "source": "",
     "spiciness": "מלוח",
     "title": "מחשחש",
     "type": "פרווה",
     "yield": ""
   },
   {
-    "author": "",
+    "author": "סבטלנה ברדסקי-ברהום",
     "category": "צד",
     "description": "בלינצ'ס דק, רך, ומושלם למילוי – גבינה, שוקולד או כל מה שבא לכם.",
     "diabetic_friendly": "כן",
@@ -34,7 +34,7 @@
     "yield": ""
   },
   {
-    "author": "",
+    "author": "סיגל בן-ברוך",
     "category": "מאפה",
     "description": "בורקסים מדפי אורז במילוי בשר ופטריות, אפויים זהובים.",
     "diabetic_friendly": "",
@@ -44,14 +44,14 @@
     "notes": "בורקס_דפי_אורז.md",
     "origin": "אסיאתי",
     "relative_path": "_recipes/Burekas_Rice_Paper_Beef_Mushroom_by_sigal.md",
-    "source": "סיגל בן-ברוך",
+    "source": "",
     "spiciness": "מלוח",
     "title": "בורקס דפי אורז במילוי בשר ופטריות (ואפשר גם עם עוף)",
     "type": "בשרי",
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שף לזרסון מהאינטרנט",
     "category": "עיקרית",
     "description": "תבשיל עוף עם בצלים מטוגנים באבקת סודה לשתייה.",
     "diabetic_friendly": "כן",
@@ -61,14 +61,14 @@
     "notes": "",
     "origin": "מזרח אירופה",
     "relative_path": "_recipes/Chef_lasarson_jew_chicken.md",
-    "source": "שף לזרסון מהאינטרנט",
+    "source": "",
     "spiciness": "מלוח",
     "title": "עוף יהודי",
     "type": "בשרי",
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שגיב ברהום",
     "category": "תבשיל",
     "description": "תבשיל טבעוני פשוט וטעים, מבוסס על דלעת ותפוחי אדמה, עם שום, תבלינים וחריפות עדינה–מודגשת לפי הטעם.",
     "diabetic_friendly": "כן",
@@ -78,7 +78,7 @@
     "notes": "",
     "origin": "צפון אפריקאי",
     "relative_path": "_recipes/Chirshi_recipe.md",
-    "source": "מתכון ביתי",
+    "source": "",
     "spiciness": "פיקנטי",
     "title": "צ'ירשי (תבשיל דלעת ותפוחי אדמה)",
     "type": "טבעוני",
@@ -95,14 +95,14 @@
     "notes": "",
     "origin": "",
     "relative_path": "_recipes/Chocolate_Bean_Cake.md",
-    "source": "",
+    "source": "שגיב ברהום",
     "spiciness": "מתוק",
     "title": "עוגת שוקולד עם שעועית",
     "type": "טבעוני",
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שגיב ברהום",
     "category": "מאפה",
     "description": "לחמניות קלות להכנה, מבוססות קוטג' וקוואקר, מתאימות לארוחת בוקר או כנשנוש חלבוני.",
     "diabetic_friendly": "כן",
@@ -112,14 +112,14 @@
     "notes": "",
     "origin": "ישראלי",
     "relative_path": "_recipes/Cottage_buns.md",
-    "source": "מתכון ביתי",
+    "source": "",
     "spiciness": "מתוק מלוח",
     "title": "לחמניות קוטג' וקוואקר",
     "type": "חלבי",
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שגיב ברהום",
     "category": "סלט",
     "description": "סלט מלפפפונים קרנצ'י וחמצמץ שמוכן במהירות.",
     "diabetic_friendly": "כן",
@@ -136,7 +136,7 @@
     "yield": ""
   },
   {
-    "author": "",
+    "author": "סבטלנה ברודסקי-ברהום",
     "category": "סלט",
     "description": "סלט חצילים מבושל בסגנון מזרח-אירופאי, עשיר בטעם, מתאים כתוספת או כממרח ללחם טרי.",
     "diabetic_friendly": "כן",
@@ -146,14 +146,14 @@
     "notes": "",
     "origin": "מולדובה",
     "relative_path": "_recipes/Eggpnatts_spread_of_svetlana.md",
-    "source": "מתכון משפחתי",
+    "source": "",
     "spiciness": "מלוח",
     "title": "סלט חצילים של סבטה",
     "type": "טבעוני",
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שגיב ברהום",
     "category": "תבשיל",
     "description": "מנה מזרח-תיכונית קלאסית, מזינה ומשביעה, מבוססת על פול מבושל עם עגבניות, שום ותבלינים. מתאימה לארוחה קלה או כמנה עיקרית.",
     "diabetic_friendly": "כן",
@@ -163,14 +163,14 @@
     "notes": "",
     "origin": "מזרח תיכוני",
     "relative_path": "_recipes/Foul_modamas.md",
-    "source": "מתכון מסורתי",
+    "source": "",
     "spiciness": "פיקנטי",
     "title": "פול מודמס",
     "type": "טבעוני",
     "yield": ""
   },
   {
-    "author": "",
+    "author": "ישראל ברהום",
     "category": "רוטב",
     "description": "סחוג ירוק חריף ועוצמתי בסגנון תימני, מבוסס כוסברה, שום ופלפלים ירוקים. מתאים ללחם, מרקים, תבשילים ובשר.",
     "diabetic_friendly": "כן",
@@ -178,16 +178,16 @@
     "image": "",
     "layout": "recipe",
     "notes": "",
-    "origin": "תימני",
+    "origin": "עדני",
     "relative_path": "_recipes/Green_bisbas_of_israel.md",
-    "source": "מתכון משפחתי",
+    "source": "",
     "spiciness": "חריף",
     "title": "הסחוג הירוק של ישראל",
     "type": "טבעוני",
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שגיב ברהום",
     "category": "צד",
     "description": "תבשיל פשוט ומזין של עדשים ירוקות עם ירקות, מתאים כתוספת או כמנה טבעונית קלה.",
     "diabetic_friendly": "כן",
@@ -197,14 +197,14 @@
     "notes": "",
     "origin": "מזרח תיכוני",
     "relative_path": "_recipes/Green_lentils_with_vegetables.md",
-    "source": "מתכון ביתי",
+    "source": "מתכון משפחתי",
     "spiciness": "מלוח",
     "title": "עדשים ירוקות עם ירקות",
     "type": "טבעוני",
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שגיב ברהוםם",
     "category": "מאפה",
     "description": "לחם עדני פשוט ויומיומי, עם מעט מרכיבים והרבה אופי. מתאים לאכילה עם מטבלים, תבשילים או סחוג.",
     "diabetic_friendly": "",
@@ -221,7 +221,7 @@
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שגיב ברהום",
     "category": "מרק",
     "description": "מרק מסורתי ועשיר, מתאים במיוחד לארוחת חג. מתבסס על בשר ראש, תבלינים חמים ובישול ארוך שמעמיק את הטעמים. זמן הכנה כולל: כ-7 שעות. כמות: 6–8 מנות.",
     "diabetic_friendly": "כן",
@@ -231,14 +231,14 @@
     "notes": "מרק שמתאים במיוחד לבישול ארוך על פלטת שבת או בתנור.",
     "origin": "תימני",
     "relative_path": "_recipes/Head_soup.md",
-    "source": "מתכון חג משפחתי",
+    "source": "",
     "spiciness": "מלוח",
     "title": "מרק ראש לראש השנה",
     "type": "בשרי",
     "yield": ""
   },
   {
-    "author": "שגיב",
+    "author": "שגיב ברהום",
     "category": "ממרח",
     "description": "חומוס ביתי חלק, עשיר ויציב, עם הקפדה על תהליך הכנה מדויק. מתאים להכנה מראש ואף להקפאה.",
     "diabetic_friendly": "כן",
@@ -255,7 +255,7 @@
     "yield": ""
   },
   {
-    "author": "",
+    "author": "סבטלנה ברדסקי-ברהום",
     "category": "תבשיל",
     "description": "תבשיל ירקות מבושלים עם גרסה חריפה אופציונלית.",
     "diabetic_friendly": "כן",
@@ -289,7 +289,7 @@
     "yield": ""
   },
   {
-    "author": "שגיב",
+    "author": "שגיב ברהום",
     "category": "משקה",
     "description": "קפיר ביתי מחלב מלא, עם תסיסה ראשונה ולאחריה תסיסה שנייה להעמקת טעם והוספת ארומות טבעיות.",
     "diabetic_friendly": "כן",
@@ -306,7 +306,7 @@
     "yield": ""
   },
   {
-    "author": "",
+    "author": "יעל סוסנר",
     "category": "קינוח",
     "description": "עוגת גבינה עם בסיס אגוזי וקרם שמנתי.",
     "diabetic_friendly": "לא",
@@ -316,14 +316,14 @@
     "notes": "",
     "origin": "ישראל",
     "relative_path": "_recipes/Layered_cheesecake_by_yael_sosner.md",
-    "source": "יעל סוסנר",
+    "source": "",
     "spiciness": "מתוק",
     "title": "עוגת גבינה – מדורגת",
     "type": "עוגה",
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שגיב ברהום",
     "category": "שימורים",
     "description": "סלמון כבוש בסגנון סקנדינבי, מיועד לפריסה דקה ולהגשה קרה. מתאים לכריכים, סלטים או כמנה ראשונה.",
     "diabetic_friendly": "כן",
@@ -340,7 +340,7 @@
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שגיב ברהום",
     "category": "מנה עיקרית",
     "description": "גרסה רעננה ומודרנית למג'דרה קלאסית, עם שמיר טרי וזרעים קלויים שמוסיפים קראנץ' וטעם אגוזי.",
     "diabetic_friendly": "כן",
@@ -357,7 +357,7 @@
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שגיב ברהום",
     "category": "לחם",
     "description": "לחם לבן ללא לישה, בהידרציה גבוהה, מותאם במיוחד לאפייה בתבנית קסטן עם מכסה. התפחה ארוכה יוצרת פירור אוורירי וקליפה דקה.",
     "diabetic_friendly": "לא",
@@ -374,7 +374,7 @@
     "yield": "תבנית קסטן 1.8 ליטר"
   },
   {
-    "author": "",
+    "author": "סבטלנה ברודסקי-ברהום",
     "category": "קינוח",
     "description": "עוגיות קוואקר רכות וארומטיות, עם חוויג' לקפה ונגיעת דבש, מופחתות סוכר ומתאימות גם לאירוח.",
     "diabetic_friendly": "כן",
@@ -391,7 +391,7 @@
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שגיב ברהום",
     "category": "ארוחת בוקר",
     "description": "חביתה עם קוואקר שנותנת מרקם רך ומספק.",
     "diabetic_friendly": "כן",
@@ -408,7 +408,7 @@
     "yield": ""
   },
   {
-    "author": "",
+    "author": "ישראלה ברהום",
     "category": "סלט",
     "description": "סלט בצל טרי עם נענע ולימון שמתייצב במקרר.",
     "diabetic_friendly": "כן",
@@ -425,7 +425,7 @@
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שגיב ברהום",
     "category": "שימורים",
     "description": "עגבניות שרי מיובשות בתנור בשמן זית ומלח.",
     "diabetic_friendly": "כן",
@@ -435,14 +435,14 @@
     "notes": "ניתן להשתמש בעגבניות הללו כתוספת לכריכים, כטיבול של סלטים ווממרחים ועוד. אפשר להוסיף גם תיבול נוסף כמו תימין או קונפי שום לצנצנת. יש לשמור בקרור עד שבועיים.",
     "origin": "ישראל",
     "relative_path": "_recipes/Oven_dried_tomatos.md",
-    "source": "",
+    "source": "מתכון משפחתי",
     "spiciness": "מלוח",
     "title": "עגבניות מיובשות",
     "type": "שימור",
     "yield": ""
   },
   {
-    "author": "",
+    "author": "נורית משולם",
     "category": "קציצות",
     "description": "קציצות בשר קטנות וכהות עם חוואיג' ופטרוזיליה.",
     "diabetic_friendly": "לא",
@@ -450,16 +450,16 @@
     "image": "",
     "layout": "recipe",
     "notes": "נאכלו בסוכה עם חילבה; מוגשות בטמפרטורת החדר או מעט חמימות; מטוגנות עד כהות ולפנים וול דאן; מוגשות על סיר/פלטה עד ההגשה.",
-    "origin": "",
+    "origin": "עדני",
     "relative_path": "_recipes/Pan_fried_meatballs_by_nurit.md",
     "source": "",
     "spiciness": "מלוח",
     "title": "הקציצות של נורית לסוכות",
-    "type": "",
+    "type": "בשרי",
     "yield": ""
   },
   {
-    "author": "שגיב",
+    "author": "שגיב ברהום",
     "category": "רוטב",
     "description": "פסטו ביתי חזק וארומטי, מבוסס בזיליקום טרי, צנוברים ושמן זית. מתאים לפסטה, כריכים, ירקות קלויים ודגים.",
     "diabetic_friendly": "כן",
@@ -476,7 +476,7 @@
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שגיב ברהום",
     "category": "תוספת",
     "description": "תבשיל תימני פשוט ומנחם של שעועית אדומה מבושלת לאורך זמן, מוגש עם סמנה ומלח בלבד.",
     "diabetic_friendly": "כן",
@@ -484,7 +484,7 @@
     "image": "",
     "layout": "recipe",
     "notes": "",
-    "origin": "תימני",
+    "origin": "עדני",
     "relative_path": "_recipes/Red_beans-lubim.md",
     "source": "מתכון מסורתי",
     "spiciness": "מלוח",
@@ -510,7 +510,7 @@
     "yield": ""
   },
   {
-    "author": "",
+    "author": "שולמית משולם",
     "category": "בשר",
     "description": "בשר לבישול ארוך מתובל ובושל לאט עד ריכוך.",
     "diabetic_friendly": "כן",
@@ -527,7 +527,7 @@
     "yield": ""
   },
   {
-    "author": "",
+    "author": "סבטלנה ברדסקי-ברהום",
     "category": "קינוח",
     "description": "לביבות גבינה מזרח-אירופיות קלאסיות, רכות מבפנים וזהובות מבחוץ, מתאימות לארוחת בוקר או קינוח קל.",
     "diabetic_friendly": "כן",
@@ -595,7 +595,7 @@
     "yield": ""
   },
   {
-    "author": "",
+    "author": "ישראלה ברהום",
     "category": "תבשיל",
     "description": "תבשיל חצילים ביתי ופשוט ברוטב עגבניות, מתאים כתוספת חמה או כמנה קלה לצד לחם.",
     "diabetic_friendly": "כן",
@@ -629,7 +629,7 @@
     "yield": ""
   },
   {
-    "author": "שגיב",
+    "author": "שגיב ברהום",
     "category": "מרק",
     "description": "מרק עוף תימני מסורתי, עשיר בטעמים, עם חוויג' למרק, ירקות ושורשים. מתאים במיוחד לחורף או כמרק מחזק.",
     "diabetic_friendly": "כן",
