@@ -1,20 +1,19 @@
-<!-- BEGIN: Google Analytics (GA4) -->
 
-{% if site.google_analytics %}
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', '{{ site.google_analytics }}');
-</script>
-{% endif %}
+  <!-- BEGIN: Google Analytics (GA4) -->
+  {% if site.google_analytics %}
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{ site.google_analytics }}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{ site.google_analytics }}');
+  </script>
+  {% endif %}
+  <!-- END: Google Analytics (GA4) -->
 
-<!-- END: Google Analytics (GA4) -->
-
-  <!-- PWA -->
+  <!-- BEGIN: PWA -->
   <link rel="manifest" href="/family_recipes/manifest.json">
   <meta name="theme-color" content="#8b0000">
   <link rel="icon" sizes="192x192" href="/family_recipes/icons/icon-192.png">
   <link rel="icon" sizes="512x512" href="/family_recipes/icons/icon-512.png">
-
+  <!-- END: PWA -->
