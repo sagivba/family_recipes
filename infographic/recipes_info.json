@@ -86,7 +86,7 @@
   },
   {
     "author": "",
-    "category": "קינוחים",
+    "category": "קינוח",
     "description": "עוגת שוקולד מפתיעה על בסיס שעועית עם מרקם עשיר וטעם עמוק.",
     "diabetic_friendly": "כן",
     "filename": "Chocolate_Bean_Cake.md",
@@ -307,7 +307,7 @@
   },
   {
     "author": "",
-    "category": "קינוחים",
+    "category": "קינוח",
     "description": "עוגת גבינה עם בסיס אגוזי וקרם שמנתי.",
     "diabetic_friendly": "לא",
     "filename": "Layered_cheesecake_by_yael_sosner.md",
@@ -324,7 +324,7 @@
   },
   {
     "author": "",
-    "category": "שימורים ביתיים",
+    "category": "שימורים",
     "description": "סלמון כבוש בסגנון סקנדינבי, מיועד לפריסה דקה ולהגשה קרה. מתאים לכריכים, סלטים או כמנה ראשונה.",
     "diabetic_friendly": "כן",
     "filename": "Lox_style_salmon.md",
@@ -409,7 +409,7 @@
   },
   {
     "author": "",
-    "category": "סלטים",
+    "category": "סלט",
     "description": "סלט בצל טרי עם נענע ולימון שמתייצב במקרר.",
     "diabetic_friendly": "כן",
     "filename": "Onions_mint_salad.md",
