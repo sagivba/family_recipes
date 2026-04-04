@@ -324,6 +324,7 @@ function buildRecipeUrl(recipe) {
   if (!match) return "#";
   const slug = match[1].toLowerCase().replace(/_/g, "-");
   return `/family_recipes/recipes/${slug}/`;
+  return `/family_recipes/recipes/${match[1]}/`;
 }
 
 function renderEmptyAll() {
