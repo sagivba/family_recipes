@@ -191,12 +191,20 @@ function renderTable() {
   state.filtered.forEach((recipe) => {
     const tr = document.createElement("tr");
 
+    const titleTd = document.createElement("td");
+    const titleLink = document.createElement("a");
+    titleLink.href = buildRecipeUrl(recipe);
+    titleLink.textContent = getField(recipe, "title");
+    titleLink.className = "recipe-link";
+    titleTd.appendChild(titleLink);
+    tr.appendChild(titleTd);
+
     [
-      getField(recipe, "title"),
       getField(recipe, "category"),
       getField(recipe, "type"),
       getField(recipe, "origin"),
       getField(recipe, "source"),
+      hasImage(recipe) ? "כן" : "לא",
     ].forEach((value) => {
       const td = document.createElement("td");
       td.textContent = value;
@@ -304,6 +312,17 @@ function normalizeDiabeticValue(recipe) {
   if (["no", "false", "0", "לא"].includes(text)) return "לא";
 
   return "לא";
+}
+
+function hasImage(recipe) {
+  return typeof recipe?.image === "string" && recipe.image.trim() !== "";
+}
+
+function buildRecipeUrl(recipe) {
+  const relativePath = String(recipe?.relative_path ?? "").trim();
+  const match = relativePath.match(/^_recipes\/(.+)\.md$/i);
+  if (!match) return "#";
+  return `/family_recipes/recipes/${match[1]}/`;
 }
 
 function renderEmptyAll() {
