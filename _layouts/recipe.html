@@ -33,9 +33,17 @@ pagination:
     <div class="recipe-meta">
       {% if page.category %}<span class="recipe-badge">{{ page.category }}</span>{% endif %}
       {% if page.type %}<span class="recipe-badge">{{ page.type }}</span>{% endif %}
-      {% if page.origin %}<span class="recipe-badge">{{ page.origin }}</span>{% endif %}
       {% if page.diabetic_friendly == "" or page.diabetic_friendly == "לא" or page.diabetic_friendly == "NO" or page.diabetic_friendly == "no" %}<span class="recipe-badge">לא מתאים לסוכרתיים</span>{% elsif page.diabetic_friendly == "כן" or page.diabetic_friendly == "yes" or page.diabetic_friendly == "YES" %}<span class="recipe-badge">מתאים לסוכרתיים</span>{% endif %}
     </div>
+    {% assign author_value = page.author | default: "" | strip %}
+    {% assign origin_value = page.origin | default: "" | strip %}
+    {% if author_value != "" or origin_value != "" %}
+      <p>
+        {% if author_value != "" %}מחבר המתכון: {{ author_value }}{% endif %}
+        {% if author_value != "" and origin_value != "" %}<br>{% endif %}
+        {% if origin_value != "" %}מקור גאוגרפי: {{ origin_value }}{% endif %}
+      </p>
+    {% endif %}
 
     {% if page.image %}
       <img
@@ -64,4 +72,3 @@ pagination:
 </nav>
 </article>
 <!-- END: recipe layout -->
-
