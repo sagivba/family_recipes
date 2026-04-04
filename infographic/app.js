@@ -16,6 +16,8 @@ const fields = {
   source: ["source"],
 };
 
+const FRONTMATTER_EXCLUDED_KEYS = new Set(["filename", "relative_path"]);
+
 const els = {
   status: document.getElementById("status-message"),
   lastUpdated: document.getElementById("last-updated"),
@@ -39,7 +41,10 @@ const els = {
   charts: {
     category: document.getElementById("chart-category"),
     type: document.getElementById("chart-type"),
+    origin: null,
+    spiciness: null,
   },
+  frontMatterInsights: null,
 };
 
 init();
@@ -63,6 +68,7 @@ async function init() {
     }
 
     buildFilters();
+    ensureAdditionalSections();
     wireEvents();
     applyFilters();
     setStatus("הנתונים נטענו בהצלחה.", "success");
@@ -163,6 +169,7 @@ function render() {
   renderKpis();
   renderTable();
   renderCharts();
+  renderFrontMatterInsights();
 }
 
 function renderKpis() {
@@ -220,10 +227,14 @@ function renderTable() {
 function renderCharts() {
   renderBarChart(els.charts.category, countBy(state.filtered, "category"));
   renderBarChart(els.charts.type, countBy(state.filtered, "type"));
+  renderBarChart(els.charts.origin, countBy(state.filtered, "origin"), "earthy");
+  renderBarChart(els.charts.spiciness, countBy(state.filtered, "spiciness"), "earthy");
 }
 
-function renderBarChart(container, buckets) {
+function renderBarChart(container, buckets, variant = "") {
+  if (!container) return;
   container.innerHTML = "";
+  container.classList.toggle("earthy-chart", variant === "earthy");
 
   const entries = Object.entries(buckets)
     .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "he"))
@@ -262,6 +273,85 @@ function renderBarChart(container, buckets) {
     row.append(labelEl, track, valueEl);
     container.appendChild(row);
   });
+}
+
+function ensureAdditionalSections() {
+  const chartsSection = document.querySelector(".charts");
+  if (chartsSection && !document.getElementById("chart-origin")) {
+    chartsSection.appendChild(createChartCard("התפלגות לפי מקור גאוגרפי", "chart-origin"));
+    chartsSection.appendChild(createChartCard("התפלגות לפי רמת חריפות", "chart-spiciness"));
+    els.charts.origin = document.getElementById("chart-origin");
+    els.charts.spiciness = document.getElementById("chart-spiciness");
+  }
+
+  if (!document.getElementById("frontmatter-insights")) {
+    const section = document.createElement("section");
+    section.id = "frontmatter-insights";
+    section.className = "frontmatter-insights";
+    section.setAttribute("aria-label", "סקירת שדות פרונט מטר");
+    section.innerHTML = `
+      <h2>סקירת שדות פרונט מטר</h2>
+      <p class="frontmatter-subtitle">מפתח, מספר ערכים שונים והתפלגות ערכים לכל שדה.</p>
+      <div id="frontmatter-keys" class="frontmatter-grid"></div>
+    `;
+    const tableSection = document.querySelector(".table-section");
+    if (tableSection) {
+      tableSection.before(section);
+      els.frontMatterInsights = document.getElementById("frontmatter-keys");
+    }
+  } else {
+    els.frontMatterInsights = document.getElementById("frontmatter-keys");
+  }
+}
+
+function createChartCard(title, chartId) {
+  const card = document.createElement("article");
+  card.className = "chart-card chart-card-earthy";
+  card.innerHTML = `
+    <h2>${title}</h2>
+    <div id="${chartId}" class="bar-chart"></div>
+  `;
+  return card;
+}
+
+function renderFrontMatterInsights() {
+  if (!els.frontMatterInsights) return;
+  els.frontMatterInsights.innerHTML = "";
+
+  const keys = getFrontMatterKeys(state.recipes);
+  const fragment = document.createDocumentFragment();
+
+  keys.forEach((keyName) => {
+    const buckets = countBy(state.filtered, keyName);
+    const entries = Object.entries(buckets).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0], "he"));
+
+    const card = document.createElement("article");
+    card.className = "frontmatter-card";
+
+    const list = document.createElement("ul");
+    list.className = "frontmatter-values";
+    entries.forEach(([value, count]) => {
+      const li = document.createElement("li");
+      li.className = "frontmatter-value-item";
+      li.innerHTML = `<span class="frontmatter-chip">${value}</span><span class="frontmatter-count">${count}</span>`;
+      list.appendChild(li);
+    });
+
+    card.innerHTML = `
+      <h3>${keyName}</h3>
+      <p class="frontmatter-meta">מספר ערכים שונים: <strong>${entries.length}</strong></p>
+    `;
+    card.appendChild(list);
+    fragment.appendChild(card);
+  });
+
+  els.frontMatterInsights.appendChild(fragment);
+}
+
+function getFrontMatterKeys(list) {
+  return [...new Set(list.flatMap((item) => Object.keys(item || {})))]
+    .filter((keyName) => !FRONTMATTER_EXCLUDED_KEYS.has(keyName))
+    .sort((a, b) => a.localeCompare(b, "he"));
 }
 
 function fillSelect(selectEl, values, allLabel) {
