@@ -3,11 +3,11 @@ layout: recipe
 title: "הסחוג הירוק של ישראל"
 category: "רוטב"
 type: "טבעוני"
-origin: "תימני"
+origin: "עדני"
 spiciness: "חריף"
 diabetic_friendly: "כן"
 image: ""
-source: "מתכון משפחתי"
+author: "ישראל ברהום"
 notes: ""
 description: "סחוג ירוק חריף ועוצמתי בסגנון תימני, מבוסס כוסברה, שום ופלפלים ירוקים. מתאים ללחם, מרקים, תבשילים ובשר."
 ---

@@ -7,7 +7,7 @@ origin: "ישראלי"
 spiciness: "מתוק מלוח"
 diabetic_friendly: "כן"
 image: ""
-source: "מתכון ביתי"
+author: "שגיב ברהום"
 notes: ""
 description: "לחמניות קלות להכנה, מבוססות קוטג' וקוואקר, מתאימות לארוחת בוקר או כנשנוש חלבוני."
 ---

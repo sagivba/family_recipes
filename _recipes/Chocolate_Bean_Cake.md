@@ -7,7 +7,7 @@ origin: ""
 spiciness: "מתוק"
 diabetic_friendly: "כן"
 image: "/images/recipes/Chocolate_Bean_Cake.jpeg"
-source: ""
+source: "שגיב ברהום"
 notes: ""
 description: "עוגת שוקולד מפתיעה על בסיס שעועית עם מרקם עשיר וטעם עמוק."
 ---

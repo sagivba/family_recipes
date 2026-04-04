@@ -7,7 +7,7 @@ origin: "תימני"
 spiciness: "מלוח"
 diabetic_friendly: "לא"
 image: "images/recipes/adani-passover-pie.jpeg"
-source: "מתכון משפחתי"
+author: "יוני יוסף"
 notes: ""
 description: "מאכל תימני מסורתי המבוסס על תפוחי אדמה, ביצים ותבלינים, הנאפה בתנור למרקם יציב ועשיר."
 ---

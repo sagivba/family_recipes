@@ -7,7 +7,7 @@ origin: ""
 spiciness: "מלוח/מתוק"
 diabetic_friendly: "כן"
 image: "/images/recipes/Blintzes_of_svetlana.jpg"
-source: ""
+author: "סבטלנה ברדסקי-ברהום"
 notes: ""
 description: "בלינצ'ס דק, רך, ומושלם למילוי – גבינה, שוקולד או כל מה שבא לכם."
 --- 

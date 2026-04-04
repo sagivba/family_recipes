@@ -7,7 +7,7 @@ origin: ""
 spiciness: "מלוח"
 diabetic_friendly: "כן"
 image: "/images/recipes/coucumbers-kefir-salad.jpeg"
-source: ""
+author: "שגיב ברהום"
 notes: "אפשר להוסיף פלפל שחור ופרוסות דקות של מעט פלפל צ'ילי אדום לפי הטעם; להשאיר לעמוד 15 דקות."
 description: "סלט מלפפפונים קרנצ'י וחמצמץ שמוכן במהירות."
 ---

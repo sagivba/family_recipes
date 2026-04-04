@@ -7,7 +7,7 @@ origin: "ישראל"
 spiciness: "מתוק"
 diabetic_friendly: "לא"
 image: ""
-source: "יעל סוסנר"
+author: "יעל סוסנר"
 notes: ""
 description: "עוגת גבינה עם בסיס אגוזי וקרם שמנתי."
 ---

@@ -7,7 +7,7 @@ origin: "מזרח אירופה"
 spiciness: "מלוח"
 diabetic_friendly: "כן"
 image: "/images/recipes/chef-lasarson-jew-chicken.jpg"
-source: "שף לזרסון מהאינטרנט"
+author: "שף לזרסון מהאינטרנט"
 notes: ""
 description: "תבשיל עוף עם בצלים מטוגנים באבקת סודה לשתייה."
 ---

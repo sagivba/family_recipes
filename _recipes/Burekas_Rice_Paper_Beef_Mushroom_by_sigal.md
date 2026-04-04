@@ -7,7 +7,7 @@ origin: "אסיאתי"
 spiciness: "מלוח"
 diabetic_friendly: ""
 image: "/images/recipes/Burekas_Rice_Paper_Beef_Mushroom_by_sigal.jpeg"
-source: "סיגל בן-ברוך"
+author: "סיגל בן-ברוך"
 notes: "בורקס_דפי_אורז.md"
 description: "בורקסים מדפי אורז במילוי בשר ופטריות, אפויים זהובים."
 ---

@@ -7,7 +7,7 @@ origin: "מולדובה"
 spiciness: "מלוח"
 diabetic_friendly: "כן"
 image: "/images/recipes/eggpnatts-spread-of-svetlana.jpg"
-source: "מתכון משפחתי"
+author: "סבטלנה ברודסקי-ברהום"
 notes: ""
 description: "סלט חצילים מבושל בסגנון מזרח-אירופאי, עשיר בטעם, מתאים כתוספת או כממרח ללחם טרי."
 ---
