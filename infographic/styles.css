@@ -4,7 +4,8 @@
   --card: #ffffff;
   --text: #1f2937;
   --muted: #6b7280;
-  --primary: #0065d1;
+  --primary: #8b2d2b;
+  --chart-accent: #5a1f1d;
   --border: #e5e7eb;
   --ok: #0f766e;
   --error: #b91c1c;
@@ -207,7 +208,7 @@ select:focus {
 }
 
 .bar-track {
-  background: #e2e8f0;
+  background: #ead7d3;
   border-radius: 999px;
   height: 0.75rem;
   overflow: hidden;
@@ -215,7 +216,7 @@ select:focus {
 
 .bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, #60a5fa, var(--primary));
+  background: linear-gradient(90deg, var(--primary), var(--chart-accent));
 }
 
 .bar-value {
@@ -245,6 +246,11 @@ td {
 th {
   font-size: 0.92rem;
   color: var(--muted);
+}
+
+.recipe-link {
+  color: inherit;
+  text-decoration: underline;
 }
 
 .empty-state {
