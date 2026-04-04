@@ -1,7 +1,7 @@
 ---
 layout: recipe
 title: "עוגת שוקולד עם שעועית"
-category: "קינוחים"
+category: "קינוח"
 type: "טבעוני"
 origin: ""
 spiciness: "מתוק"

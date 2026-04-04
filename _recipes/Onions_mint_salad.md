@@ -1,7 +1,7 @@
 ---
 layout: recipe
 title: "סלט בצל עם נענע"
-category: "סלטים"
+category: "סלט"
 type: "צד"
 origin: "ישראל"
 spiciness: "מלוח"

@@ -1,7 +1,7 @@
 ---
 layout: recipe
 title: "סלמון כבוש (כבישה קרה)"
-category: "שימורים ביתיים"
+category: "שימורים"
 type: "דג"
 origin: "סקנדינבי / בהשראה"
 spiciness: "מלוח"

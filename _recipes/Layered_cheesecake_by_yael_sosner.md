@@ -1,7 +1,7 @@
 ---
 layout: recipe
 title: "עוגת גבינה – מדורגת"
-category: "קינוחים"
+category: "קינוח"
 type: "עוגה"
 origin: "ישראל"
 spiciness: "מתוק"
