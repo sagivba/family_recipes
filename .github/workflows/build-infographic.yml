@@ -9,7 +9,6 @@ on:
       - "code/build_recipes_info.py"
       - "code/_Tests/**"
       - ".github/workflows/build-infographic.yml"
-      
 permissions:
   contents: write
 
