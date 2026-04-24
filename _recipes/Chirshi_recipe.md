@@ -6,9 +6,9 @@ type: "טבעוני"
 origin: "צפון אפריקאי"
 spiciness: "פיקנטי"
 diabetic_friendly: "כן"
-image: ""
+image: "/images/recipes/chirshi-recipe.jpg"
 author: "שגיב ברהום"
-notes: "/images/recipes/chirshi-recipe.jpg"
+notes: ""
 description: "תבשיל טבעוני פשוט וטעים, מבוסס על דלעת ותפוחי אדמה, עם שום, תבלינים וחריפות עדינה–מודגשת לפי הטעם."
 ---
 
