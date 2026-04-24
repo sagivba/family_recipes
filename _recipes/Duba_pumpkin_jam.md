@@ -6,7 +6,7 @@ type: "ריבה"
 origin: "עדני"
 spiciness: מתוק
 diabetic_friendly: לא
-image: ""
+image: "/images/recipeds/duba-pumpkin-jam.jpeg"
 source: "שגיב ברהום"
 notes: "זו ריבה שאנחנו נוהגים לשים בסימנים של שלוחן ראש השנה."
 description: "ריבת דלעת מתוקה ומתובלת עם תפוח ולימון."

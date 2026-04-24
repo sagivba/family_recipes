@@ -6,7 +6,7 @@ type: טבעוני
 origin: ""
 spiciness: חמוץ מלוח
 diabetic_friendly: כן
-image: ""
+image: "/images/recipes/ishar-adani-cured-lemon.jpeg"
 source: ""
 notes: ניתן להוסיף את הלימונים לממרחים, לצד בשר או דגים וכדומה.
 description: לימונים כבושים במלח גס ושמן בסגנון עדני — תהליך התיישנות ארוך וטעם עמוק.
