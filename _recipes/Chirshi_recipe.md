@@ -8,7 +8,7 @@ spiciness: "פיקנטי"
 diabetic_friendly: "כן"
 image: ""
 author: "שגיב ברהום"
-notes: ""
+notes: "/images/recipes/chirshi-recipe.jpg"
 description: "תבשיל טבעוני פשוט וטעים, מבוסס על דלעת ותפוחי אדמה, עם שום, תבלינים וחריפות עדינה–מודגשת לפי הטעם."
 ---
 
