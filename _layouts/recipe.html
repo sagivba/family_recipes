@@ -10,17 +10,10 @@ pagination:
 ---
 <!-- BEGIN: recipe layout -->
 <article class="recipe-container">
-
   <header class="recipe-header">
     {% if page.last_updated %}
-    <p class="recipe-updated">
-    עודכן לאחרונה: {{ page.last_updated | date: "%d.%m.%Y" }}
-    </p>
+      <p class="recipe-updated">עודכן לאחרונה: {{ page.last_updated | date: "%d.%m.%Y" }}</p>
     {% endif %}
-
-    <p>
-      <a href="{{ '/' | relative_url }}">← חזרה לרשימת המתכונים</a>
-    </p>
 
     <h1 class="recipe-title">{{ page.title }}</h1>
     {% include share.html %}
@@ -28,47 +21,45 @@ pagination:
     {% if page.description %}
       <p class="recipe-description">{{ page.description }}</p>
     {% endif %}
-    </br>
 
-    <div class="recipe-meta">
-      {% if page.category %}<span class="recipe-badge">{{ page.category }}</span>{% endif %}
-      {% if page.type %}<span class="recipe-badge">{{ page.type }}</span>{% endif %}
-      {% if page.diabetic_friendly == "" or page.diabetic_friendly == "לא" or page.diabetic_friendly == "NO" or page.diabetic_friendly == "no" %}<span class="recipe-badge">לא מתאים לסוכרתיים</span>{% elsif page.diabetic_friendly == "כן" or page.diabetic_friendly == "yes" or page.diabetic_friendly == "YES" %}<span class="recipe-badge">מתאים לסוכרתיים</span>{% endif %}
-    </div>
     {% assign author_value = page.author | default: "" | strip %}
     {% assign origin_value = page.origin | default: "" | strip %}
     {% if author_value != "" or origin_value != "" %}
-      <p>
-        {% if author_value != "" %}מחבר המתכון: {{ author_value }}{% endif %}
-        {% if author_value != "" and origin_value != "" %}<br>{% endif %}
-        {% if origin_value != "" %}מקור גאוגרפי: {{ origin_value }}{% endif %}
+      <p class="recipe-meta-text">
+        {% if author_value != "" %}<span>מחבר המתכון: {{ author_value }}</span>{% endif %}
+        {% if origin_value != "" %}<span>מקור גאוגרפי: {{ origin_value }}</span>{% endif %}
       </p>
     {% endif %}
 
+    <div class="recipe-meta" aria-label="מאפייני מתכון">
+      {% if page.category %}<span class="recipe-badge">{{ page.category }}</span>{% endif %}
+      {% if page.type %}<span class="recipe-badge">{{ page.type }}</span>{% endif %}
+      {% if page.diabetic_friendly == "" or page.diabetic_friendly == "לא" or page.diabetic_friendly == "NO" or page.diabetic_friendly == "no" %}
+        <span class="recipe-badge recipe-badge--diabetes recipe-badge--off">לא מתאים לסוכרתיים</span>
+      {% elsif page.diabetic_friendly == "כן" or page.diabetic_friendly == "yes" or page.diabetic_friendly == "YES" %}
+        <span class="recipe-badge recipe-badge--diabetes recipe-badge--on">מתאים לסוכרתיים</span>
+      {% endif %}
+    </div>
+
     {% if page.image %}
-      <img
-        src="{{ page.image | relative_url }}"
-        alt="{{ page.title }}"
-        class="recipe-image"
-        loading="lazy">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title }}" class="recipe-image" loading="lazy">
     {% endif %}
   </header>
 
-  <section class="recipe-content">
+  <section class="recipe-content" id="recipe-content">
     {{ content }}
   </section>
-<hr>
 
-<nav class="recipe-nav">
-    {% if page.next %}
-    <a style="float:left" href="{{ page.next.url | relative_url }}">
-      המתכון הקודם  →
-    </a>
-  {% endif %}
-
-  {% if page.previous %}
-    <a href="{{ page.previous.url | relative_url }}">← המתכון הבא</a>
-  {% endif %}
-</nav>
+  <nav class="recipe-nav" aria-label="ניווט בין מתכונים">
+    <a href="{{ '/' | relative_url }}" class="recipe-nav-link recipe-nav-link--back">← חזרה לרשימת המתכונים</a>
+    <div class="recipe-nav-links">
+      {% if page.next %}
+        <a class="recipe-nav-link" href="{{ page.next.url | relative_url }}">המתכון הקודם →</a>
+      {% endif %}
+      {% if page.previous %}
+        <a class="recipe-nav-link" href="{{ page.previous.url | relative_url }}">← המתכון הבא</a>
+      {% endif %}
+    </div>
+  </nav>
 </article>
 <!-- END: recipe layout -->
