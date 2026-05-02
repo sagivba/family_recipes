@@ -745,13 +745,6 @@ body {
   min-height: 0;
 }
 
-/* Hide trailing empty section heading (commonly empty notes heading) */
-.recipe-page .recipe-content > h2:last-child,
-.recipe-page .recipe-content > h3:last-child {
-  margin: 0;
-  display: none;
-}
-
 @media (max-width: 640px) {
   .recipe-page .recipe-container { padding: 1rem 0.85rem 2.2rem; }
   .recipe-page .recipe-content > ul,
@@ -760,10 +753,6 @@ body {
   .recipe-page .recipe-content > blockquote { padding: 1rem; margin-bottom: 1.25rem; }
   .recipe-page .recipe-nav-grid {
     grid-template-columns: 1fr;
-    gap: 0.65rem;
-  }
-  .recipe-page .recipe-nav-slot:empty {
-    display: none;
   }
   .recipe-page .recipe-nav-slot--prev,
   .recipe-page .recipe-nav-slot--home,
@@ -772,8 +761,6 @@ body {
   }
   .recipe-page .recipe-nav-link {
     display: block;
-    width: 100%;
-    box-sizing: border-box;
     text-align: center;
   }
   .recipe-page .recipe-nav-link { padding: 0.7rem 0.95rem; }
