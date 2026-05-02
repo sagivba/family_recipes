@@ -883,3 +883,25 @@ body {
     clear: both;
   }
 }
+
+
+/* Final polish: nutrition card bullet spacing
+   Does not rely on .recipe-page.
+   Targets the rendered markdown sequence:
+   h2 + ul + h3 + ul
+*/
+@media (min-width: 900px) {
+  .recipe-container .recipe-content > h2:has(+ ul + h3 + ul) + ul,
+  .recipe-container .recipe-content > h2:has(+ ul + h3 + ul) + ul + h3 + ul {
+    direction: rtl !important;
+    padding-inline-start: 2.8rem !important; /* right side in RTL */
+    padding-inline-end: 1.4rem !important;   /* left side in RTL */
+    list-style-position: outside !important;
+  }
+
+  .recipe-container .recipe-content > h2:has(+ ul + h3 + ul) + ul li,
+  .recipe-container .recipe-content > h2:has(+ ul + h3 + ul) + ul + h3 + ul li {
+    padding-inline-start: 0.25rem !important;
+    line-height: 1.8;
+  }
+}
