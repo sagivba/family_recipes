@@ -761,21 +761,84 @@ body {
   .recipe-page .recipe-content > ol,
   .recipe-page .recipe-content > table,
   .recipe-page .recipe-content > blockquote { padding: 1rem; margin-bottom: 1.25rem; }
-  .recipe-page .recipe-nav-grid {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.6rem;
-  }
-  .recipe-page .recipe-nav-slot {
-    width: 100%;
-  }
-  .recipe-page .recipe-nav-slot:empty {
-    display: none;
-  }
-  .recipe-page .recipe-nav-link {
-    display: block;
-    width: 100%;
-    text-align: center;
-  }
+
+  /* Navigation mobile behavior is defined once in FINAL OVERRIDES below. */
   .recipe-page .recipe-nav-link { padding: 0.7rem 0.95rem; }
 }
+
+/* =========================================================
+   FINAL OVERRIDE: recipe layout width and bottom navigation
+   This block does NOT rely on .recipe-page, because the rendered
+   recipe pages currently contain .recipe-container / .recipe-nav
+   but do not contain the .recipe-page class.
+   Keep this block at the end of the file.
+   ========================================================= */
+
+/* Match recipe page width to the home page on desktop */
+@media (min-width: 900px) {
+  .recipe-container {
+    max-width: 1400px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}
+
+/* Bottom recipe navigation: desktop horizontal row */
+.recipe-container .recipe-nav .recipe-nav-grid {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 0.75rem !important;
+  width: 100% !important;
+}
+
+.recipe-container .recipe-nav .recipe-nav-slot {
+  flex: 1 1 0 !important;
+}
+
+.recipe-container .recipe-nav .recipe-nav-slot--prev {
+  order: 1 !important;
+  text-align: right !important;
+}
+
+.recipe-container .recipe-nav .recipe-nav-slot--home {
+  order: 2 !important;
+  text-align: center !important;
+}
+
+.recipe-container .recipe-nav .recipe-nav-slot--next {
+  order: 3 !important;
+  text-align: left !important;
+}
+
+.recipe-container .recipe-nav .recipe-nav-link {
+  display: inline-block !important;
+  width: auto !important;
+  box-sizing: border-box !important;
+}
+
+/* Bottom recipe navigation: mobile stacked buttons */
+@media (max-width: 640px) {
+  .recipe-container .recipe-nav .recipe-nav-grid {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .recipe-container .recipe-nav .recipe-nav-slot {
+    width: 100% !important;
+  }
+
+  .recipe-container .recipe-nav .recipe-nav-slot:empty {
+    display: none !important;
+  }
+
+  .recipe-container .recipe-nav .recipe-nav-link {
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
