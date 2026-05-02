@@ -842,3 +842,56 @@ body {
   }
 }
 
+
+/* FINAL OVERRIDE: nutrition cards on recipe pages (RTL, no .recipe-page dependency) */
+@media (min-width: 900px) {
+  .recipe-container .recipe-content > h2:has(+ ul + h3 + ul) + ul {
+    float: right;
+    width: calc(50% - 0.75rem);
+    margin: 0 0 1.25rem 0;
+    padding: 1rem 1.1rem;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+  }
+
+  .recipe-container .recipe-content > h2:has(+ ul + h3 + ul) + ul + h3 {
+    float: left;
+    width: calc(50% - 0.75rem);
+    margin: 0;
+    padding: 1rem 1.1rem 0.55rem;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-bottom: 0;
+    border-radius: 14px 14px 0 0;
+  }
+
+  .recipe-container .recipe-content > h2:has(+ ul + h3 + ul) + ul + h3 + ul {
+    float: left;
+    width: calc(50% - 0.75rem);
+    margin: 0 0 1.25rem;
+    padding: 0.6rem 1.1rem 1rem;
+    background: #fff;
+    border: 1px solid rgba(15, 23, 42, 0.1);
+    border-top: 0;
+    border-radius: 0 0 14px 14px;
+    box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+  }
+
+  .recipe-container .recipe-content > h2:has(+ ul + h3 + ul) + ul + h3 + ul + * {
+    clear: both;
+  }
+
+
+  .recipe-container .recipe-content > h2:has(+ ul + h3 + ul) + ul,
+  .recipe-container .recipe-content > h2:has(+ ul + h3 + ul) + ul + h3 + ul {
+    padding-right: 2.2rem !important;
+    padding-left: 1.4rem !important;
+  }
+
+  .recipe-container .recipe-content > h2:has(+ ul + h3 + ul) + ul li,
+  .recipe-container .recipe-content > h2:has(+ ul + h3 + ul) + ul + h3 + ul li {
+    line-height: 1.8;
+  }
+}
