@@ -7,7 +7,7 @@ origin: "משק עפאים"
 spiciness: "חמוץ מלוח"
 diabetic_friendly: "כן"
 image: ""
-source: ""
+source: "/images/recipes/Tomatos_mint_salad.jpeg"
 notes: "אנחנו נוהגים להכין את הסלט הזה בבוקר ולהשאיר אותו במקרר לארוחת ערב מהירה - או הפוך."
 description: "סלט עגבניות רענן ופשוט בסגנון משק עפאים."
 ---
