@@ -4,9 +4,6 @@ classes: recipe-page
 title: false
 header:
   show: false
-pagination:
-  previous_label: "המתכון הקודם"
-  next_label: "המתכון הבא"
 ---
 <!-- BEGIN: recipe layout -->
 <article class="recipe-container">
@@ -51,14 +48,20 @@ pagination:
   </section>
 
   <nav class="recipe-nav" aria-label="ניווט בין מתכונים">
-    <a href="{{ '/' | relative_url }}" class="recipe-nav-link recipe-nav-link--back">← חזרה לרשימת המתכונים</a>
-    <div class="recipe-nav-links">
-      {% if page.next %}
-        <a class="recipe-nav-link" href="{{ page.next.url | relative_url }}">המתכון הקודם →</a>
-      {% endif %}
-      {% if page.previous %}
-        <a class="recipe-nav-link" href="{{ page.previous.url | relative_url }}">← המתכון הבא</a>
-      {% endif %}
+    <div class="recipe-nav-grid">
+      <div class="recipe-nav-slot recipe-nav-slot--prev">
+        {% if page.next %}
+          <a class="recipe-nav-link" href="{{ page.next.url | relative_url }}">המתכון הקודם</a>
+        {% endif %}
+      </div>
+      <div class="recipe-nav-slot recipe-nav-slot--home">
+        <a href="{{ '/' | relative_url }}" class="recipe-nav-link">דף ראשי</a>
+      </div>
+      <div class="recipe-nav-slot recipe-nav-slot--next">
+        {% if page.previous %}
+          <a class="recipe-nav-link" href="{{ page.previous.url | relative_url }}">המתכון הבא</a>
+        {% endif %}
+      </div>
     </div>
   </nav>
 </article>
