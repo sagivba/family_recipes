@@ -1,0 +1,37 @@
+---
+layout: default
+---
+<article class="ingredient-page" dir="rtl">
+  <header class="ingredient-header">
+    <p class="ingredient-kicker">מאגר ידע</p>
+    <h1>{{ page.title }}</h1>
+
+    {% if page.origin or page.category %}
+      <div class="ingredient-meta">
+        {% if page.origin %}<span>מקור: {{ page.origin }}</span>{% endif %}
+        {% if page.category %}<span>קטגוריה: {{ page.category }}</span>{% endif %}
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="ingredient-content">
+    {{ content }}
+  </div>
+
+  {% if page.related_recipes %}
+    <section class="ingredient-related-recipes" aria-label="מתכונים קשורים">
+      <h2>מתכונים קשורים באתר</h2>
+      <ul>
+        {% for related in page.related_recipes %}
+          {% if related.title and related.url %}
+            <li><a href="{{ related.url | relative_url }}">{{ related.title }}</a></li>
+          {% elsif related.title %}
+            <li>{{ related.title }}</li>
+          {% else %}
+            <li>{{ related }}</li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
+</article>

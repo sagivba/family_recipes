@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "בצל מטוגן עם אבקת סודה לשתייה"
 type: ingredient
 category: "רכיב ביניים / טכניקה"
@@ -9,7 +9,7 @@ source_recipe_files:
   - "_recipes/Chef_lasarson_jew_chicken.md"
 related_recipes:
   - title: "עוף יהודי"
-    url: "{{ site.baseurl }}/recipes/chef-lasarson-jew-chicken/"
+    url: "/recipes/chef-lasarson-jew-chicken/"
 ---
 ## מה זה
 

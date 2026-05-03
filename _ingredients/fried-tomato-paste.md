@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "רסק עגבניות מטוגן"
 type: ingredient
 category: "רכיב ביניים / טכניקת עומק"
@@ -10,9 +10,9 @@ source_recipe_files:
   - "_recipes/Adani_passover_pie.md"
 related_recipes:
   - title: "מרק ראש לראש השנה"
-    url: "{{ site.baseurl }}/recipes/head-soup/"
+    url: "/recipes/head-soup/"
   - title: "מחשחש"
-    url: "{{ site.baseurl }}/recipes/adani-passover-pie/"
+    url: "/recipes/adani-passover-pie/"
 ---
 ## מה זה
 

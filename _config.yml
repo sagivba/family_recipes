@@ -30,6 +30,9 @@ collections:
   docs:
     output: true
     permalink: /docs/:name/
+  ingredients:
+    output: true
+    permalink: /ingredients/:name/
 
 defaults:
   - scope:
@@ -42,6 +45,8 @@ defaults:
     values:
       layout: doc
   - scope:
-      path: "ingredients"
+      path: ""
+      type: "ingredients"
     values:
       layout: ingredient
+

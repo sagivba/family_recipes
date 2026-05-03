@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "לימון כבוש בסגנון עדני"
 type: ingredient
 category: "כבושים"
@@ -9,7 +9,7 @@ source_recipe_files:
   - "_recipes/Ishar_adani_cured_lemon.md"
 related_recipes:
   - title: "לימון כבוש בסגנון עדני"
-    url: "{{ site.baseurl }}/recipes/ishar-adani-cured-lemon/"
+    url: "/recipes/ishar-adani-cured-lemon/"
 ---
 ## מה זה
 

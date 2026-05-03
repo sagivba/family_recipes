@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "הל ירוק"
 type: ingredient
 category: "תבלין ארומטי"
@@ -12,13 +12,13 @@ source_recipe_files:
   - "_recipes/Adani_passover_pie.md"
 related_recipes:
   - title: "הסחוג הירוק של ישראל"
-    url: "{{ site.baseurl }}/recipes/green-bisbas-of-israel/"
+    url: "/recipes/green-bisbas-of-israel/"
   - title: "לימון כבוש בסגנון עדני"
-    url: "{{ site.baseurl }}/recipes/ishar-adani-cured-lemon/"
+    url: "/recipes/ishar-adani-cured-lemon/"
   - title: "מרק ראש לראש השנה"
-    url: "{{ site.baseurl }}/recipes/head-soup/"
+    url: "/recipes/head-soup/"
   - title: "מחשחש"
-    url: "{{ site.baseurl }}/recipes/adani-passover-pie/"
+    url: "/recipes/adani-passover-pie/"
 ---
 ## מה זה
 

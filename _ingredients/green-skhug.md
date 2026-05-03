@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "סחוג ירוק / ביסבס"
 type: ingredient
 category: "רוטב חריף"
@@ -12,13 +12,13 @@ source_recipe_files:
   - "_recipes/Hazon_common_adani_bread.md"
 related_recipes:
   - title: "הסחוג הירוק של ישראל"
-    url: "{{ site.baseurl }}/recipes/green-bisbas-of-israel/"
+    url: "/recipes/green-bisbas-of-israel/"
   - title: "זום / מטיט"
-    url: "{{ site.baseurl }}/recipes/zom/"
+    url: "/recipes/zom/"
   - title: "שקשוקה של ישראל"
-    url: "{{ site.baseurl }}/recipes/shakshuka/"
+    url: "/recipes/shakshuka/"
   - title: "האזון"
-    url: "{{ site.baseurl }}/recipes/hazon-common-adani-bread/"
+    url: "/recipes/hazon-common-adani-bread/"
 ---
 ## מה זה
 

@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "חוואיג׳ למרק"
 type: ingredient
 category: "תערובת תבלינים"
@@ -13,15 +13,15 @@ source_recipe_files:
   - "_recipes/Shakshuka.md"
 related_recipes:
   - title: "מרק עוף תימני"
-    url: "{{ site.baseurl }}/recipes/yameni-chicken-soup-by-sagiv/"
+    url: "/recipes/yameni-chicken-soup-by-sagiv/"
   - title: "מרק ראש לראש השנה"
-    url: "{{ site.baseurl }}/recipes/head-soup/"
+    url: "/recipes/head-soup/"
   - title: "הקבאב של סבא שלום"
-    url: "{{ site.baseurl }}/recipes/kabab-by-grandpa-shalom/"
+    url: "/recipes/kabab-by-grandpa-shalom/"
   - title: "הקציצות של נורית לסוכות"
-    url: "{{ site.baseurl }}/recipes/pan-fried-meatballs-by-nurit/"
+    url: "/recipes/pan-fried-meatballs-by-nurit/"
   - title: "שקשוקה של ישראל"
-    url: "{{ site.baseurl }}/recipes/shakshuka/"
+    url: "/recipes/shakshuka/"
 ---
 ## מה זה
 

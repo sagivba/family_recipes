@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "חוואיג׳ לקפה"
 type: ingredient
 category: "תערובת תבלינים"

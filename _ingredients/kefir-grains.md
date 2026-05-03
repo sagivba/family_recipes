@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "גרגרי קפיר"
 type: ingredient
 category: "תרבית חיה"
@@ -9,7 +9,7 @@ source_recipe_files:
   - "_recipes/Kefir.md"
 related_recipes:
   - title: "קפיר ביתי עם תסיסה שנייה"
-    url: "{{ site.baseurl }}/recipes/kefir/"
+    url: "/recipes/kefir/"
 ---
 ## מה זה
 

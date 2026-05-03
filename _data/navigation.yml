@@ -1,0 +1,5 @@
+main:
+  - title: "דף הבית"
+    url: /
+  - title: "מאגר מרכיבים"
+    url: /ingredients/
