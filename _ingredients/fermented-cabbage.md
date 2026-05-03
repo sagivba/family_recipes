@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "כרוב כבוש פרוביוטי"
 type: ingredient
 category: "תסיסה וכבישה"
@@ -9,7 +9,7 @@ source_recipe_files:
   - "_recipes/Cabbage_probaiotic.md"
 related_recipes:
   - title: "כרוב כבוש"
-    url: "{{ site.baseurl }}/recipes/cabbage-probaiotic/"
+    url: "/recipes/cabbage-probaiotic/"
 ---
 ## מה זה
 

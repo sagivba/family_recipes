@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "פלפל ירוק חריף"
 type: ingredient
 category: "ירק חריף / רכיב טעם"
@@ -14,15 +14,15 @@ source_recipe_files:
   - "_recipes/Burekas_Rice_Paper_Beef_Mushroom_by_sigal.md"
 related_recipes:
   - title: "הסחוג הירוק של ישראל"
-    url: "{{ site.baseurl }}/recipes/green-bisbas-of-israel/"
+    url: "/recipes/green-bisbas-of-israel/"
   - title: "פול מודמס"
-    url: "{{ site.baseurl }}/recipes/foul-modamas/"
+    url: "/recipes/foul-modamas/"
   - title: "צ׳ירשי"
-    url: "{{ site.baseurl }}/recipes/chirshi-recipe/"
+    url: "/recipes/chirshi-recipe/"
   - title: "שקשוקה של ישראל"
-    url: "{{ site.baseurl }}/recipes/shakshuka/"
+    url: "/recipes/shakshuka/"
   - title: "הפסטו של שגיב"
-    url: "{{ site.baseurl }}/recipes/pesto-for-nir/"
+    url: "/recipes/pesto-for-nir/"
 ---
 ## מה זה
 

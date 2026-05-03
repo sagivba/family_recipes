@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "סלמון כבוש בכבישה קרה"
 type: ingredient
 category: "דגים כבושים"
@@ -9,7 +9,7 @@ source_recipe_files:
   - "_recipes/Lox_style_salmon.md"
 related_recipes:
   - title: "סלמון כבוש (כבישה קרה)"
-    url: "{{ site.baseurl }}/recipes/lox-style-salmon/"
+    url: "/recipes/lox-style-salmon/"
 ---
 ## מה זה
 

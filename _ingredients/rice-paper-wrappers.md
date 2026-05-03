@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "דפי אורז למאפה / בורקס"
 type: ingredient
 category: "חומר גלם דורש טיפול"
@@ -9,7 +9,7 @@ source_recipe_files:
   - "_recipes/Burekas_Rice_Paper_Beef_Mushroom_by_sigal.md"
 related_recipes:
   - title: "בורקס דפי אורז במילוי בשר ופטריות"
-    url: "{{ site.baseurl }}/recipes/burekas-rice-paper-beef-mushroom-by-sigal/"
+    url: "/recipes/burekas-rice-paper-beef-mushroom-by-sigal/"
 ---
 ## מה זה
 

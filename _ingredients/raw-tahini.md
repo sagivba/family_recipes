@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "טחינה גולמית"
 type: ingredient
 category: "מחית / בסיס"
@@ -9,7 +9,7 @@ source_recipe_files:
   - "_recipes/Houmus_by_sagiv.md"
 related_recipes:
   - title: "החומוס של שגיב"
-    url: "{{ site.baseurl }}/recipes/houmus-by-sagiv/"
+    url: "/recipes/houmus-by-sagiv/"
 ---
 ## מה זה
 

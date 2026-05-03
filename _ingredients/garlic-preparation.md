@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "שום כתוש, קצוץ וטרי"
 type: ingredient
 category: "רכיב טעם"
@@ -14,17 +14,17 @@ source_recipe_files:
   - "_recipes/Shakshuka.md"
 related_recipes:
   - title: "הסחוג הירוק של ישראל"
-    url: "{{ site.baseurl }}/recipes/green-bisbas-of-israel/"
+    url: "/recipes/green-bisbas-of-israel/"
   - title: "פול מודמס"
-    url: "{{ site.baseurl }}/recipes/foul-modamas/"
+    url: "/recipes/foul-modamas/"
   - title: "צ׳ירשי"
-    url: "{{ site.baseurl }}/recipes/chirshi-recipe/"
+    url: "/recipes/chirshi-recipe/"
   - title: "החומוס של שגיב"
-    url: "{{ site.baseurl }}/recipes/houmus-by-sagiv/"
+    url: "/recipes/houmus-by-sagiv/"
   - title: "הפסטו של שגיב"
-    url: "{{ site.baseurl }}/recipes/pesto-for-nir/"
+    url: "/recipes/pesto-for-nir/"
   - title: "שקשוקה של ישראל"
-    url: "{{ site.baseurl }}/recipes/shakshuka/"
+    url: "/recipes/shakshuka/"
 ---
 ## מה זה
 

@@ -1,5 +1,8 @@
 ---
-layout: ingredients
+layout: ingredient
+title: "חלקי הבשר בפרה"
+type: ingredient
+category: "בשר"
 ---
 # חלקי הבשר בפרה
 

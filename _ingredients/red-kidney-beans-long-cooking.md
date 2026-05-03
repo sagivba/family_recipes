@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "שעועית אדומה לבישול ארוך / לובים"
 type: ingredient
 category: "קטניות"
@@ -9,7 +9,7 @@ source_recipe_files:
   - "_recipes/Red_beans-lubim.md"
 related_recipes:
   - title: "שעועית אדומה חלבית - לובים"
-    url: "{{ site.baseurl }}/recipes/red-beans-lubim/"
+    url: "/recipes/red-beans-lubim/"
 ---
 ## מה זה
 

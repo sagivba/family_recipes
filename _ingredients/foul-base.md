@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "פול מצרי / בסיס לפול מודמס"
 type: ingredient
 category: "קטניות"
@@ -9,7 +9,7 @@ source_recipe_files:
   - "_recipes/Foul_modamas.md"
 related_recipes:
   - title: "פול מודמס"
-    url: "{{ site.baseurl }}/recipes/foul-modamas/"
+    url: "/recipes/foul-modamas/"
 ---
 ## מה זה
 

@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "סמנה / סמנה תימנית"
 type: ingredient
 category: "שומן מתובל / חמאה מזוקקת"
@@ -10,9 +10,9 @@ source_recipe_files:
   - "_recipes/Red_beans-lubim.md"
 related_recipes:
   - title: "זום / מטיט"
-    url: "{{ site.baseurl }}/recipes/zom/"
+    url: "/recipes/zom/"
   - title: "שעועית אדומה חלבית - לובים"
-    url: "{{ site.baseurl }}/recipes/red-beans-lubim/"
+    url: "/recipes/red-beans-lubim/"
 ---
 ## מה זה
 

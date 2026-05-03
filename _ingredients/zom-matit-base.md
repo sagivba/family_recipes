@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "זום / מטיט כבסיס חלבי־חמוץ"
 type: ingredient
 category: "בסיס מסורתי"
@@ -9,7 +9,7 @@ source_recipe_files:
   - "_recipes/Zom.md"
 related_recipes:
   - title: "זום / מטיט - מתכון מבית הכנסת"
-    url: "{{ site.baseurl }}/recipes/zom/"
+    url: "/recipes/zom/"
 ---
 ## מה זה
 

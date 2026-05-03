@@ -1,5 +1,5 @@
 ---
-layout: ingredients
+layout: ingredient
 title: "פסטו ביתי / עשבי תיבול בשמן"
 type: ingredient
 category: "רוטב חי"
@@ -9,7 +9,7 @@ source_recipe_files:
   - "_recipes/Pesto_for_nir.md"
 related_recipes:
   - title: "הפסטו של שגיב"
-    url: "{{ site.baseurl }}/recipes/pesto-for-nir/"
+    url: "/recipes/pesto-for-nir/"
 ---
 ## מה זה
 
