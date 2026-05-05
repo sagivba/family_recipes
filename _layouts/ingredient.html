@@ -5,13 +5,14 @@ layout: default
   <header class="ingredient-header">
     <p class="ingredient-kicker">מזווה הידע</p>
     <h1>{{ page.title }}</h1>
-
-    {% if page.origin or page.category %}
-      <div class="ingredient-meta">
-        {% if page.origin %}<span>מקור: {{ page.origin }}</span>{% endif %}
-        {% if page.category %}<span>קטגוריה: {{ page.category }}</span>{% endif %}
-      </div>
-    {% endif %}
+    
+{% if page.category or page.subcategory or page.origin %}
+  <div class="ingredient-meta">
+    {% if page.category %}<span>קטגוריה: {{ page.category }}</span>{% endif %}
+    {% if page.subcategory %}<span>סוג: {{ page.subcategory }}</span>{% endif %}
+    {% if page.origin %}<span>מקור: {{ page.origin }}</span>{% endif %}
+  </div>
+{% endif %}
   </header>
 
   <div class="ingredient-content">
