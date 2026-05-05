@@ -23,7 +23,7 @@ permalink: /ingredients/
       {% assign mapped_group = "אחר" %}
 
       {% case category %}
-        {% when "קטניות" or "מחית / בסיס" %}
+        {% when "קטניות" or "מחית / בסיס" or "חומר גלם דורש טיפול" or "שומן מתובל / מחמצת מתוקה" %}
           {% assign mapped_group = "חומרי גלם" %}
         {% when "תבלין ארומטי" or "תערובת תבלינים" %}
           {% assign mapped_group = "תבלינים ותערובות" %}
@@ -31,7 +31,9 @@ permalink: /ingredients/
           {% assign mapped_group = "רטבים וממרחים" %}
         {% when "כבושים" or "תסיסה וכבישה" or "תהליך תסיסה" or "תרבית חיה" or "דגים כבושים" %}
           {% assign mapped_group = "כבישה ותסיסה" %}
-        {% when "רכיב ביניים / טכניקה" or "רכיב ביניים / טכניקת עומק" or "רכיב טעם" %}
+        {% when "רכיב ביניים / טכניקה" or "רכיב ביניים / טכניקת עומק" %}
+          {% assign mapped_group = "טכניקות ובסיסים" %}
+        {% when "בסיס מסורתי" %}
           {% assign mapped_group = "טכניקות ובסיסים" %}
         {% when "בשר טחון" %}
           {% assign mapped_group = "בשר, דגים ונתחים" %}
@@ -42,6 +44,8 @@ permalink: /ingredients/
           {% assign mapped_group = "כלים ומכשירים" %}
         {% elsif category contains "עקרונות" or category contains "עיקרון" or title_text contains "עיקרון" or title_text contains "יסודות" or url_down contains "principle" %}
           {% assign mapped_group = "עקרונות בישול" %}
+        {% elsif category contains "ירק חריף" or category contains "רכיב טעם" or category contains "שומן מתובל" %}
+          {% assign mapped_group = "חומרי גלם" %}
         {% elsif category contains "נתח" or category contains "בקר" or category contains "בשר" or category contains "דגים" or title_text contains "נתח" or title_text contains "בקר" or title_text contains "בשר" or title_text contains "דג" or title_text contains "כבש" or title_text contains "עוף" or url_down contains "beef" or url_down contains "meat" or url_down contains "fish" %}
           {% assign mapped_group = "בשר, דגים ונתחים" %}
         {% endif %}
