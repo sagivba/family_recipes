@@ -17,31 +17,9 @@ permalink: /ingredients/
     {% assign group_count = 0 %}
     {% assign seen_urls = "|" %}
 
-    {% case top_group %}
-      {% when "חומרי גלם" %}
-        {% assign group_description = "רכיבי בסיס שחוזרים במתכונים ודורשים בחירה, השריה, הכנה או שימוש נכון." %}
-      {% when "תבלינים ותערובות" %}
-        {% assign group_description = "תבלינים ותערובות שמגדירים טעם, ריח וזהות משפחתית במנות." %}
-      {% when "רטבים וממרחים" %}
-        {% assign group_description = "רטבים, ממרחים ותוספות שמחברים בין מתכונים ומשנים את האופי של המנה." %}
-      {% when "כבישה ותסיסה" %}
-        {% assign group_description = "רכיבים ותהליכים שבהם זמן, מלח, חומציות או תרבית יוצרים טעם ומרקם." %}
-      {% when "טכניקות ובסיסים" %}
-        {% assign group_description = "הכנות, שלבים ועקרונות עבודה שמשפיעים על עומק הטעם והצלחת המתכון." %}
-      {% when "בשר, דגים ונתחים" %}
-        {% assign group_description = "חומרי גלם מן החי, נתחים וסוגי הכנה שחשוב להבין לפני הבישול." %}
-      {% when "כלים ומכשירים" %}
-        {% assign group_description = "כלים, מכשירים ושיטות עבודה שמופיעים סביב המתכונים או ישמשו הרחבות עתידיות." %}
-      {% when "עקרונות בישול" %}
-        {% assign group_description = "עקרונות כלליים שעוזרים להבין למה מתכון עובד ולא רק איך לבצע אותו." %}
-      {% when "אחר" %}
-        {% assign group_description = "פריטים שעדיין לא שויכו לקבוצת ידע קבועה ודורשים מיון עתידי." %}
-      {% else %}
-        {% assign group_description = "" %}
-    {% endcase %}
-
     {% for ingredient in ingredients_sorted %}
       {% assign category = ingredient.category | default: "" | strip %}
+
       {% if top_groups contains category %}
         {% assign effective_group = category %}
       {% else %}
@@ -79,8 +57,24 @@ permalink: /ingredients/
       <section class="ingredients-group">
         <h2>{{ top_group }}</h2>
 
-        {% if group_description %}
-          <p class="ingredients-group-description">{{ group_description }}</p>
+        {% if top_group == "חומרי גלם" %}
+          <p class="ingredients-group-description">רכיבי בסיס שחוזרים במתכונים ודורשים בחירה, השריה, הכנה או שימוש נכון.</p>
+        {% elsif top_group == "תבלינים ותערובות" %}
+          <p class="ingredients-group-description">תבלינים ותערובות שמגדירים טעם, ריח וזהות משפחתית במנות.</p>
+        {% elsif top_group == "רטבים וממרחים" %}
+          <p class="ingredients-group-description">רטבים, ממרחים ותוספות שמחברים בין מתכונים ומשנים את האופי של המנה.</p>
+        {% elsif top_group == "כבישה ותסיסה" %}
+          <p class="ingredients-group-description">רכיבים ותהליכים שבהם זמן, מלח, חומציות או תרבית יוצרים טעם ומרקם.</p>
+        {% elsif top_group == "טכניקות ובסיסים" %}
+          <p class="ingredients-group-description">הכנות, שלבים ועקרונות עבודה שמשפיעים על עומק הטעם והצלחת המתכון.</p>
+        {% elsif top_group == "בשר, דגים ונתחים" %}
+          <p class="ingredients-group-description">חומרי גלם מן החי, נתחים וסוגי הכנה שחשוב להבין לפני הבישול.</p>
+        {% elsif top_group == "כלים ומכשירים" %}
+          <p class="ingredients-group-description">כלים, מכשירים ושיטות עבודה שמופיעים סביב המתכונים או ישמשו הרחבות עתידיות.</p>
+        {% elsif top_group == "עקרונות בישול" %}
+          <p class="ingredients-group-description">עקרונות כלליים שעוזרים להבין למה מתכון עובד ולא רק איך לבצע אותו.</p>
+        {% elsif top_group == "אחר" %}
+          <p class="ingredients-group-description">פריטים שעדיין לא שויכו לקבוצת ידע קבועה ודורשים מיון עתידי.</p>
         {% endif %}
 
         <div>
