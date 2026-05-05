@@ -55,23 +55,9 @@ permalink: /ingredients/
           or title_text contains "יסודות"
           or url_down contains "principle" %}
           {% assign mapped_group = "עקרונות בישול" %}
-        {% elsif category contains "ירק חריף"
-          or category contains "רכיב טעם"
-          or category contains "שומן מתובל" %}
+        {% elsif category contains "ירק חריף" or category contains "רכיב טעם" or category contains "שומן מתובל" %}
           {% assign mapped_group = "חומרי גלם" %}
-        {% elsif category contains "נתח"
-          or category contains "בקר"
-          or category contains "בשר"
-          or category contains "דגים"
-          or title_text contains "נתח"
-          or title_text contains "בקר"
-          or title_text contains "בשר"
-          or title_text contains "דג"
-          or title_text contains "כבש"
-          or title_text contains "עוף"
-          or url_down contains "beef"
-          or url_down contains "meat"
-          or url_down contains "fish" %}
+        {% elsif category contains "נתח" or category contains "בקר" or category contains "בשר" or category contains "דגים" or title_text contains "נתח" or title_text contains "בקר" or title_text contains "בשר" or title_text contains "דג" or title_text contains "כבש" or title_text contains "עוף" or url_down contains "beef" or url_down contains "meat" or url_down contains "fish" %}
           {% assign mapped_group = "בשר, דגים ונתחים" %}
         {% endif %}
       {% endif %}
