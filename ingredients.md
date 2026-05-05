@@ -40,9 +40,20 @@ permalink: /ingredients/
       {% endcase %}
 
       {% if mapped_group == "אחר" %}
-        {% if category contains "כלים" or category contains "מכשיר" or title_text contains "סכין" or title_text contains "מחבת" or title_text contains "סיר" or title_text contains "טאבון" or url_down contains "knife" or url_down contains "tool" %}
+        {% if category contains "כלים"
+          or category contains "מכשיר"
+          or title_text contains "סכין"
+          or title_text contains "מחבת"
+          or title_text contains "סיר"
+          or title_text contains "טאבון"
+          or url_down contains "knife"
+          or url_down contains "tool" %}
           {% assign mapped_group = "כלים ומכשירים" %}
-        {% elsif category contains "עקרונות" or category contains "עיקרון" or title_text contains "עיקרון" or title_text contains "יסודות" or url_down contains "principle" %}
+        {% elsif category contains "עקרונות"
+          or category contains "עיקרון"
+          or title_text contains "עיקרון"
+          or title_text contains "יסודות"
+          or url_down contains "principle" %}
           {% assign mapped_group = "עקרונות בישול" %}
         {% elsif category contains "ירק חריף" or category contains "רכיב טעם" or category contains "שומן מתובל" %}
           {% assign mapped_group = "חומרי גלם" %}
