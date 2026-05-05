@@ -2,7 +2,8 @@
 layout: ingredient
 title: "לימון כבוש בסגנון עדני"
 type: ingredient
-category: "כבושים"
+category: כבישה ותסיסה
+subcategory: כבושים
 origin: "עדן / תימן"
 status: draft_for_manual_editing
 source_recipe_files:

@@ -2,7 +2,8 @@
 layout: ingredient
 title: "כרוב כבוש פרוביוטי"
 type: ingredient
-category: "תסיסה וכבישה"
+category: כבישה ותסיסה
+subcategory: תסיסה וכבישה
 origin: "מולדובה / מזרח אירופה"
 status: draft_for_manual_editing
 source_recipe_files:

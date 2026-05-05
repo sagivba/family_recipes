@@ -2,7 +2,8 @@
 layout: ingredient
 title: "סמנה / סמנה תימנית"
 type: ingredient
-category: "שומן מתובל / חמאה מזוקקת"
+category: חומרי גלם
+subcategory: שומן מתובל / חמאה מזוקקת
 origin: "תימן / עדן / מטבחים ערביים וצפון־אפריקאיים"
 status: draft_for_manual_editing
 source_recipe_files:

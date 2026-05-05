@@ -2,7 +2,8 @@
 layout: ingredient
 title: "חלקי הבשר בפרה"
 type: ingredient
-category: "בשר"
+category: בשר, דגים ונתחים
+subcategory: בשר
 ---
 # חלקי הבשר בפרה
 

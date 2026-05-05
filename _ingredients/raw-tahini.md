@@ -2,7 +2,8 @@
 layout: ingredient
 title: "טחינה גולמית"
 type: ingredient
-category: "מחית / בסיס"
+category: חומרי גלם
+subcategory: מחית / בסיס
 origin: "מזרח תיכוני"
 status: draft_for_manual_editing
 source_recipe_files:

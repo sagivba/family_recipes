@@ -2,7 +2,8 @@
 layout: ingredient
 title: "שעועית אדומה לבישול ארוך / לובים"
 type: ingredient
-category: "קטניות"
+category: חומרי גלם
+subcategory: קטניות
 origin: "עדני / תימני"
 status: draft_for_manual_editing
 source_recipe_files:

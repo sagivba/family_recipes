@@ -2,7 +2,8 @@
 layout: ingredient
 title: "פסטו ביתי / עשבי תיבול בשמן"
 type: ingredient
-category: "רוטב חי"
+category: רטבים וממרחים
+subcategory: רוטב חי
 origin: "איטלקי בהשראה / התאמה ביתית"
 status: draft_for_manual_editing
 source_recipe_files:

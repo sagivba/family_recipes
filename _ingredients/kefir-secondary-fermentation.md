@@ -2,7 +2,8 @@
 layout: ingredient
 title: "תסיסה שנייה של קפיר"
 type: ingredient
-category: "תהליך תסיסה"
+category: כבישה ותסיסה
+subcategory: תהליך תסיסה
 origin: "ביתית / קווקזית בהשראה"
 status: draft_for_manual_editing
 source_recipe_files:

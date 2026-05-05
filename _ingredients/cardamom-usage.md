@@ -2,7 +2,8 @@
 layout: ingredient
 title: "הל ירוק"
 type: ingredient
-category: "תבלין ארומטי"
+category: תבלינים ותערובות
+subcategory: תבלין ארומטי
 origin: "תימן / עדן / דרום אסיה"
 status: draft_for_manual_editing
 source_recipe_files:

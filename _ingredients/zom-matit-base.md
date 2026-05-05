@@ -2,7 +2,8 @@
 layout: ingredient
 title: "זום / מטיט כבסיס חלבי־חמוץ"
 type: ingredient
-category: "בסיס מסורתי"
+category: טכניקות ובסיסים
+subcategory: בסיס מסורתי
 origin: "תימני"
 status: draft_for_manual_editing
 source_recipe_files:
