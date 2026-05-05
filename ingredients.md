@@ -1,11 +1,12 @@
 ---
 layout: default
-title: מאגר מרכיבים
+title: מזווה הידע
 permalink: /ingredients/
 ---
 
 <div class="ingredients-index" dir="rtl">
   <h1>{{ page.title }}</h1>
+  <p>חומרי גלם, תבלינים, טכניקות, תסיסות, נתחים, כלים ועקרונות בישול שמופיעים סביב המתכונים המשפחתיים.</p>
 
   {% assign ingredients_sorted = site.ingredients | sort: "title" %}
   {% assign grouped = ingredients_sorted | group_by: "category" %}
