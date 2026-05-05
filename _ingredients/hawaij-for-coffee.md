@@ -2,7 +2,8 @@
 layout: ingredient
 title: "חוואיג׳ לקפה"
 type: ingredient
-category: "תערובת תבלינים"
+category: תבלינים ותערובות
+subcategory: תערובת תבלינים
 origin: "תימן / עדן"
 status: draft_for_manual_editing
 source_recipe_files: []

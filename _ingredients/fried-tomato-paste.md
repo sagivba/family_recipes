@@ -2,7 +2,8 @@
 layout: ingredient
 title: "רסק עגבניות מטוגן"
 type: ingredient
-category: "רכיב ביניים / טכניקת עומק"
+category: טכניקות ובסיסים
+subcategory: רכיב ביניים / טכניקת עומק
 origin: "מטבח ביתי / מזרח תיכוני"
 status: draft_for_manual_editing
 source_recipe_files:

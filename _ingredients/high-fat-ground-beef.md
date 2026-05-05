@@ -2,7 +2,8 @@
 layout: ingredient
 title: "בשר בקר טחון שמן"
 type: ingredient
-category: "בשר טחון"
+category: בשר, דגים ונתחים
+subcategory: בשר טחון
 origin: "גריל / קציצות ביתיות"
 status: draft_for_manual_editing
 source_recipe_files:

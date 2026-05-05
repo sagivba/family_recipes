@@ -2,7 +2,8 @@
 layout: ingredient
 title: "סחוג ירוק / ביסבס"
 type: ingredient
-category: "רוטב חריף"
+category: רטבים וממרחים
+subcategory: רוטב חריף
 origin: "עדן / תימן / ישראל"
 status: draft_for_manual_editing
 source_recipe_files:

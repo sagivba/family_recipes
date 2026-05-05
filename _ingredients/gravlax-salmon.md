@@ -2,7 +2,8 @@
 layout: ingredient
 title: "סלמון כבוש בכבישה קרה"
 type: ingredient
-category: "דגים כבושים"
+category: כבישה ותסיסה
+subcategory: דגים כבושים
 origin: "סקנדינבי בהשראה"
 status: draft_for_manual_editing
 source_recipe_files:

@@ -2,7 +2,8 @@
 layout: ingredient
 title: "דפי אורז למאפה / בורקס"
 type: ingredient
-category: "חומר גלם דורש טיפול"
+category: חומרי גלם
+subcategory: חומר גלם דורש טיפול
 origin: "אסיאתי בהשראה / התאמה ביתית"
 status: draft_for_manual_editing
 source_recipe_files:

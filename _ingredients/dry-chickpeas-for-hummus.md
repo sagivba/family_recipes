@@ -2,7 +2,8 @@
 layout: ingredient
 title: "חומוס יבש לחומוס ביתי"
 type: ingredient
-category: "קטניות"
+category: חומרי גלם
+subcategory: קטניות
 origin: "מזרח תיכוני"
 status: draft_for_manual_editing
 source_recipe_files:

@@ -2,7 +2,8 @@
 layout: ingredient
 title: "גרגרי קפיר"
 type: ingredient
-category: "תרבית חיה"
+category: כבישה ותסיסה
+subcategory: תרבית חיה
 origin: "קווקז / מזרח אירופה"
 status: draft_for_manual_editing
 source_recipe_files:

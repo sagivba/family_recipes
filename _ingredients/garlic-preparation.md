@@ -2,7 +2,8 @@
 layout: ingredient
 title: "שום כתוש, קצוץ וטרי"
 type: ingredient
-category: "רכיב טעם"
+category: חומרי גלם
+subcategory: "רכיב טעם"
 origin: "כללי / מטבח ביתי"
 status: draft_for_manual_editing
 source_recipe_files:

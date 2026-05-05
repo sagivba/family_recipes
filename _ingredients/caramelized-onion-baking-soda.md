@@ -2,7 +2,8 @@
 layout: ingredient
 title: "בצל מטוגן עם אבקת סודה לשתייה"
 type: ingredient
-category: "רכיב ביניים / טכניקה"
+category: טכניקות ובסיסים
+subcategory: רכיב ביניים / טכניקה
 origin: "מטבח ביתי / מזרח אירופה בהשראה"
 status: draft_for_manual_editing
 source_recipe_files:
