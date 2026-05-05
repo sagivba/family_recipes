@@ -55,9 +55,15 @@ permalink: /ingredients/
         {% capture group_cards %}
           {{ group_cards }}
           <article class="ingredient-card">
-            <h3><a href="{{ ingredient.url | relative_url }}">{{ ingredient.title }}</a></h3>
-            {% if ingredient.category %}<p>{{ ingredient.category }}</p>{% endif %}
-            {% if ingredient.origin %}<p>{{ ingredient.origin }}</p>{% endif %}
+            <h3>
+              <a href="{{ ingredient.url | relative_url }}">{{ ingredient.title }}</a>
+            </h3>
+            {% if ingredient.category %}
+              <p>{{ ingredient.category }}</p>
+            {% endif %}
+            {% if ingredient.origin %}
+              <p>{{ ingredient.origin }}</p>
+            {% endif %}
           </article>
         {% endcapture %}
         {% assign group_count = group_count | plus: 1 %}
