@@ -949,6 +949,7 @@ body {
 .ingredients-index {
   max-width: 980px;
   margin: 0 auto;
+  padding-inline: 0.75rem;
 }
 
 .ingredients-group {
@@ -980,6 +981,10 @@ body {
 }
 
 @media (min-width: 700px) {
+  .ingredients-index {
+    padding-inline: 0;
+  }
+
   .ingredients-group > div {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
