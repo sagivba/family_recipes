@@ -950,7 +950,7 @@ body {
 .ingredients-index {
   max-width: 980px;
   margin: 0 auto;
-  padding-inline: 0.75rem 1rem;
+  padding-inline: 0.75rem;
 }
 
 .ingredients-group {
@@ -982,10 +982,6 @@ body {
 }
 
 @media (min-width: 700px) {
-  .ingredient-page {
-    padding-inline: 0;
-  }
-
   .ingredients-index {
     padding-inline: 0;
   }
