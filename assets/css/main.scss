@@ -914,8 +914,7 @@ body {
   width: 100%;
   max-width: 820px;
   margin: 0 auto;
-  padding-inline-start: 1rem;
-  padding-inline-end: 0.75rem;
+  padding-inline: 0.75rem 1rem;
 }
 
 .ingredient-header {
@@ -955,8 +954,7 @@ body {
   width: 100%;
   max-width: 980px;
   margin: 0 auto;
-  padding-inline-start: 1rem;
-  padding-inline-end: 0.75rem;
+  padding-inline: 0.75rem;
 }
 
 .ingredients-group {
@@ -988,14 +986,8 @@ body {
 }
 
 @media (min-width: 700px) {
-  .ingredient-page {
-    padding-inline-start: 0;
-    padding-inline-end: 0;
-  }
-
   .ingredients-index {
-    padding-inline-start: 0;
-    padding-inline-end: 0;
+    padding-inline: 0;
   }
 
   .ingredients-group > div {
