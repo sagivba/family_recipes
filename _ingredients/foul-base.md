@@ -29,7 +29,7 @@ related_recipes:
 - לדלל יותר מדי ולקבל מרקם מרקי במקום ממרחי.
 - לא לטגן את הבצל/שום/פלפל לפני הפול.
 - לשכוח לימון או שומן בהגשה.
-- לא להתייחס ל־G6PD: פול עלול להיות מסוכן לאנשים עם חסר G6PD.
+- לא להתייחס ל-G6PD: פול עלול להיות מסוכן לאנשים עם חסר G6PD.
 
 ## איך משתמשים במתכונים שלנו
 
@@ -70,7 +70,7 @@ related_recipes:
 - מתכון האתר: פול מודמס.
 - MedlinePlus על G6PD ופול: https://medlineplus.gov/genetics/condition/glucose-6-phosphate-dehydrogenase-deficiency/
 - סקירה על ערך תזונתי של פול: https://pmc.ncbi.nlm.nih.gov/articles/PMC9018142/
-- סקירה על צריכת קטניות ובריאות קרדיו־מטבולית: https://pmc.ncbi.nlm.nih.gov/articles/PMC10243120/
+- סקירה על צריכת קטניות ובריאות קרדיו-מטבולית: https://pmc.ncbi.nlm.nih.gov/articles/PMC10243120/
 
 ## הסתייגות רפואית ובטיחותית קבועה
 
