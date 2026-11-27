@@ -25,10 +25,10 @@ related_recipes:
     url: "/recipes/shakshuka/"
 ---
 
-בחוואיג׳ למרק הכורכום נותן את הצבע הצהוב, הכמון מורגש בריח והפלפל השחור נותן חריפות. יש תערובות עם זרעי כוסברה, הל או ציפורן, והיחסים משתנים. כשקונים בחנות תבלינים כדאי לבקש במפורש חוואיג׳ **למרק**. הגרסה לקפה מבושמת בדרך כלל בהל, קינמון וג׳ינג׳ר. [על תערובות החוואיג׳](https://www.epicurious.com/expert-advice/how-to-use-hawaij-article) · [מרק עוף תימני בתיעוד של Jewish Food Society](https://www.jewishfoodsociety.org/recipes/yemenite-soup-with-chicken-and-hawaij)
+כשאני מכין [מרק עוף תימני]({{ site.baseurl }}/recipes/yameni-chicken-soup-by-sagiv/), אני שם כף חוואיג' על ארבעה ליטרים של מים. החוואיג' נכנס לסיר עם הבצל והשום. במרק של ראש השנה יש לצדו גם תרמילי הל ומסמרי ציפורן.
 
-ב[מרק העוף התימני שלי]({{ site.baseurl }}/recipes/yameni-chicken-soup-by-sagiv/) אני מוסיף כף חוואיג׳ לארבעה ליטרים של מים, יחד עם הבצל והשום. ב[מרק הראש לראש השנה]({{ site.baseurl }}/recipes/head-soup/) יש לצדו גם הל וציפורן. המנהג לאכול ראש בחג מופיע בשולחן ערוך, ושם אומרים ״נהיה לראש ולא לזנב״. [אורח חיים, תקפ״ג, ב׳](https://he.wikisource.org/wiki/שולחן_ערוך_אורח_חיים_תקפג_ב)
+יש חוואיג' גם במקומות שאולי פחות מצפים לו. ב[קבאב של סבא שלום]({{ site.baseurl }}/recipes/kabab-by-grandpa-shalom/) יש כף על קילו בשר. ב[קציצות של נורית]({{ site.baseurl }}/recipes/pan-fried-meatballs-by-nurit/) יש כפית על חצי קילו. אצל ישראל הוא נכנס גם ל[שקשוקה]({{ site.baseurl }}/recipes/shakshuka/).
 
-החוואיג׳ חוזר גם מחוץ לסיר המרק. ב[קבאב של סבא שלום]({{ site.baseurl }}/recipes/kabab-by-grandpa-shalom/) יש כף על קילו בשר. ב[קציצות של נורית לסוכות]({{ site.baseurl }}/recipes/pan-fried-meatballs-by-nurit/) יש כפית על חצי קילו, וב[שקשוקה של ישראל]({{ site.baseurl }}/recipes/shakshuka/) מתבלים בו את רוטב העגבניות.
+בחנות תבלינים כדאי לבקש חוואיג' למרק. הצבע הצהוב בא מהכורכום, ולצדו בדרך כלל יש כמון ופלפל שחור. בחוואיג' לקפה נפוצים דווקא הל, קינמון וג'ינג'ר. אם רוצים לערבב לבד, אפשר להתחיל מארבעה חלקים כורכום, שלושה כמון ושניים פלפל שחור. לפי הטעם אפשר להוסיף שני חלקים זרעי כוסברה טחונים וחלק אחד הל טחון. [על תערובות החוואיג'](https://www.epicurious.com/expert-advice/how-to-use-hawaij-article) ו[מרק עוף תימני בתיעוד של Jewish Food Society](https://www.jewishfoodsociety.org/recipes/yemenite-soup-with-chicken-and-hawaij).
 
-לתערובת ביתית אפשר להתחיל מארבעה חלקים כורכום, שלושה כמון ושניים פלפל שחור. אם רוצים, מוסיפים שני חלקים זרעי כוסברה טחונים וחלק אחד הל טחון. צנצנת קטנה וסגורה בארון יבש תעזור לשמור על הריח.
+[מרק הראש לראש השנה]({{ site.baseurl }}/recipes/head-soup/) מזכיר את המנהג לאכול ראש בחג ולומר "נהיה לראש ולא לזנב". [שולחן ערוך, אורח חיים תקפ"ג, ב'](https://he.wikisource.org/wiki/שולחן_ערוך_אורח_חיים_תקפג_ב)

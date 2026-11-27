@@ -70,7 +70,7 @@ related_recipes:
 
 ## מידע נוסף: מחקרים והשפעות בריאותיות
 
-- פלפלים חריפים מכילים קפסאיצין, שנחקר רבות, אך ההשפעות בבני אדם אינן חד־משמעיות ותלויות מינון וסבילות אישית.
+- פלפלים חריפים מכילים קפסאיצין, שנחקר רבות, אך ההשפעות בבני אדם אינן חד-משמעיות ותלויות מינון וסבילות אישית.
 - שום וכוסברה נחקרו בהקשרים שונים, אך בסחוג השימוש הוא קודם כל קולינרי.
 - מי שסובל מרפלוקס, כיב, IBS או רגישות לחריף צריך להתייחס בזהירות.
 
@@ -78,7 +78,7 @@ related_recipes:
 
 - מתכון האתר: הסחוג הירוק של ישראל.
 - LinsFood על Zhug/Zhoug תימני: https://www.linsfood.com/zhug-zhoug-yemeni-chilli-sauce/
-- A Kitchen in Istanbul על Zhoug והקשר תימני־ישראלי: https://vidarbergum.com/recipe/zhoug-yemenite-hot-sauce/
+- A Kitchen in Istanbul על Zhoug והקשר תימני-ישראלי: https://vidarbergum.com/recipe/zhoug-yemenite-hot-sauce/
 - סקירה על Capsicum/capsaicin: https://pmc.ncbi.nlm.nih.gov/articles/PMC6000222/
 - סקירה על שום: https://pmc.ncbi.nlm.nih.gov/articles/PMC9978857/
 

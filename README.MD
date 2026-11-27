@@ -1,4 +1,4 @@
-# Family Recipes – Local Development
+# Family Recipes - Local Development
 
 This repository contains a Jekyll-based site, developed and tested locally using **Docker**, **nginx**, and **WSL** on Windows 11.
 The local setup is designed to closely resemble the GitHub Pages production environment while remaining stable on Windows.

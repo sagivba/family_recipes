@@ -1,6 +1,6 @@
 ---
 layout: recipe
-title: "עוגת גבינה – מדורגת"
+title: "עוגת גבינה - מדורגת"
 category: "קינוח"
 type: "עוגה"
 origin: "ישראל"

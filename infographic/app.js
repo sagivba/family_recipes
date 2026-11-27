@@ -50,7 +50,7 @@ const els = {
 init();
 
 async function init() {
-  setStatus("טוען נתונים…", "");
+  setStatus("טוען נתונים...", "");
   try {
     const response = await fetch(DATA_URL, { cache: "no-cache" });
     if (!response.ok) {
