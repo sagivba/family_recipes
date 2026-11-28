@@ -33,6 +33,6 @@ related_recipes:
 
 **בקציצות ובקבאב** - מערבבים את החוואיג' בתוך הבשר לפני העיצוב. כך התיבול מתפזר בכל הקציצה.
 
-בחנות תבלינים כדאי לבקש חוואיג' למרק. בחוואיג' לקפה נפוצים דווקא הל, קינמון וג'ינג'ר. אם רוצים לערבב לבד, אפשר להתחיל מארבעה חלקים כורכום, שלושה כמון ושניים פלפל שחור. לפי הטעם אפשר להוסיף שני חלקים זרעי כוסברה טחונים וחלק אחד הל טחון. [על תערובות החוואיג'](https://www.epicurious.com/expert-advice/how-to-use-hawaij-article) ו[מרק עוף תימני בתיעוד של Jewish Food Society](https://www.jewishfoodsociety.org/recipes/yemenite-soup-with-chicken-and-hawaij).
+בחנות תבלינים כדאי לבקש חוואיג' למרק. בחוואיג' לקפה נפוצים דווקא הל, קינמון וג'ינג'ר. [על תערובות החוואיג'](https://www.epicurious.com/expert-advice/how-to-use-hawaij-article) ו[מרק עוף תימני בתיעוד של Jewish Food Society](https://www.jewishfoodsociety.org/recipes/yemenite-soup-with-chicken-and-hawaij).
 
 [מרק הראש לראש השנה]({{ site.baseurl }}/recipes/head-soup/) מזכיר את המנהג לאכול ראש בחג ולומר "נהיה לראש ולא לזנב". [שולחן ערוך, אורח חיים תקפ"ג, ב'](https://he.wikisource.org/wiki/שולחן_ערוך_אורח_חיים_תקפג_ב)
