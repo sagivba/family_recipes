@@ -2,7 +2,7 @@
 layout: ingredient
 title: "פלפל ירוק חריף"
 type: ingredient
-category: חומרי גלם
+category: תבלינים ותערובות
 subcategory: "ירק חריף / רכיב טעם"
 origin: "מזרח תיכוני / ביתי"
 status: draft_for_manual_editing

@@ -2,7 +2,7 @@
 layout: ingredient
 title: "ריחן / בזיליקום"
 type: ingredient
-category: חומרי גלם
+category: תבלינים ותערובות
 subcategory: עשבי תיבול
 origin: "תימן / ים תיכוני"
 source_recipe_files:
